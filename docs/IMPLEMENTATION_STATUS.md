@@ -5,9 +5,9 @@ This is an implemented candidate under qualification, not a production release. 
 ## Observed working components
 
 - The original 37-file prototype was preserved privately; both the original files and their preserved copies were checked against the SHA-256 inventory.
-- A private `abhs007/sourcewayfinder-platform` repository exists. Implementation work is on `implementation/platform-foundation`; the owner retains merge authority.
+- A private `abhs007/sourcewayfinder-platform` repository exists. Implementation work is in [draft PR #1](https://github.com/abhs007/sourcewayfinder-platform/pull/1) on `implementation/platform-foundation`; hosted CI passed and the owner retains merge authority.
 - The local authenticated Paperclip controller, private PostgreSQL, isolated SSH execution guest, and restricted egress gateway run in the dedicated Colima VM. Seven named roles, two projects, and milestone tasks exist.
-- Codex 0.169.1 is signed in through ChatGPT. All seven adapter configurations passed environment checks. An actual fictional Paperclip task completed through SSH using Sol and produced independently verified output. No paid API key was used.
+- Codex 0.169.1 is signed in through ChatGPT. All seven adapter configurations passed environment checks. An actual fictional Paperclip task completed through SSH using Sol and produced independently verified output. No paid API key was used. Both projects now use a verified committed platform source replica; synchronization is idempotent and preserves earlier workspaces.
 - The public and administrative React applications build separately. Four Worker artifacts implement web routing, deterministic guidance, policy/admin, and survey. The API uses the restricted published-content service binding.
 - Local D1 and browser tests exercise fictional guidance, capability sessions, sequence conflicts, freshness, approval invalidation, publication, Access authentication, safe fallbacks, and survey compatibility. Counts and final candidate checks belong in the acceptance ledger after the combined run.
 - Five official pages have retained bounded evidence: three Verizon sources and two SSA sources. Both guidance bundles use the same evaluator and renderer. Their 31 proposed semantic cases are awaiting human approval and have not been executed as approved acceptance tests.
