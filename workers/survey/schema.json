@@ -1,0 +1,115 @@
+{
+  "version": "needs-v1",
+  "questions": [
+    {
+      "id": "experience",
+      "label": "In the past six months, have you looked online for instructions about an official procedure or service?",
+      "options": ["Yes", "No", "Not sure"],
+      "type": "radio",
+      "required": true
+    },
+    {
+      "id": "task",
+      "label": "What was your most recent task?",
+      "options": [
+        "Phone or account recovery",
+        "An identity document",
+        "A government benefit or service",
+        "A business registration or permit",
+        "A city or county issue",
+        "Another task",
+        "No recent task / prefer not to answer"
+      ],
+      "type": "radio",
+      "required": false
+    },
+    {
+      "id": "method",
+      "label": "What was your main starting point?",
+      "options": [
+        "Search engine, such as Google",
+        "AI assistant or chatbot",
+        "Official website",
+        "Family, friend, or community helper",
+        "Professional adviser",
+        "Phone call or in-person visit",
+        "Other / do not remember",
+        "No recent task"
+      ],
+      "type": "radio",
+      "required": false
+    },
+    {
+      "id": "difficulty",
+      "label": "How easy or difficult was it to find the information you needed?",
+      "options": [
+        "Very easy",
+        "Somewhat easy",
+        "Neither easy nor difficult",
+        "Somewhat difficult",
+        "Very difficult",
+        "Not sure / no recent task"
+      ],
+      "type": "radio",
+      "required": false
+    },
+    {
+      "id": "obstacles",
+      "label": "What, if anything, made the task difficult?",
+      "options": [
+        "Finding the responsible organization",
+        "Knowing which rules applied to me",
+        "Understanding the wording",
+        "Finding the right form or contact",
+        "Knowing whether information was current",
+        "Different sources gave different instructions",
+        "Using the website on my device",
+        "Something else",
+        "Nothing made it difficult",
+        "Not sure / no recent task"
+      ],
+      "type": "checkbox",
+      "required": false
+    },
+    {
+      "id": "outcome",
+      "label": "What happened with that task?",
+      "options": [
+        "Completed without help",
+        "Completed with help",
+        "Still working on it",
+        "Stopped before completing it",
+        "No action was needed",
+        "Prefer not to answer / no recent task"
+      ],
+      "type": "radio",
+      "required": false
+    },
+    {
+      "id": "age",
+      "label": "What is your age group? (Optional)",
+      "options": ["18–34", "35–49", "50–64", "65–74", "75 or older", "Prefer not to answer"],
+      "type": "radio",
+      "required": false
+    },
+    {
+      "id": "assistance",
+      "label": "How are you answering this survey?",
+      "options": [
+        "By myself, about my experience",
+        "Someone is helping me enter my own answers",
+        "About an experience helping someone else",
+        "Prefer not to answer"
+      ],
+      "type": "radio",
+      "required": false
+    },
+    {
+      "id": "interest",
+      "label": "Would you be interested in trying this proposed tool?",
+      "options": ["Definitely yes", "Probably yes", "Not sure", "Probably not", "Definitely not"],
+      "type": "radio",
+      "required": false
+    }
+  ]
+}

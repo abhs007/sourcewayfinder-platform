@@ -1,0 +1,28 @@
+[
+  {
+    "id": "ssa-replacement",
+    "sourceVersionId": "v_afdcc7b9e0ba2a2645b01411432f5d4240e344da64be5ee6094b0c588d67",
+    "url": "https://www.ssa.gov/number-card/replace-card",
+    "snapshotSha256": "194244fb639517a72f08dd2909a098a65af53b9b0348b18ae085ff875297939e",
+    "normalizedSha256": "9dfc4d1a3c7ff61a52f5ea604a577d64f0c2024a6e487aa1a51f8b640ef83b40",
+    "extractorVersion": "parse5-content-v2:main:browser",
+    "lastSuccessfulCheckAt": "2026-11-22T11:14:47.245Z",
+    "acquisition": "browser",
+    "rawEvidencePath": "private/evidence/194244fb639517a72f08dd2909a098a65af53b9b0348b18ae085ff875297939e.html",
+    "normalizedEvidencePath": "private/evidence/9dfc4d1a3c7ff61a52f5ea604a577d64f0c2024a6e487aa1a51f8b640ef83b40.txt",
+    "reviewStatus": "unapproved"
+  },
+  {
+    "id": "ssa-online-replacement",
+    "sourceVersionId": "v_555795ecdcc66f080e12a4475a6389c2a359d3d7f720324b07803c116db4",
+    "url": "https://www.ssa.gov/faqs/en/questions/KA-02017.html",
+    "snapshotSha256": "a90d4be14319f33946a7c235d469be2739c3e86f423f188c339b2f68cb8fa541",
+    "normalizedSha256": "c1abcc5657aff57e8ac68965074d1922c497504fd1c5886bbe5c935bde5f1176",
+    "extractorVersion": "parse5-content-v2:main:browser",
+    "lastSuccessfulCheckAt": "2026-11-22T11:14:49.830Z",
+    "acquisition": "browser",
+    "rawEvidencePath": "private/evidence/a90d4be14319f33946a7c235d469be2739c3e86f423f188c339b2f68cb8fa541.html",
+    "normalizedEvidencePath": "private/evidence/c1abcc5657aff57e8ac68965074d1922c497504fd1c5886bbe5c935bde5f1176.txt",
+    "reviewStatus": "unapproved"
+  }
+]

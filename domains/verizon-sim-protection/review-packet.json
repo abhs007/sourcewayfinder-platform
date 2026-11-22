@@ -1,0 +1,77 @@
+{
+  "flowId": "verizon-sim-protection",
+  "state": "interpretation_review",
+  "status": "draft_unapproved",
+  "approvalRecords": [],
+  "gates": {
+    "interpretation_review": "required",
+    "expected_answer_review": "required",
+    "merge_review": "required",
+    "deployment_review": "required"
+  },
+  "sources": [
+    {
+      "id": "verizon-sim-web",
+      "sourceVersionId": "v_a93d1e9d0a7fafd3b3fd39fa3a51c4a02e0ddc116baa49cff7178de0b414",
+      "url": "https://www.verizon.com/support/knowledge-base-309294/",
+      "snapshotSha256": "2516b91f469b86eb416f9d03afc9b234fd98fe1156cc165043735865f8881b8f",
+      "normalizedSha256": "e94fb1a0760d43c9881a16b0f875bcba2d8020ad0337d3edafb673f7572610b1",
+      "extractorVersion": "parse5-content-v2:kbArticleNew",
+      "lastSuccessfulCheckAt": "2026-11-22T11:11:23.676Z",
+      "acquisition": "https",
+      "rawEvidencePath": "private/evidence/2516b91f469b86eb416f9d03afc9b234fd98fe1156cc165043735865f8881b8f.html",
+      "normalizedEvidencePath": "private/evidence/e94fb1a0760d43c9881a16b0f875bcba2d8020ad0337d3edafb673f7572610b1.txt",
+      "reviewStatus": "unapproved"
+    },
+    {
+      "id": "verizon-account-access",
+      "sourceVersionId": "v_3e5bfdca1670f33006bda997a0b0572bbf760eb19c2bdc983ca8e85cf3e6",
+      "url": "https://www.verizon.com/support/my-verizon-faqs/",
+      "snapshotSha256": "780a93dfe242d0bc75ee1e7d11233ce681f0ccf4cc212de0b9eb5ed6bb8ed90d",
+      "normalizedSha256": "f05e5ed75e2e74be500c37535e242bad6c42a0b986aee30d7fec13a6dda39df5",
+      "extractorVersion": "parse5-content-v2:SupportContentWrapper",
+      "lastSuccessfulCheckAt": "2026-11-22T11:11:26.036Z",
+      "acquisition": "https",
+      "rawEvidencePath": "private/evidence/780a93dfe242d0bc75ee1e7d11233ce681f0ccf4cc212de0b9eb5ed6bb8ed90d.html",
+      "normalizedEvidencePath": "private/evidence/f05e5ed75e2e74be500c37535e242bad6c42a0b986aee30d7fec13a6dda39df5.txt",
+      "reviewStatus": "unapproved"
+    },
+    {
+      "id": "verizon-account-roles",
+      "sourceVersionId": "v_5de4ed095431e5bbb27a5e769c222ea6f52bbca980ea544dfac5a5d4b16b",
+      "url": "https://www.verizon.com/support/assign-account-manager-roles-faqs/",
+      "snapshotSha256": "fbe8cb05e44c55bee317aeb4a4c6e2560e720bfbce87668b8bb9877f3f8b9716",
+      "normalizedSha256": "229d8ee14460d4506f02d200542dbe79cdba695c970f4e8b3baca8d3a84d6caa",
+      "extractorVersion": "parse5-content-v2:SupportContentWrapper",
+      "lastSuccessfulCheckAt": "2026-11-22T11:11:28.325Z",
+      "acquisition": "https",
+      "rawEvidencePath": "private/evidence/fbe8cb05e44c55bee317aeb4a4c6e2560e720bfbce87668b8bb9877f3f8b9716.html",
+      "normalizedEvidencePath": "private/evidence/229d8ee14460d4506f02d200542dbe79cdba695c970f4e8b3baca8d3a84d6caa.txt",
+      "reviewStatus": "unapproved"
+    }
+  ],
+  "reviewQuestions": [
+    "Does each cited passage support the proposed interpretation in its full page context?",
+    "Are unsupported and unknown branches appropriately conservative?",
+    "Does the current source disagree with any date, condition, or distinction in this bundle?",
+    "Do the proposed expected cases independently represent the intended behavior?",
+    "Does the 15-minute statement plus possible additional delay adequately avoid promising immediate activation?",
+    "Account-access FAQ contains clearly labeled AI summaries; review the full official answers, not those summaries.",
+    "Consumer-postpaid restriction is a conservative project boundary, not a claim that every cited page excludes other accounts."
+  ],
+  "limitations": [
+    "These are draft interpretations, not verified real-account or participant outcomes.",
+    "No semantic source-dependent tests have been executed.",
+    "Structural graph validation does not approve the guidance."
+  ],
+  "bundleHash": "6cce957f585185da184c8e3cdf4062ec722a057e14873b32eb1f2c591b2be1d7",
+  "expectedCasesHash": "cfe86b6e87c2b97289d141bc0084ebccd1fe97983d6591c9597f139c6694382c",
+  "sourceRegisterHash": "80ed7b459d97d74736eccffe6b6d9c99a2da18fba5227f3106c363ffac27d9f9",
+  "structuralValidation": {
+    "passed": true,
+    "questions": 8,
+    "outcomes": 12,
+    "transitions": 27,
+    "semanticTestsExecuted": false
+  }
+}

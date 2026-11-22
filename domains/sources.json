@@ -1,0 +1,76 @@
+[
+  {
+    "id": "verizon-sim-web",
+    "flowId": "verizon-sim-protection",
+    "title": "My Verizon website: SIM Protection and Number Lock",
+    "url": "https://www.verizon.com/support/knowledge-base-309294/",
+    "approvedOrigin": "https://www.verizon.com",
+    "approvedPath": "/support/knowledge-base-309294/",
+    "requiredPhrases": [
+      "SIM Protection",
+      "Account Owner",
+      "Security settings",
+      "Save changes"
+    ],
+    "contentId": "kbArticleNew",
+    "acquisition": "https"
+  },
+  {
+    "id": "verizon-account-access",
+    "flowId": "verizon-sim-protection",
+    "title": "My Verizon account access FAQ",
+    "url": "https://www.verizon.com/support/my-verizon-faqs/",
+    "approvedOrigin": "https://www.verizon.com",
+    "approvedPath": "/support/my-verizon-faqs/",
+    "requiredPhrases": [
+      "My Verizon",
+      "Signing In",
+      "Account Owner"
+    ],
+    "contentId": "SupportContentWrapper",
+    "acquisition": "https"
+  },
+  {
+    "id": "verizon-account-roles",
+    "flowId": "verizon-sim-protection",
+    "title": "Verizon mobile account roles",
+    "url": "https://www.verizon.com/support/assign-account-manager-roles-faqs/",
+    "approvedOrigin": "https://www.verizon.com",
+    "approvedPath": "/support/assign-account-manager-roles-faqs/",
+    "requiredPhrases": [
+      "Account Manager",
+      "Account Owner",
+      "Account Member"
+    ],
+    "contentId": "SupportContentWrapper",
+    "acquisition": "https"
+  },
+  {
+    "id": "ssa-replacement",
+    "flowId": "ssa-replacement-card",
+    "title": "SSA: Replace Social Security card",
+    "url": "https://www.ssa.gov/number-card/replace-card",
+    "approvedOrigin": "https://www.ssa.gov",
+    "approvedPath": "/number-card/replace-card",
+    "requiredPhrases": [
+      "Replace Social Security card",
+      "free replacement",
+      "Depending on your situation"
+    ],
+    "acquisition": "browser"
+  },
+  {
+    "id": "ssa-online-replacement",
+    "flowId": "ssa-replacement-card",
+    "title": "SSA: Replacement-card online application FAQ",
+    "url": "https://www.ssa.gov/faqs/en/questions/KA-02017.html",
+    "approvedOrigin": "https://www.ssa.gov",
+    "approvedPath": "/faqs/en/questions/KA-02017.html",
+    "requiredPhrases": [
+      "replacement",
+      "required documents",
+      "no charge"
+    ],
+    "acquisition": "browser"
+  }
+]

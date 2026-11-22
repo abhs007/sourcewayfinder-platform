@@ -1,0 +1,17 @@
+{
+  "accountId": "REPLACE_WITH_VERIFIED_ACCOUNT_ID",
+  "workersPlan": "VERIFY_FREE",
+  "d1DatabaseCount": 0,
+  "adminEmail": "REPLACE_WITH_GOOGLE_PRINCIPAL",
+  "staging": {
+    "accessTeamDomain": "REPLACE.cloudflareaccess.com",
+    "adminAud": "REPLACE",
+    "stagingAud": "REPLACE",
+    "databases": {
+      "control": "REPLACE",
+      "evidence": "REPLACE",
+      "sessions": "REPLACE",
+      "survey": "REPLACE"
+    }
+  }
+}

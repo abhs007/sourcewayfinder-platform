@@ -1,0 +1,63 @@
+{
+  "flowId": "ssa-replacement-card",
+  "state": "interpretation_review",
+  "status": "draft_unapproved",
+  "approvalRecords": [],
+  "gates": {
+    "interpretation_review": "required",
+    "expected_answer_review": "required",
+    "merge_review": "required",
+    "deployment_review": "required"
+  },
+  "sources": [
+    {
+      "id": "ssa-replacement",
+      "sourceVersionId": "v_afdcc7b9e0ba2a2645b01411432f5d4240e344da64be5ee6094b0c588d67",
+      "url": "https://www.ssa.gov/number-card/replace-card",
+      "snapshotSha256": "194244fb639517a72f08dd2909a098a65af53b9b0348b18ae085ff875297939e",
+      "normalizedSha256": "9dfc4d1a3c7ff61a52f5ea604a577d64f0c2024a6e487aa1a51f8b640ef83b40",
+      "extractorVersion": "parse5-content-v2:main:browser",
+      "lastSuccessfulCheckAt": "2026-11-22T11:14:47.245Z",
+      "acquisition": "browser",
+      "rawEvidencePath": "private/evidence/194244fb639517a72f08dd2909a098a65af53b9b0348b18ae085ff875297939e.html",
+      "normalizedEvidencePath": "private/evidence/9dfc4d1a3c7ff61a52f5ea604a577d64f0c2024a6e487aa1a51f8b640ef83b40.txt",
+      "reviewStatus": "unapproved"
+    },
+    {
+      "id": "ssa-online-replacement",
+      "sourceVersionId": "v_555795ecdcc66f080e12a4475a6389c2a359d3d7f720324b07803c116db4",
+      "url": "https://www.ssa.gov/faqs/en/questions/KA-02017.html",
+      "snapshotSha256": "a90d4be14319f33946a7c235d469be2739c3e86f423f188c339b2f68cb8fa541",
+      "normalizedSha256": "c1abcc5657aff57e8ac68965074d1922c497504fd1c5886bbe5c935bde5f1176",
+      "extractorVersion": "parse5-content-v2:main:browser",
+      "lastSuccessfulCheckAt": "2026-11-22T11:14:49.830Z",
+      "acquisition": "browser",
+      "rawEvidencePath": "private/evidence/a90d4be14319f33946a7c235d469be2739c3e86f423f188c339b2f68cb8fa541.html",
+      "normalizedEvidencePath": "private/evidence/c1abcc5657aff57e8ac68965074d1922c497504fd1c5886bbe5c935bde5f1176.txt",
+      "reviewStatus": "unapproved"
+    }
+  ],
+  "reviewQuestions": [
+    "Does each cited passage support the proposed interpretation in its full page context?",
+    "Are unsupported and unknown branches appropriately conservative?",
+    "Does the current source disagree with any date, condition, or distinction in this bundle?",
+    "Do the proposed expected cases independently represent the intended behavior?"
+  ],
+  "limitations": [
+    "These are draft interpretations, not verified real-account or participant outcomes.",
+    "No semantic source-dependent tests have been executed.",
+    "Structural graph validation does not approve the guidance.",
+    "Direct HTTPS collection returns 403 from this environment. Explicit isolated browser collection succeeds without JavaScript, credentials, subresources or challenge solving.",
+    "SSA decides whether the request can finish online; this flow never implements a state-by-state eligibility claim."
+  ],
+  "bundleHash": "022d708bfcdc1028d0020cb7ff2aeae4451b9c1955afe163be785872d95a0a8f",
+  "expectedCasesHash": "ad31a655959ca2788704df9c7354dbe740c65962a6827b2342ef63bb13ab1d99",
+  "sourceRegisterHash": "61464ee1ec876fadc4ea146e8941c67bc18e2e02b39baf323a01257d24f6173c",
+  "structuralValidation": {
+    "passed": true,
+    "questions": 5,
+    "outcomes": 7,
+    "transitions": 17,
+    "semanticTestsExecuted": false
+  }
+}

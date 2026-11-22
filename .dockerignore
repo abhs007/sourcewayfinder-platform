@@ -1,0 +1,6 @@
+**
+!package.json
+!package-lock.json
+!infra/
+!infra/paperclip/
+!infra/paperclip/TestRunner.Dockerfile

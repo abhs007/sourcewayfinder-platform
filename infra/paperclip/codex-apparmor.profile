@@ -1,0 +1,70 @@
+# SPDX-License-Identifier: Apache-2.0
+# Derived from https://github.com/moby/profiles/blob/main/apparmor/template.go
+abi <abi/3.0>,
+#include <tunables/global>
+profile sourcewayfinder-codex flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  network,
+  # Disallow obsolete socket families removed from the Linux kernel.
+  # AF_DECnet has no AppArmor family name, so it cannot be denied here.
+  deny network ax25,
+  deny network ipx,
+  deny network appletalk,
+  deny network netrom,
+  deny network rose,
+  deny network econet,
+  deny network atmsvc,
+  deny network irda,
+  deny network wanpipe,
+  deny network isdn,
+  deny network caif,
+  # Disallow AF_ALG (Linux kernel crypto API); see https://copy.fail/
+  deny network alg,
+  # Disallow AF_VSOCK to prevent host/guest communication.
+  deny network vsock,
+  capability,
+  file,
+  umount,
+
+  deny @{PROC}/* w,   # deny write for all files directly in /proc (not in a subdir)
+  # deny write to files not in /proc/<number>/** or /proc/sys/**
+  deny @{PROC}/{[^1-9/],[^1-9/][^0-9/],[^1-9s/][^0-9y/][^0-9s/],[^1-9/][^0-9/][^0-9/][^0-9/]*}/** w,
+  deny @{PROC}/sys/[^k]** w,  # deny /proc/sys except /proc/sys/k* (effectively /proc/sys/kernel)
+  deny @{PROC}/sys/kernel/{?,??,[^s][^h][^m]**} w,  # deny everything except shm* in /proc/sys/kernel/
+  deny @{PROC}/sysrq-trigger rwklx,
+  deny @{PROC}/kcore rwklx,
+
+  # Codex bubblewrap creates mounts only inside its new unprivileged user namespace.
+  # The container receives no outer CAP_SYS_ADMIN and has no host mounts.
+  mount,
+  pivot_root,
+
+  deny /sys/[^f]*/** wklx,
+  deny /sys/f[^s]*/** wklx,
+  deny /sys/fs/[^c]*/** wklx,
+  deny /sys/fs/c[^g]*/** wklx,
+  deny /sys/fs/cg[^r]*/** wklx,
+  deny /sys/firmware/** rwklx,
+  deny /sys/devices/virtual/powercap/** rwklx,
+  deny /sys/kernel/security/** rwklx,
+
+  # Host (privileged) processes may send signals to container processes.
+  signal (receive) peer=unconfined,
+  # runc may send signals to container processes (for "docker stop").
+  signal (receive) peer=runc,
+  # crun may send signals to container processes (for "docker stop").
+  signal (receive) peer=crun,
+  # dockerd may send signals to container processes (for "docker kill").
+  signal (receive) peer=unconfined,
+  # Container processes may send signals amongst themselves.
+  signal (send,receive) peer="sourcewayfinder-codex",
+  # With kernel.apparmor_restrict_unprivileged_unconfined=1, an unprivileged
+  # profile change is converted to stacking, producing a stacked label such
+  # as "<name>//&unconfined".
+  # Allow signals to peers with this stacked label as well.
+  signal (send,receive) peer="sourcewayfinder-codex//&unconfined",
+  # allow processes within the container to trace each other, provided all other LSM and yama settings allow it.
+  ptrace (trace,tracedby,read,readby) peer="sourcewayfinder-codex",
+  # Same stacked-label peer as the signal rule above.
+  ptrace (trace,tracedby,read,readby) peer="sourcewayfinder-codex//&unconfined",
+}

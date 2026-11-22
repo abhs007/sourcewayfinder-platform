@@ -1,0 +1,12 @@
+{
+  "status": "APPROVED_VM_ONLY_TEST_ACTIVE",
+  "upstreamAppArmorTemplate": "https://github.com/moby/profiles/blob/main/apparmor/template.go",
+  "upstreamAppArmorSha256": "3e10fd44140c527b01c70fb0e79b05c1f9a128b9b31a59c9627b497b8dfba475",
+  "upstreamSeccompSha256": "3320527d4568265ac97a077609b1bfd4cfd0d789eeb9239b7e094b1526675406",
+  "proposedAppArmorSha256": "97ac6efd470fe80afc076b1b242a2136ab585f32953927a8f31a1befdad55283",
+  "proposedSeccompSha256": "4edc3a1b7a145f169ea451a6b8212494537e886a490ad00af64433ff67e402e9",
+  "upstreamSeccomp": "https://github.com/moby/profiles/blob/main/seccomp/default.json",
+  "license": "Apache-2.0; UPSTREAM_LICENSE.txt",
+  "previousApprovedSeccompSha256": "81d0a40304953045d90b959a9e7077e12355674f1f6dd296c619d437a533a914",
+  "authorization": "Owner explicitly approved VM-only namespace mount/pivot operations; one omitted pivot_root syscall added without other permission changes."
+}

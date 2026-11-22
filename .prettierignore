@@ -1,0 +1,10 @@
+node_modules/
+private/
+dist/
+test-results/
+coverage/
+package-lock.json
+packages/core/generated-validator.cjs
+apps/web/public/survey/
+domains/
+infra/paperclip/

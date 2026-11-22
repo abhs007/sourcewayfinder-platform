@@ -1,0 +1,323 @@
+{
+  "schemaVersion": "1.0",
+  "usage": "production_candidate",
+  "flowId": "ssa-replacement-card",
+  "scope": "English guidance for an adult seeking their own replacement Social Security card without changing personal details. First cards, children, representatives, record changes and unclear circumstances receive official links. This flow does not determine SSA online eligibility.",
+  "entryQuestionId": "request-kind",
+  "questions": [
+    {
+      "id": "request-kind",
+      "prompt": "Are you replacing a card without changing any personal details?",
+      "choices": [
+        {
+          "id": "unchanged",
+          "label": "Yes, a replacement with no changes"
+        },
+        {
+          "id": "change",
+          "label": "No, I need to change or correct details"
+        },
+        {
+          "id": "first",
+          "label": "No, this is a first card or first number"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "recipient",
+      "prompt": "Is the replacement card for you, as an adult?",
+      "choices": [
+        {
+          "id": "self",
+          "label": "Yes"
+        },
+        {
+          "id": "child",
+          "label": "No, it is for a child"
+        },
+        {
+          "id": "other",
+          "label": "No, I am helping someone else"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "physical-card",
+      "prompt": "Do you need a physical replacement card?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes"
+        },
+        {
+          "id": "no",
+          "label": "No, I only need to know whether a card is necessary"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ],
+      "help": "Do not enter your Social Security number or identity details here."
+    },
+    {
+      "id": "know-number",
+      "prompt": "Do you already know your Social Security number?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes, I know it"
+        },
+        {
+          "id": "no",
+          "label": "No"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "online-access",
+      "prompt": "Can you use SSA’s online replacement-card service?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes, I can try it"
+        },
+        {
+          "id": "no",
+          "label": "No, I need another way"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure whether I can"
+        }
+      ],
+      "help": "SSA determines which online or office route is available for your situation."
+    }
+  ],
+  "transitions": [
+    {
+      "questionId": "request-kind",
+      "choiceId": "unchanged",
+      "targetType": "question",
+      "targetId": "recipient"
+    },
+    {
+      "questionId": "request-kind",
+      "choiceId": "change",
+      "targetType": "outcome",
+      "targetId": "outside-scope"
+    },
+    {
+      "questionId": "request-kind",
+      "choiceId": "first",
+      "targetType": "outcome",
+      "targetId": "outside-scope"
+    },
+    {
+      "questionId": "request-kind",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "clarify-scope"
+    },
+    {
+      "questionId": "recipient",
+      "choiceId": "self",
+      "targetType": "question",
+      "targetId": "physical-card"
+    },
+    {
+      "questionId": "recipient",
+      "choiceId": "child",
+      "targetType": "outcome",
+      "targetId": "outside-scope"
+    },
+    {
+      "questionId": "recipient",
+      "choiceId": "other",
+      "targetType": "outcome",
+      "targetId": "outside-scope"
+    },
+    {
+      "questionId": "recipient",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "clarify-scope"
+    },
+    {
+      "questionId": "physical-card",
+      "choiceId": "yes",
+      "targetType": "question",
+      "targetId": "online-access"
+    },
+    {
+      "questionId": "physical-card",
+      "choiceId": "no",
+      "targetType": "question",
+      "targetId": "know-number"
+    },
+    {
+      "questionId": "physical-card",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "confirm-need"
+    },
+    {
+      "questionId": "know-number",
+      "choiceId": "yes",
+      "targetType": "outcome",
+      "targetId": "may-not-need-card"
+    },
+    {
+      "questionId": "know-number",
+      "choiceId": "no",
+      "targetType": "outcome",
+      "targetId": "confirm-need"
+    },
+    {
+      "questionId": "know-number",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "confirm-need"
+    },
+    {
+      "questionId": "online-access",
+      "choiceId": "yes",
+      "targetType": "outcome",
+      "targetId": "start-online"
+    },
+    {
+      "questionId": "online-access",
+      "choiceId": "no",
+      "targetType": "outcome",
+      "targetId": "office-route"
+    },
+    {
+      "questionId": "online-access",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "check-options"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "outside-scope",
+      "title": "Use SSA’s route for your circumstances",
+      "nextStep": "This guide covers only an adult replacing their own card without record changes. Start with SSA’s official number-and-card guidance for your circumstances.",
+      "prerequisites": [],
+      "unresolved": [
+        "Documents and eligibility depend on the type of request."
+      ],
+      "sourceRefs": [
+        "ssa-replacement",
+        "ssa-online-replacement"
+      ]
+    },
+    {
+      "id": "clarify-scope",
+      "title": "Confirm which request you need",
+      "nextStep": "Use SSA’s official questions to identify the right request before relying on a replacement-only procedure.",
+      "prerequisites": [],
+      "unresolved": [],
+      "sourceRefs": [
+        "ssa-replacement",
+        "ssa-online-replacement"
+      ]
+    },
+    {
+      "id": "confirm-need",
+      "title": "Check whether a physical card is necessary",
+      "nextStep": "SSA explains that a physical card is not needed in many situations. Confirm what the requesting organization needs, then use SSA’s replacement service if a card is required.",
+      "prerequisites": [],
+      "unresolved": [
+        "This guide cannot confirm another organization’s evidence requirements."
+      ],
+      "sourceRefs": [
+        "ssa-replacement"
+      ]
+    },
+    {
+      "id": "may-not-need-card",
+      "title": "You may not need a replacement",
+      "nextStep": "SSA says knowing the number is often sufficient. Check the requirements of the organization requesting it before ordering a physical card.",
+      "prerequisites": [],
+      "unresolved": [
+        "Some situations still require a card."
+      ],
+      "sourceRefs": [
+        "ssa-replacement"
+      ]
+    },
+    {
+      "id": "start-online",
+      "title": "Start with SSA’s official replacement service",
+      "nextStep": "Open SSA’s replacement-card page and select Get started. SSA’s questions determine whether you can complete the request online or must finish at an office.",
+      "prerequisites": [
+        "No personal-detail changes in this guide."
+      ],
+      "unresolved": [
+        "Online completion is not guaranteed."
+      ],
+      "sourceRefs": [
+        "ssa-replacement",
+        "ssa-online-replacement"
+      ]
+    },
+    {
+      "id": "check-options",
+      "title": "Let SSA check the available route",
+      "nextStep": "Start from SSA’s replacement page. If you cannot complete the request online, follow its instructions for an office appointment and required documents.",
+      "prerequisites": [],
+      "unresolved": [
+        "Your eligibility and document requirements remain for SSA to confirm."
+      ],
+      "sourceRefs": [
+        "ssa-replacement",
+        "ssa-online-replacement"
+      ]
+    },
+    {
+      "id": "office-route",
+      "title": "Prepare for SSA’s office process",
+      "nextStep": "Use SSA’s replacement FAQ to check required documents and an office appointment. If you do not begin online, the FAQ identifies Form SS-5 as the paper application.",
+      "prerequisites": [
+        "Verify documents for your citizenship and request type directly with SSA."
+      ],
+      "unresolved": [
+        "This guide does not list or validate your identity documents."
+      ],
+      "sourceRefs": [
+        "ssa-online-replacement"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "ssa-replacement",
+      "sourceVersionId": "v_afdcc7b9e0ba2a2645b01411432f5d4240e344da64be5ee6094b0c588d67",
+      "snapshotSha256": "194244fb639517a72f08dd2909a098a65af53b9b0348b18ae085ff875297939e",
+      "url": "https://www.ssa.gov/number-card/replace-card",
+      "title": "SSA: Replace Social Security card",
+      "passage": "You can request a free replacement card."
+    },
+    {
+      "id": "ssa-online-replacement",
+      "sourceVersionId": "v_555795ecdcc66f080e12a4475a6389c2a359d3d7f720324b07803c116db4",
+      "snapshotSha256": "a90d4be14319f33946a7c235d469be2739c3e86f423f188c339b2f68cb8fa541",
+      "url": "https://www.ssa.gov/faqs/en/questions/KA-02017.html",
+      "title": "SSA: Replacement-card online application FAQ",
+      "passage": "There is no charge for a replacement card."
+    }
+  ]
+}

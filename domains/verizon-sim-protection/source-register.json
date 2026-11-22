@@ -1,0 +1,41 @@
+[
+  {
+    "id": "verizon-sim-web",
+    "sourceVersionId": "v_a93d1e9d0a7fafd3b3fd39fa3a51c4a02e0ddc116baa49cff7178de0b414",
+    "url": "https://www.verizon.com/support/knowledge-base-309294/",
+    "snapshotSha256": "2516b91f469b86eb416f9d03afc9b234fd98fe1156cc165043735865f8881b8f",
+    "normalizedSha256": "e94fb1a0760d43c9881a16b0f875bcba2d8020ad0337d3edafb673f7572610b1",
+    "extractorVersion": "parse5-content-v2:kbArticleNew",
+    "lastSuccessfulCheckAt": "2026-11-22T11:11:23.676Z",
+    "acquisition": "https",
+    "rawEvidencePath": "private/evidence/2516b91f469b86eb416f9d03afc9b234fd98fe1156cc165043735865f8881b8f.html",
+    "normalizedEvidencePath": "private/evidence/e94fb1a0760d43c9881a16b0f875bcba2d8020ad0337d3edafb673f7572610b1.txt",
+    "reviewStatus": "unapproved"
+  },
+  {
+    "id": "verizon-account-access",
+    "sourceVersionId": "v_3e5bfdca1670f33006bda997a0b0572bbf760eb19c2bdc983ca8e85cf3e6",
+    "url": "https://www.verizon.com/support/my-verizon-faqs/",
+    "snapshotSha256": "780a93dfe242d0bc75ee1e7d11233ce681f0ccf4cc212de0b9eb5ed6bb8ed90d",
+    "normalizedSha256": "f05e5ed75e2e74be500c37535e242bad6c42a0b986aee30d7fec13a6dda39df5",
+    "extractorVersion": "parse5-content-v2:SupportContentWrapper",
+    "lastSuccessfulCheckAt": "2026-11-22T11:11:26.036Z",
+    "acquisition": "https",
+    "rawEvidencePath": "private/evidence/780a93dfe242d0bc75ee1e7d11233ce681f0ccf4cc212de0b9eb5ed6bb8ed90d.html",
+    "normalizedEvidencePath": "private/evidence/f05e5ed75e2e74be500c37535e242bad6c42a0b986aee30d7fec13a6dda39df5.txt",
+    "reviewStatus": "unapproved"
+  },
+  {
+    "id": "verizon-account-roles",
+    "sourceVersionId": "v_5de4ed095431e5bbb27a5e769c222ea6f52bbca980ea544dfac5a5d4b16b",
+    "url": "https://www.verizon.com/support/assign-account-manager-roles-faqs/",
+    "snapshotSha256": "fbe8cb05e44c55bee317aeb4a4c6e2560e720bfbce87668b8bb9877f3f8b9716",
+    "normalizedSha256": "229d8ee14460d4506f02d200542dbe79cdba695c970f4e8b3baca8d3a84d6caa",
+    "extractorVersion": "parse5-content-v2:SupportContentWrapper",
+    "lastSuccessfulCheckAt": "2026-11-22T11:11:28.325Z",
+    "acquisition": "https",
+    "rawEvidencePath": "private/evidence/fbe8cb05e44c55bee317aeb4a4c6e2560e720bfbce87668b8bb9877f3f8b9716.html",
+    "normalizedEvidencePath": "private/evidence/229d8ee14460d4506f02d200542dbe79cdba695c970f4e8b3baca8d3a84d6caa.txt",
+    "reviewStatus": "unapproved"
+  }
+]
