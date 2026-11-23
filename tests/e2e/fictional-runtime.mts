@@ -60,7 +60,8 @@ export async function startFictionalRuntime(options: {
   );
   try {
     const sessions = await mf.getD1Database('SESSIONS_DB', 'fictional-api'),
-      control = await mf.getD1Database('CONTROL_DB', 'fictional-control');
+      control = await mf.getD1Database('CONTROL_DB', 'fictional-control'),
+      evidence = await mf.getD1Database('EVIDENCE_DB', 'fictional-control');
     const migrate = async (db: typeof control, file: string) => {
       let sql = '';
       for (const line of (await readFile(file, 'utf8')).split('\n')) {
@@ -75,6 +76,7 @@ export async function startFictionalRuntime(options: {
     for (const [db, folder] of [
       [sessions, 'workers/api/migrations'],
       [control, 'workers/control/migrations'],
+      [evidence, 'workers/control/evidence-migrations'],
     ] as const)
       for (const file of (await readdir(folder)).filter((f) => f.endsWith('.sql')).sort())
         await migrate(db, `${folder}/${file}`);
@@ -135,7 +137,7 @@ export async function startFictionalRuntime(options: {
       )
       .run();
     await mf.ready;
-    return { mf, sessions, control, fixture, hash };
+    return { mf, sessions, control, evidence, fixture, hash };
   } catch (error) {
     await mf.dispose();
     throw error;

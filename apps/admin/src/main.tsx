@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../../web/src/styles.css';
+import { Registration } from './Registration';
+import verizonRegistration from '../../../domains/verizon-sim-protection/registration.proposed.json';
 
 type RecordData = Record<string, unknown> & { id: string };
 type Dashboard = {
@@ -38,6 +40,7 @@ function ItemTitle({ item }: { item: RecordData }) {
 
 export function AdminApp() {
   const [data, setData] = useState<Dashboard | null>(null);
+  const [registering, setRegistering] = useState(false);
   const [tab, setTab] = useState<'proposals' | 'releases' | 'sources' | 'flows' | 'audit'>(
     'proposals',
   );
@@ -285,7 +288,20 @@ export function AdminApp() {
               Sources, decisions, releases.
             </h1>
           </div>
-          <button className="button secondary" disabled={busy} onClick={() => void refresh()}>
+          <button
+            className="button secondary"
+            disabled={busy || registering}
+            onClick={() => {
+              // Queue refresh does not reload a selected detail record. Close it so
+              // decisions made in another browser cannot leave stale review controls.
+              setSelected(null);
+              setChecked(false);
+              setReason('');
+              setGate('');
+              setMessage('');
+              void refresh();
+            }}
+          >
             {busy ? 'Loading…' : 'Refresh queue'}
           </button>
         </div>
@@ -303,7 +319,17 @@ export function AdminApp() {
             <p>{message}</p>
           </div>
         )}
-        {selected ? (
+        {registering && data ? (
+          <Registration
+            packet={verizonRegistration}
+            busy={busy}
+            setBusy={setBusy}
+            onClose={() => {
+              setRegistering(false);
+              void refresh();
+            }}
+          />
+        ) : selected ? (
           <>
             <button className="back-button" disabled={busy} onClick={() => setSelected(null)}>
               ‹ Back to the queue
@@ -364,94 +390,136 @@ export function AdminApp() {
                   </pre>
                 </details>
               </section>
-              <section className="review-panel">
-                <h2>
-                  {kind === 'sources' ? 'Revalidate recovered source' : 'Record your decision'}
-                </h2>
-                <p>
-                  Compare the evidence with its sources before approving. Rejection or a revision
-                  request also becomes part of the audit trail.
-                </p>
-                <h3>Artifact digest</h3>
-                <code className="digest">
-                  {digest || 'No digest supplied — approval is unavailable.'}
-                </code>
-                {!validDigest && (
-                  <p role="alert">
-                    This record has no valid SHA-256 digest. A new reviewable revision is required.
+              {!gate ? (
+                <section className="review-panel" aria-label="Review progress">
+                  <h2>No decision needed from you right now</h2>
+                  <p>
+                    {selected.state === 'implementation_authorized'
+                      ? 'Source interpretation is approved. The implementation and expected test cases must be submitted before your next review becomes available.'
+                      : selected.state === 'expectations_preparation'
+                        ? 'The implementation is submitted. Expected test cases are being prepared for your review.'
+                        : selected.state === 'test_authorized'
+                          ? 'Expected answers are approved. The authorized test run must finish before the next review.'
+                          : 'There is no open review gate for this record. Check the recorded decisions and current status for progress.'}
                   </p>
-                )}
-                <form className="review-form" onSubmit={submit}>
-                  <label htmlFor="gate">Review gate</label>
-                  <select id="gate" value={gate} disabled aria-describedby="gate-description">
-                    <option value="">No review gate is currently open</option>
-                    {gate && <option value={gate}>{gateNames[gate] || gate}</option>}
-                  </select>
-                  <p id="gate-description" className="fine-print">
-                    The policy service determines which gate is ready for review.
+                  <p className="fine-print">
+                    Refresh queue to check for updates. You do not need to repeat a recorded
+                    approval.
                   </p>
-                  {kind !== 'sources' && (
-                    <>
-                      <label htmlFor="decision">Decision</label>
-                      <select
-                        id="decision"
-                        value={decision}
-                        onChange={(e) => {
-                          setDecision(e.target.value);
-                          setChecked(false);
-                        }}
-                        disabled={busy}
-                      >
-                        <option value="approve">Approve this revision</option>
-                        <option value="reject">Reject this revision</option>
-                        <option value="revise">Request a revision</option>
-                      </select>
-                    </>
+                </section>
+              ) : (
+                <section className="review-panel">
+                  <h2>
+                    {kind === 'sources' ? 'Revalidate recovered source' : 'Record your decision'}
+                  </h2>
+                  <p>
+                    Compare the evidence with its sources before approving. Rejection or a revision
+                    request also becomes part of the audit trail.
+                  </p>
+                  <h3>Artifact digest</h3>
+                  <code className="digest">
+                    {digest || 'No digest supplied — approval is unavailable.'}
+                  </code>
+                  {!validDigest && (
+                    <p role="alert">
+                      This record has no valid SHA-256 digest. A new reviewable revision is
+                      required.
+                    </p>
                   )}
-                  <label htmlFor="reason">Reason and review notes</label>
-                  <textarea
-                    id="reason"
-                    value={reason}
-                    onChange={(e) => setReason(e.target.value)}
-                    maxLength={4000}
-                    required
-                    disabled={busy}
-                    placeholder="Describe what you checked and any conditions or unresolved issues."
-                  />
-                  <label className="check-label">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={(e) => setChecked(e.target.checked)}
+                  <form className="review-form" onSubmit={submit}>
+                    <label htmlFor="gate">Review gate</label>
+                    <select id="gate" value={gate} disabled aria-describedby="gate-description">
+                      <option value="">No review gate is currently open</option>
+                      {gate && <option value={gate}>{gateNames[gate] || gate}</option>}
+                    </select>
+                    <p id="gate-description" className="fine-print">
+                      The policy service determines which gate is ready for review.
+                    </p>
+                    {kind !== 'sources' && (
+                      <>
+                        <label htmlFor="decision">Decision</label>
+                        <select
+                          id="decision"
+                          value={decision}
+                          onChange={(e) => {
+                            setDecision(e.target.value);
+                            setChecked(false);
+                          }}
+                          disabled={busy}
+                        >
+                          <option value="approve">Approve this revision</option>
+                          <option value="reject">Reject this revision</option>
+                          <option value="revise">Request a revision</option>
+                        </select>
+                      </>
+                    )}
+                    <label htmlFor="reason">Reason and review notes</label>
+                    <textarea
+                      id="reason"
+                      value={reason}
+                      onChange={(e) => setReason(e.target.value)}
+                      maxLength={4000}
+                      required
                       disabled={busy}
+                      placeholder="Describe what you checked and any conditions or unresolved issues."
                     />
-                    <span>I reviewed this gate and the exact artifact digest shown above.</span>
-                  </label>
-                  <button
-                    className="button"
-                    type="submit"
-                    disabled={busy || !checked || !reason.trim() || !gate || !validDigest}
-                  >
-                    {busy
-                      ? 'Recording…'
-                      : kind === 'sources'
-                        ? 'Revalidate this source version'
-                        : decision === 'approve'
-                          ? `Approve ${gateNames[gate]?.toLowerCase() || 'this gate'}`
-                          : decision === 'reject'
-                            ? 'Reject this revision'
-                            : 'Request a revision'}
-                  </button>
-                </form>
-                <p className="fine-print">
-                  A recorded decision does not by itself run tests, merge code, or deploy a release.
-                  The policy service checks each transition.
-                </p>
-              </section>
+                    <label className="check-label">
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(e) => setChecked(e.target.checked)}
+                        disabled={busy}
+                      />
+                      <span>I reviewed this gate and the exact artifact digest shown above.</span>
+                    </label>
+                    <button
+                      className="button"
+                      type="submit"
+                      disabled={busy || !checked || !reason.trim() || !gate || !validDigest}
+                    >
+                      {busy
+                        ? 'Recording…'
+                        : kind === 'sources'
+                          ? 'Revalidate this source version'
+                          : decision === 'approve'
+                            ? `Approve ${gateNames[gate]?.toLowerCase() || 'this gate'}`
+                            : decision === 'reject'
+                              ? 'Reject this revision'
+                              : 'Request a revision'}
+                    </button>
+                  </form>
+                  <p className="fine-print">
+                    A recorded decision does not by itself run tests, merge code, or deploy a
+                    release. The policy service checks each transition.
+                  </p>
+                </section>
+              )}
             </div>
           </>
         ) : (
           <>
+            {data &&
+              (!data.flows.some((flow) => flow.id === verizonRegistration.flow.id) ||
+                verizonRegistration.sources.some(
+                  (source) => !data.sources.some((existing) => existing.id === source.id),
+                )) && (
+                <div className="registration-start">
+                  <div>
+                    <h2>Register your first guidance flow</h2>
+                    <p>Review the Verizon scope and three official source boundaries.</p>
+                  </div>
+                  <button
+                    className="button secondary"
+                    disabled={busy}
+                    onClick={() => {
+                      setMessage('');
+                      setRegistering(true);
+                    }}
+                  >
+                    Review Verizon setup
+                  </button>
+                </div>
+              )}
             <nav className="admin-tabs" aria-label="Review categories">
               {(['proposals', 'releases', 'sources', 'flows', 'audit'] as const).map((t) => (
                 <button

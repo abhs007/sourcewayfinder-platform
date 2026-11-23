@@ -1,0 +1,9 @@
+{
+  "proposalId": "verizon-initial-ce98b9b5ec88cab60455",
+  "proposalDigest": "00da6177d97db83d674596f5e6289fb55831ff4018b5a2543014af653a2479f4",
+  "changes": "Source-version IDs and raw snapshot hashes only; questions, transitions, outcomes, passages and expected cases preserved.",
+  "candidateSubmitted": false,
+  "interpretationDecisionPending": false,
+  "interpretationApprovalId": "b4a2bfdc-616a-4234-a76a-ba02062bc998",
+  "semanticTestsExecuted": false
+}

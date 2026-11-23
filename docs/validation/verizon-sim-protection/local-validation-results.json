@@ -1,0 +1,226 @@
+{
+  "scope": "Local owner-reviewed browser/API/session-D1 journeys; read-only content test provider.",
+  "startedAt": "2026-11-23T06:37:35.108Z",
+  "completedAt": "2026-11-23T06:37:54.112Z",
+  "passed": true,
+  "ownerDocumentSha256": "f954104a238b95d5366a300779c94914b40885a8e8fe7b201790676db3e1d369",
+  "bundleHash": "9eaf8eaf24743ee7fbaf14380fdf05fd5d5e12d2ba42eb09b7a43a1022e06fb7",
+  "casesHash": "51d82e09017494ef076e0c4f2df54c402fe323b07220abcaf88bd5ceec763b65",
+  "runnerSha256": "91d017e047f61901c7535cab9bbc3d6dee2d52164d5e6f165a42ab40b1d55f77",
+  "artifactHashes": {
+    "api": "36eb382644a2e9aeb0a53d5b239026daaf97ed3a80c1e1f976e39db1f9021a08",
+    "web": "dff46d190712bd212999882ed25f156f47a639dbf3b24b19fadfac2c849d0670",
+    "migrations": "2942612b5bfdcc7b55398aab23c1bb63344ae5c91e69e3f36c41d234472ffe6d"
+  },
+  "inputSha256": {
+    "docs/validation/verizon-sim-protection/ALL_CASES_REVIEW.md": "f954104a238b95d5366a300779c94914b40885a8e8fe7b201790676db3e1d369",
+    "docs/validation/verizon-sim-protection/owner-review-evidence.json": "2a9d263ad4727af6ab3e6e7cb395c5814d1878d3ed1a3e7013857c59122c88ed",
+    "domains/verizon-sim-protection/bundle.draft.json": "5d5781469694ffc2db4d02c54e7139a7f57a4e55e55876e389af9517eba077a2",
+    "domains/verizon-sim-protection/expected-cases.proposed.json": "6f4a18f570b8a08e25e54060fbe2b33ec37dc56f1c9005894640fd86f5f9b20b",
+    "domains/verizon-sim-protection/source-register.json": "6f2fa3dbf2dc285fc919d185924148a15781ce914bfb3cdd1249433a7dd684a7",
+    "test-results/source-review/verizon-v3/32b49124d61fbc0b5d6f6536c80603c284a2c05b4e8aa2894e93480769832e04.html": "32b49124d61fbc0b5d6f6536c80603c284a2c05b4e8aa2894e93480769832e04",
+    "test-results/source-review/verizon-v3/cb2fcba59ed7509c7218107aa091a33f3807c3b281bedfbcb8fb15b0f2368974.txt": "cb2fcba59ed7509c7218107aa091a33f3807c3b281bedfbcb8fb15b0f2368974",
+    "test-results/source-review/verizon-v3/88351b9a06cacabd4058ade4494113e86a9f06af81424f590446f2e948f71eb3.html": "88351b9a06cacabd4058ade4494113e86a9f06af81424f590446f2e948f71eb3",
+    "test-results/source-review/verizon-v3/bc35ce9033609f346f399f5d1f8cb3fa6684db61d510b3da67e2a7be04ae9df9.txt": "bc35ce9033609f346f399f5d1f8cb3fa6684db61d510b3da67e2a7be04ae9df9",
+    "test-results/source-review/verizon-v3/41718eae3f28a0ae07d453196c7c829f40b269bb3243f4fda055b157e1285609.html": "41718eae3f28a0ae07d453196c7c829f40b269bb3243f4fda055b157e1285609",
+    "test-results/source-review/verizon-v3/ac45bb3db47b9a79b8e23ce38c6741c52c28945be7149b8e37ee998054a10f54.txt": "ac45bb3db47b9a79b8e23ce38c6741c52c28945be7149b8e37ee998054a10f54"
+  },
+  "results": [
+    {
+      "caseId": "wrong-account",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "account-unknown",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "enable-authorized",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "enable-member",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "enable-role-unknown",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "enable-access-unknown",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "enable-forgot",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "replace-enabled",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "replace-disabled",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "protection-unknown",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "replace-role-member",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "replace-role-unknown",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "replace-access-unknown",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "replace-no-verification",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "access-other",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "access-unknown",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "port-different",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "intent-unknown",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "caseId": "wrong-account",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "account-unknown",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "enable-authorized",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "enable-member",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "enable-role-unknown",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "enable-access-unknown",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "enable-forgot",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "replace-enabled",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "replace-disabled",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "protection-unknown",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "replace-role-member",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "replace-role-unknown",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "replace-access-unknown",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "replace-no-verification",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "access-other",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "access-unknown",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "port-different",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "caseId": "intent-unknown",
+      "width": 1440,
+      "passed": true
+    }
+  ],
+  "coverage": [
+    {
+      "width": 320,
+      "covered": 27,
+      "total": 27
+    },
+    {
+      "width": 1440,
+      "covered": 27,
+      "total": 27
+    }
+  ],
+  "completionError": null,
+  "policyAuthorizationTested": false,
+  "hostedDeploymentTested": false,
+  "verizonAccountTransactionTested": false
+}

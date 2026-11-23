@@ -19,6 +19,7 @@
     "workers/**/*.ts",
     "packages/**/*.ts",
     "tests/**/*.ts",
+    "tests/**/*.mts",
     "ops/**/*.mts"
   ],
   "exclude": ["private", "node_modules", "dist"]

@@ -3,6 +3,7 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { readFile } from 'node:fs/promises';
 import { ControlService, summarizeFlow } from '../workers/control/service.js';
 import { sha256 } from '../packages/core/index.js';
+import { normalizeHtml, EXTRACTOR_VERSION } from '../ops/collector.mts';
 import {
   csrfToken,
   verifyCsrf,
@@ -370,6 +371,62 @@ describe('policy gates against actual local D1', () => {
     expect(claim.job).toBeTruthy();
     expect((await s.claimJob({ ...bridge, id: 'second' }, {})).job).toBeNull();
   });
+  it.each(['link', 'form', 'extractor'] as const)(
+    'invalidates prior review when the collector detects a %s change',
+    async (change) => {
+      const ingest = async (revision: string, changed: boolean) => {
+        const passage = 'Fictional test guidance. This is not real public advice. '.repeat(3);
+        const raw = `<html><main><p>${passage}</p><a href="/${change === 'link' && changed ? 'new' : 'old'}">Apply</a><form><p>${change === 'form' && changed ? 'Adults and children' : 'Adults only'}</p></form></main></html>`;
+        const normalized = normalizeHtml(Buffer.from(raw), ['Fictional test guidance']);
+        const rawHash = await sha256(raw),
+          evidenceId = `evidence_${revision}`;
+        await s.reserveEvidence(collector, {
+          id: evidenceId,
+          rawSha256: rawHash,
+          bytes: Buffer.byteLength(raw),
+          chunks: 1,
+        });
+        await s.evidenceChunk(collector, evidenceId, 0, {
+          base64: Buffer.from(raw).toString('base64'),
+        });
+        await s.completeEvidence(collector, evidenceId);
+        return s.sourceCheck(collector, {
+          sourceId: 'official_test',
+          sourceVersionId: revision,
+          snapshotSha256: rawHash,
+          normalizedSha256: await sha256(normalized),
+          normalizedText: normalized,
+          extractorVersion:
+            change === 'extractor' && !changed ? 'previous-extractor' : EXTRACTOR_VERSION,
+          evidenceId,
+        });
+      };
+      await ingest('collector_before', false);
+      const proposal = await s.createProposal(bridge, {
+        id: 'collector_proposal',
+        flowId: 'fictional',
+        sourceVersionIds: ['collector_before'],
+        interpretation: 'Fictional interpretation only.',
+        uncertainties: [],
+      });
+      await approve(proposal, 'interpretation_review', proposal.digest);
+      const before = await s.flow('fictional');
+      await ingest('collector_after', true);
+      const after = await s.flow('fictional');
+      expect(after?.status).toBe('under_review');
+      expect(after?.statusEpoch).toBeGreaterThan(before!.statusEpoch);
+      await expect(
+        s.validateCurrentSources(['collector_before'], 'fictional'),
+      ).rejects.toMatchObject({ status: 409 });
+      const proposalView = await s.proposal(proposal.id);
+      await expect(
+        approve(proposalView, 'interpretation_review', proposal.digest),
+      ).rejects.toMatchObject({ status: 409 });
+      const jobsBeforeRetry = await s.all('SELECT id FROM jobs');
+      await ingest('collector_after_retry', true);
+      expect(await s.all('SELECT id FROM jobs')).toHaveLength(jobsBeforeRetry.length);
+    },
+  );
   it('never accepts incomplete or oversized evidence', async () => {
     await expect(
       s.reserveEvidence(collector, { id: 'large', rawSha256: h, bytes: 1048577, chunks: 9 }),

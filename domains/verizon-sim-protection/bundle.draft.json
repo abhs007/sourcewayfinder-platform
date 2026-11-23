@@ -334,12 +334,8 @@
       "title": "Use the guidance for your account type",
       "nextStep": "This guide covers consumer postpaid accounts. Choose the appropriate account guidance through Verizon’s official support pages.",
       "prerequisites": [],
-      "unresolved": [
-        "The requirements for your account type are not established by this flow."
-      ],
-      "sourceRefs": [
-        "verizon-account-access"
-      ]
+      "unresolved": ["The requirements for your account type are not established by this flow."],
+      "sourceRefs": ["verizon-account-access"]
     },
     {
       "id": "confirm-account",
@@ -347,21 +343,15 @@
       "nextStep": "Use Verizon’s account help to confirm which service and account type you have before following a SIM Protection procedure.",
       "prerequisites": [],
       "unresolved": [],
-      "sourceRefs": [
-        "verizon-account-access"
-      ]
+      "sourceRefs": ["verizon-account-access"]
     },
     {
       "id": "port-handoff",
       "title": "Number transfer needs a separate procedure",
       "nextStep": "SIM Protection and Number Lock address different changes. Use Verizon’s official Number Lock and transfer guidance for a port-out.",
       "prerequisites": [],
-      "unresolved": [
-        "This flow does not establish your port-out prerequisites."
-      ],
-      "sourceRefs": [
-        "verizon-sim-web"
-      ]
+      "unresolved": ["This flow does not establish your port-out prerequisites."],
+      "sourceRefs": ["verizon-sim-web"]
     },
     {
       "id": "clarify-task",
@@ -369,35 +359,23 @@
       "nextStep": "Read Verizon’s SIM Protection and account-access pages to identify the task that fits your situation.",
       "prerequisites": [],
       "unresolved": [],
-      "sourceRefs": [
-        "verizon-sim-web",
-        "verizon-account-access"
-      ]
+      "sourceRefs": ["verizon-sim-web", "verizon-account-access"]
     },
     {
       "id": "check-signin",
       "title": "Check account access on Verizon’s site",
       "nextStep": "Try the official My Verizon sign-in route. If a verification step is unavailable, use Verizon’s account-access help.",
       "prerequisites": [],
-      "unresolved": [
-        "This guide cannot confirm your sign-in or verification options."
-      ],
-      "sourceRefs": [
-        "verizon-account-access"
-      ]
+      "unresolved": ["This guide cannot confirm your sign-in or verification options."],
+      "sourceRefs": ["verizon-account-access"]
     },
     {
       "id": "authorized-role",
       "title": "Check the account role",
       "nextStep": "Confirm access with the Account Owner or an authorized Account Manager. Account Member access is limited.",
       "prerequisites": [],
-      "unresolved": [
-        "No role change or recovery outcome is promised."
-      ],
-      "sourceRefs": [
-        "verizon-account-roles",
-        "verizon-sim-web"
-      ]
+      "unresolved": ["No role change or recovery outcome is promised."],
+      "sourceRefs": ["verizon-account-roles", "verizon-sim-web"]
     },
     {
       "id": "enable-protection",
@@ -408,9 +386,7 @@
         "Access to any verification required by Verizon."
       ],
       "unresolved": [],
-      "sourceRefs": [
-        "verizon-sim-web"
-      ]
+      "sourceRefs": ["verizon-sim-web"]
     },
     {
       "id": "disable-protection",
@@ -420,24 +396,16 @@
         "An authorized Owner or Manager sign-in.",
         "A deliberate, legitimate SIM or device change."
       ],
-      "unresolved": [
-        "Follow Verizon’s current confirmation and timing instructions."
-      ],
-      "sourceRefs": [
-        "verizon-sim-web"
-      ]
+      "unresolved": ["Follow Verizon’s current confirmation and timing instructions."],
+      "sourceRefs": ["verizon-sim-web"]
     },
     {
       "id": "activation-handoff",
       "title": "Continue with Verizon’s device procedure",
       "nextStep": "Use Verizon’s official support for the intended SIM or device change. This flow does not complete or validate activation.",
       "prerequisites": [],
-      "unresolved": [
-        "Activation prerequisites and timing remain with Verizon."
-      ],
-      "sourceRefs": [
-        "verizon-sim-web"
-      ]
+      "unresolved": ["Activation prerequisites and timing remain with Verizon."],
+      "sourceRefs": ["verizon-sim-web"]
     },
     {
       "id": "check-protection",
@@ -445,56 +413,46 @@
       "nextStep": "Review SIM Protection for the line in My Verizon’s Security settings before deciding whether any change is needed.",
       "prerequisites": [],
       "unresolved": [],
-      "sourceRefs": [
-        "verizon-sim-web"
-      ]
+      "sourceRefs": ["verizon-sim-web"]
     },
     {
       "id": "password-recovery",
       "title": "Use Verizon’s password recovery",
       "nextStep": "Use the password-recovery link in Verizon’s account-access FAQ and follow its prompts. The same FAQ addresses lockout after repeated failed sign-in attempts.",
       "prerequisites": [],
-      "unresolved": [
-        "Required verification and recovery success are not established here."
-      ],
-      "sourceRefs": [
-        "verizon-account-access"
-      ]
+      "unresolved": ["Required verification and recovery success are not established here."],
+      "sourceRefs": ["verizon-account-access"]
     },
     {
       "id": "verification-handoff",
-      "title": "Ask Verizon about the unavailable verification",
-      "nextStep": "Use Verizon’s official account-access support. Explain which verification option you cannot use; do not provide credentials or codes to this website.",
+      "title": "Ask Verizon about the sign-in problem",
+      "nextStep": "Use Verizon’s official account-access support. Explain what prevents sign-in and whether a verification option is unavailable; do not provide credentials or codes to this website.",
       "prerequisites": [],
-      "unresolved": [
-        "No bypass, store override, or guaranteed recovery route has been verified."
-      ],
-      "sourceRefs": [
-        "verizon-account-access"
-      ]
+      "unresolved": ["No bypass, store override, or guaranteed recovery route has been verified."],
+      "sourceRefs": ["verizon-account-access"]
     }
   ],
   "sources": [
     {
       "id": "verizon-sim-web",
-      "sourceVersionId": "v_a93d1e9d0a7fafd3b3fd39fa3a51c4a02e0ddc116baa49cff7178de0b414",
-      "snapshotSha256": "2516b91f469b86eb416f9d03afc9b234fd98fe1156cc165043735865f8881b8f",
+      "sourceVersionId": "v_e3bddc2d5412215947c1dd023647d45b6f7931dd89140a2d44f84adc90c3",
+      "snapshotSha256": "32b49124d61fbc0b5d6f6536c80603c284a2c05b4e8aa2894e93480769832e04",
       "url": "https://www.verizon.com/support/knowledge-base-309294/",
       "title": "My Verizon website: SIM Protection and Number Lock",
       "passage": "Account Owner or Manager access privileges"
     },
     {
       "id": "verizon-account-access",
-      "sourceVersionId": "v_3e5bfdca1670f33006bda997a0b0572bbf760eb19c2bdc983ca8e85cf3e6",
-      "snapshotSha256": "780a93dfe242d0bc75ee1e7d11233ce681f0ccf4cc212de0b9eb5ed6bb8ed90d",
+      "sourceVersionId": "v_53a528d190c3b4af90597cc687bae5b738722245a68b25f0e6cfd2d97dd5",
+      "snapshotSha256": "88351b9a06cacabd4058ade4494113e86a9f06af81424f590446f2e948f71eb3",
       "url": "https://www.verizon.com/support/my-verizon-faqs/",
       "title": "My Verizon account access FAQ",
       "passage": "Go to the Forgot your password page."
     },
     {
       "id": "verizon-account-roles",
-      "sourceVersionId": "v_5de4ed095431e5bbb27a5e769c222ea6f52bbca980ea544dfac5a5d4b16b",
-      "snapshotSha256": "fbe8cb05e44c55bee317aeb4a4c6e2560e720bfbce87668b8bb9877f3f8b9716",
+      "sourceVersionId": "v_8275ff60b1b1616cfe9f28e610c94fd4937f1417e52537bd416c10b14edd",
+      "snapshotSha256": "41718eae3f28a0ae07d453196c7c829f40b269bb3243f4fda055b157e1285609",
       "url": "https://www.verizon.com/support/assign-account-manager-roles-faqs/",
       "title": "Verizon mobile account roles",
       "passage": "Account Members have limited access"

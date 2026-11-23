@@ -200,6 +200,134 @@ test('polling does not extend the 30 minute idle deadline', async ({ page }) => 
   await expect(page.getByRole('radio')).toHaveCount(0);
 });
 
+// Real fetch/Response contracts with fictional data; no real procedure expectations.
+async function stallStatus(page: Page, stage: 'headers' | 'body') {
+  await page.addInitScript((stage) => {
+    const original = window.fetch.bind(window);
+    const state = { requests: 0, aborted: 0 };
+    Object.assign(window, { statusProbe: state });
+    window.fetch = async (input, init) => {
+      if (String(input) !== '/api/v1/flows/fictional') return original(input, init);
+      state.requests++;
+      if (stage === 'headers')
+        return new Promise<Response>((_resolve, reject) => {
+          init?.signal?.addEventListener(
+            'abort',
+            () => {
+              state.aborted++;
+              reject(new DOMException('Aborted', 'AbortError'));
+            },
+            { once: true },
+          );
+        });
+      return new Response(
+        new ReadableStream({
+          start(controller) {
+            controller.enqueue(new TextEncoder().encode('{"id":'));
+            init?.signal?.addEventListener(
+              'abort',
+              () => {
+                state.aborted++;
+                controller.error(new DOMException('Aborted', 'AbortError'));
+              },
+              { once: true },
+            );
+          },
+        }),
+        { headers: { 'Content-Type': 'application/json' } },
+      );
+    };
+  }, stage);
+}
+async function completeFictional(page: Page) {
+  await page.route('**/api/v1/sessions/fictional-session/answers', (r) =>
+    r.fulfill({ json: outcome }),
+  );
+  await begin(page);
+  await page.getByRole('radio', { name: 'Fictional yes' }).check();
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await expect(page.getByRole('heading', { name: 'Fictional next step' })).toBeVisible();
+}
+for (const stage of ['headers', 'body'] as const) {
+  test(`a stalled status ${stage} response clears an existing outcome within the request deadline`, async ({
+    page,
+  }) => {
+    await fixtures(page);
+    await stallStatus(page, stage);
+    await page.clock.install();
+    await completeFictional(page);
+    await page.clock.fastForward(30001);
+    await expect.poll(() => page.evaluate(() => (window as any).statusProbe.requests)).toBe(1);
+    await page.clock.fastForward(10001);
+    await expect(page.getByText('We cannot confirm that this guidance is current.')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Fictional next step' })).toHaveCount(0);
+    await expect(
+      page.getByRole('link', { name: 'Visit the official source' }).first(),
+    ).toHaveAttribute('href', flow.officialUrl);
+    await expect.poll(() => page.evaluate(() => (window as any).statusProbe.aborted)).toBe(1);
+  });
+}
+test('idle expiry clears guidance even while a status request is pending', async ({ page }) => {
+  await fixtures(page);
+  await stallStatus(page, 'headers');
+  await page.clock.install();
+  await completeFictional(page);
+  // Skip missed polls like a throttled background tab; the first pending check is near expiry.
+  await page.clock.fastForward(29 * 60 * 1000 + 55000);
+  await expect.poll(() => page.evaluate(() => (window as any).statusProbe.requests)).toBe(1);
+  await page.clock.fastForward(6000);
+  await expect(page.getByText('Your session expired.')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Fictional next step' })).toHaveCount(0);
+});
+test('returning to a visible tab checks expiry before an in-flight request guard', async ({
+  page,
+}) => {
+  await fixtures(page);
+  await stallStatus(page, 'body');
+  await page.clock.install();
+  await completeFictional(page);
+  await page.clock.fastForward(30001);
+  await expect.poll(() => page.evaluate(() => (window as any).statusProbe.requests)).toBe(1);
+  const afterExpiry = await page.evaluate(() => Date.now() + 31 * 60 * 1000);
+  await page.clock.setSystemTime(afterExpiry);
+  await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+  await expect(page.getByText('Your session expired.')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Fictional next step' })).toHaveCount(0);
+});
+
+test('leaving a session cancels the pending status deadline', async ({ page }) => {
+  await fixtures(page);
+  await stallStatus(page, 'headers');
+  await page.clock.install();
+  await completeFictional(page);
+  await page.clock.fastForward(30001);
+  await expect.poll(() => page.evaluate(() => (window as any).statusProbe.requests)).toBe(1);
+  await page.getByRole('button', { name: 'Finish this session' }).click();
+  await page.clock.fastForward(31 * 60 * 1000);
+  await expect(page.getByRole('heading', { name: 'Find your next step.' })).toBeVisible();
+  await expect(page.getByText('We cannot confirm that this guidance is current.')).toHaveCount(0);
+  await expect.poll(() => page.evaluate(() => (window as any).statusProbe.aborted)).toBe(1);
+});
+
+test('answers extend idle expiry but never the two-hour session limit', async ({ page }) => {
+  await fixtures(page);
+  await page.clock.install();
+  let sequence = 0;
+  await page.route('**/api/v1/sessions/fictional-session/answers', (r) =>
+    r.fulfill({ json: { ...session, sequence: ++sequence } }),
+  );
+  await begin(page);
+  for (let i = 0; i < 4; i++) {
+    await page.clock.fastForward(29 * 60 * 1000);
+    await page.getByRole('radio', { name: 'Fictional yes' }).check();
+    await page.getByRole('button', { name: 'Continue' }).click();
+    await expect(page.getByRole('radio', { name: 'Fictional yes' })).not.toBeChecked();
+  }
+  await page.clock.fastForward(4 * 60 * 1000 + 1);
+  await expect(page.getByText('Your session expired.')).toBeVisible();
+  await expect(page.getByRole('radio')).toHaveCount(0);
+});
+
 test('mobile fictional guidance fits and respects reduced motion', async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 320, height: 720 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -281,6 +409,63 @@ test('admin exact gate and digest require explicit review and notes', async ({
   });
   expect(received.headers['x-csrf-token']).toBe('fixture-csrf');
   await expect(page.getByRole('status')).toContainText('Your decision was recorded');
+});
+
+test('admin queue refresh discards stale detail after a decision in another browser', async ({
+  page,
+}) => {
+  let approvedElsewhere = false;
+  const proposal = () => ({
+    id: 'fictional-refresh',
+    title: 'Fictional refresh review',
+    state: approvedElsewhere ? 'implementation_authorized' : 'interpretation_review',
+    nextGate: approvedElsewhere ? null : 'interpretation_review',
+    digest: approvedElsewhere ? null : 'b'.repeat(64),
+    approvals: approvedElsewhere
+      ? [{ decision: 'approve', reason: 'Fictional external review' }]
+      : [],
+  });
+  await page.route('**/admin/v1/dashboard', (route) =>
+    route.fulfill({
+      json: {
+        csrfToken: 'fixture-csrf',
+        flows: [flow],
+        proposals: [proposal()],
+        releases: [],
+        audit: [],
+      },
+    }),
+  );
+  await page.route('**/admin/v1/proposals/fictional-refresh', (route) =>
+    route.fulfill({ json: proposal() }),
+  );
+  let decisions = 0;
+  await page.route('**/admin/v1/proposals/fictional-refresh/decisions', (route) => {
+    decisions++;
+    return route.fulfill({ status: 500, json: { message: 'Unexpected decision request' } });
+  });
+  await page.goto('http://127.0.0.1:5174');
+  await page.getByRole('button', { name: 'Review evidence' }).click();
+  await page.getByLabel('Reason and review notes').fill('Fictional draft review');
+  await page.getByRole('checkbox').check();
+  await expect(page.getByRole('button', { name: 'Approve source interpretation' })).toBeEnabled();
+  approvedElsewhere = true;
+  await page.getByRole('button', { name: 'Refresh queue' }).click();
+  await expect(page.getByRole('heading', { name: 'Record your decision' })).toHaveCount(0);
+  await expect(page.getByText('implementation_authorized', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Review evidence' }).click();
+  await expect(page.getByText('Fictional external review', { exact: false }).first()).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'No decision needed from you right now' }),
+  ).toBeVisible();
+  await expect(
+    page.getByText('Source interpretation is approved.', { exact: false }),
+  ).toBeVisible();
+  await expect(page.getByLabel('Reason and review notes')).toHaveCount(0);
+  await expect(page.getByRole('checkbox')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Approve this gate' })).toHaveCount(0);
+  await expect(page.getByText('No digest supplied', { exact: false })).toHaveCount(0);
+  expect(decisions).toBe(0);
 });
 
 test('admin authorization failure has no available review action at 320px', async ({ page }) => {

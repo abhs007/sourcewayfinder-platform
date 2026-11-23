@@ -1,0 +1,57 @@
+{
+  "status": "owner_reviewed_local_journeys_passed_policy_pending",
+  "flowId": "verizon-sim-protection",
+  "preparedAt": "2026-11-23T01:58:48.866Z",
+  "semanticExecutionAuthorized": false,
+  "semanticTestsExecuted": true,
+  "approvalRecords": [],
+  "canonicalSha256": {
+    "bundle.proposed.json": "9eaf8eaf24743ee7fbaf14380fdf05fd5d5e12d2ba42eb09b7a43a1022e06fb7",
+    "expected-cases.proposed.json": "384ce059a3755682de23ff07a972d392cb0861d15225ab861db8850ff80e65a6",
+    "source-register.json": "02d53b7af964096264195337da83d7748f27e0357d2353b923d15f6ca7132caa"
+  },
+  "structuralValidation": {
+    "passed": true,
+    "questions": 8,
+    "outcomes": 12,
+    "proposedCases": 18,
+    "branches": 27,
+    "missingNamedBranches": []
+  },
+  "notes": [
+    "Fresh local public-source captures only; not uploaded to the policy service.",
+    "Source/bundle/expectation digests are not approval IDs.",
+    "The domain draft, expected cases and source register now match this owner-reviewed packet. Policy-service approval records remain empty.",
+    "All eighteen reviewed cases passed local UI/API/session-D1 journeys at 320px and 1440px. Read-only content substitution does not validate policy authorization or deployment."
+  ],
+  "ownerReviewEvidence": {
+    "path": "owner-review-evidence.json",
+    "documentSha256": "f954104a238b95d5366a300779c94914b40885a8e8fe7b201790676db3e1d369",
+    "cases": 18,
+    "decision": "Keep as written"
+  },
+  "semanticExecutionAuthorizationScope": "Authenticated policy-service acceptance; pending. Owner document review authorized the separate local journey check.",
+  "localReviewedJourneyValidation": {
+    "scope": "Local owner-reviewed browser/API/session-D1 journeys; read-only content test provider.",
+    "passed": true,
+    "completedAt": "2026-11-23T06:37:54.112Z",
+    "cases": 18,
+    "journeys": 36,
+    "coverage": [
+      {
+        "width": 320,
+        "covered": 27,
+        "total": 27
+      },
+      {
+        "width": 1440,
+        "covered": 27,
+        "total": 27
+      }
+    ],
+    "report": "docs/validation/verizon-sim-protection/local-validation-results.json",
+    "reportSha256": "2f0b49cace8e97089c72b56ec4ea6657bf105ce3a0a6a230dbc7855e8cd17e75",
+    "policyAuthorizationTested": false,
+    "hostedDeploymentTested": false
+  }
+}

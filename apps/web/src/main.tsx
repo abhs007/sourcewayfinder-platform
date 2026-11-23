@@ -90,22 +90,56 @@ export function App() {
       flowId = session.flowId,
       epoch = session.statusEpoch;
     let disposed = false;
-    let checking = false;
-    const ctrl = new AbortController();
-    const check = async () => {
-      if (disposed || checking || currentSession.current?.sessionId !== id) return;
+    let stopped = false;
+    let request: AbortController | null = null;
+    let requestDeadline: number | undefined;
+    let expiryTimer: number | undefined;
+    const current = () => !disposed && !stopped && currentSession.current?.sessionId === id;
+    const fail = (failure: ApiError) => {
+      if (!current()) return;
+      stopped = true;
+      stop(failure);
+      request?.abort();
+    };
+    const expired = () => {
       if (
         Date.now() - sessionClock.current.startedAt >= 2 * 60 * 60 * 1000 ||
         Date.now() - sessionClock.current.lastAnsweredAt >= 30 * 60 * 1000
       ) {
-        stop({
+        fail({
           code: 'SESSION_EXPIRED',
           message: 'Your session expired. Begin again to check the current guidance.',
           officialUrl: session.officialUrl,
         });
-        return;
+        return true;
       }
-      checking = true;
+      return false;
+    };
+    // Expiry is independent of network progress. Answering can extend the idle
+    // deadline; when the earlier timer fires it recalculates, never extends the max age.
+    const scheduleExpiry = () => {
+      if (!current() || expired()) return;
+      const deadline = Math.min(
+        sessionClock.current.startedAt + 2 * 60 * 60 * 1000,
+        sessionClock.current.lastAnsweredAt + 30 * 60 * 1000,
+      );
+      expiryTimer = window.setTimeout(scheduleExpiry, Math.max(0, deadline - Date.now()));
+    };
+    const unavailable = () =>
+      fail({
+        code: 'STATUS_UNAVAILABLE',
+        message:
+          'We cannot confirm that this guidance is current. The official source is still available.',
+        officialUrl: session.officialUrl,
+      });
+    const check = async () => {
+      // A throttled/background tab must check expiry even with a pending request.
+      if (!current() || expired() || request) return;
+      const ctrl = new AbortController();
+      request = ctrl;
+      // Covers both response headers and body consumption. Clear the UI directly
+      // at the deadline rather than depending on fetch rejecting after abort.
+      requestDeadline = window.setTimeout(unavailable, 10000);
       try {
         const res = await fetch(`/api/v1/flows/${encodeURIComponent(flowId)}`, {
           cache: 'no-store',
@@ -113,33 +147,29 @@ export function App() {
         });
         if (!res.ok) throw Error();
         const flow = await res.json();
+        if (!current() || expired()) return;
         if (!isFlow(flow) || flow.status !== 'active' || flow.statusEpoch !== epoch) {
-          if (!disposed)
-            stop({
-              code: 'FLOW_CHANGED',
-              message:
-                'This guidance has changed or is under review. Please use the official source while we check it.',
-              officialUrl: session.officialUrl,
-            });
-        }
-      } catch {
-        if (!disposed && !ctrl.signal.aborted)
-          stop({
-            code: 'STATUS_UNAVAILABLE',
+          fail({
+            code: 'FLOW_CHANGED',
             message:
-              'We cannot confirm that this guidance is current. The official source is still available.',
+              'This guidance has changed or is under review. Please use the official source while we check it.',
             officialUrl: session.officialUrl,
           });
+        }
+      } catch {
+        if (current()) unavailable();
       } finally {
-        checking = false;
+        clearTimeout(requestDeadline);
+        request = null;
       }
     };
+    scheduleExpiry();
     const timer = window.setInterval(check, 30000);
     const visible = () => {
       if (document.visibilityState === 'visible') void check();
     };
     const offline = () =>
-      stop({
+      fail({
         code: 'OFFLINE',
         message:
           'Your connection was interrupted. Guidance has been cleared; reconnect to begin again.',
@@ -149,7 +179,9 @@ export function App() {
     window.addEventListener('offline', offline);
     return () => {
       disposed = true;
-      ctrl.abort();
+      request?.abort();
+      clearTimeout(requestDeadline);
+      clearTimeout(expiryTimer);
       clearInterval(timer);
       document.removeEventListener('visibilitychange', visible);
       window.removeEventListener('offline', offline);

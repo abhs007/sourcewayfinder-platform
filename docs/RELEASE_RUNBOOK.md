@@ -105,4 +105,4 @@ The automated publisher deliberately refuses schema-changing releases. Apply a s
 
 ## Before calling delivery complete
 
-Verify the owner can sign in through Google MFA; complete the four real content gates; run both authorized real-flow suites; demonstrate a source-change suspension and reviewed recovery; observe deployed smoke, quota/failure behavior and a restore drill; and confirm backup recovery and notifications. The current files provide execution paths and fail-closed checks. They do not establish that these external gates have been completed.
+Verify the owner can sign in through Google and the configured independent Cloudflare MFA challenge; complete the four real content gates; run both authorized real-flow suites; demonstrate a source-change suspension and reviewed recovery; observe deployed smoke, quota/failure behavior and a restore drill; and confirm backup recovery and notifications. The current files provide execution paths and fail-closed checks. They do not establish that these external gates have been completed.

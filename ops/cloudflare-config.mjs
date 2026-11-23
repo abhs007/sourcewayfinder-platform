@@ -108,7 +108,8 @@ for (const stage of ['staging', 'production']) {
         binding: 'ASSETS',
         html_handling: 'auto-trailing-slash',
         not_found_handling: 'single-page-application',
-        run_worker_first: stage === 'staging' ? true : ['/api/*'],
+        // The Worker authenticates staging and redirects the production www host.
+        run_worker_first: true,
       },
       services: [
         { binding: 'GUIDANCE', service: `${prefix}-api` },

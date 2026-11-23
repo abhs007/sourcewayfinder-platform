@@ -1,6 +1,8 @@
 import { build } from 'esbuild';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { validateAssetRedirects } from './validate-assets.mjs';
+await validateAssetRedirects(process.cwd());
 await mkdir('dist/workers', { recursive: true });
 for (const service of ['web', 'api', 'control', 'survey']) {
   await build({

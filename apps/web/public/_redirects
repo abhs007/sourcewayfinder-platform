@@ -1,1 +1,2 @@
-https://www.sourcewayfinder.org/* https://sourcewayfinder.org/:splat 301
+# Hostname redirects are handled by workers/web/index.ts.
+# Workers static-asset redirect sources must be relative paths.

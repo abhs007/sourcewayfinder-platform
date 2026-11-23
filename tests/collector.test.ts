@@ -11,6 +11,8 @@ import {
   fetchSource,
   retain,
   immutableWrite,
+  digest,
+  EXTRACTOR_VERSION,
   MAX_BYTES,
   type SourceConfig,
 } from '../ops/collector.mts';
@@ -126,6 +128,117 @@ describe('source collector boundaries', () => {
   it('rejects oversized normalized text rather than truncating evidence', () => {
     const big = Buffer.from('<html><main>' + 'fictional source '.repeat(8000) + '</main></html>');
     expect(() => normalizeHtml(big, source.requiredPhrases)).toThrow('EXTRACTION_TOO_LARGE');
+  });
+  const documentWith = (content: string, head = '') =>
+    Buffer.from(
+      `<html><head>${head}</head><body><main><h1>Fictional source</h1><p>${'Invented instructions for a local regression test only. '.repeat(3)}</p>${content}</main></body></html>`,
+    );
+  it('ignores only standalone inline-hidden timestamps while retaining consequential dates and hidden instructions', () => {
+    const normalize = (s: string) => normalizeHtml(documentWith(s), source.requiredPhrases);
+    expect(normalize('<span style="display:none;">2026-11-22 20:09:55.605</span>')).toBe(
+      normalize('<span style="DISPLAY: none !important;">2026-11-23 04:04:17.7</span>'),
+    );
+    expect(
+      normalize('<span style="display:none;display:block">2026-11-22 20:09:55.605</span>'),
+    ).not.toBe(normalize('<span style="display:none;display:block">2026-11-23 04:04:17.7</span>'));
+    for (const [a, b] of [
+      ['<span>2026-11-22 20:09:55.605</span>', '<span>2026-11-23 04:04:17.7</span>'],
+      [
+        '<span style="display:none">Apply before 2026-11-22</span>',
+        '<span style="display:none">Apply before 2026-11-23</span>',
+      ],
+      [
+        '<div style="display:none">Requirements A</div>',
+        '<div style="display:none">Requirements B</div>',
+      ],
+      [
+        '<span style="display:none"><a href="/old">2026-11-22 20:09:55.605</a></span>',
+        '<span style="display:none"><a href="/new">2026-11-22 20:09:55.605</a></span>',
+      ],
+    ])
+      expect(normalize(a)).not.toBe(normalize(b));
+  });
+  it.each([
+    ['link destination', '<a href="/old">Apply</a>', '<a href="/new">Apply</a>'],
+    [
+      'form instruction',
+      '<form><p>Only adults can apply.</p></form>',
+      '<form><p>Adults and children can apply.</p></form>',
+    ],
+    [
+      'form destination',
+      '<form action="/old">Apply here</form>',
+      '<form action="/new">Apply here</form>',
+    ],
+    [
+      'submit override',
+      '<button formaction="/old">Apply</button>',
+      '<button formaction="/new">Apply</button>',
+    ],
+    [
+      'input submit override',
+      '<input type="submit" formaction="/old">',
+      '<input type="submit" formaction="/new">',
+    ],
+  ])('detects a changed %s with otherwise unchanged prose', (_name, before, after) => {
+    const a = normalizeHtml(documentWith(before), source.requiredPhrases);
+    const b = normalizeHtml(documentWith(after), source.requiredPhrases);
+    expect(digest(a)).not.toBe(digest(b));
+  });
+  it('preserves form instructions and source passages without retaining input values or scripts', () => {
+    const text = normalizeHtml(
+      documentWith(
+        '<form action="/apply"><p>Read the <a href="/guide">official guide</a> before applying.</p><input value="fictional-private-value"><script>executable-secret</script></form>',
+      ),
+      source.requiredPhrases,
+    );
+    expect(text).toContain('Read the official guide before applying.');
+    expect(text).toContain('/apply');
+    expect(text).toContain('/guide');
+    expect(text).not.toContain('fictional-private-value');
+    expect(text).not.toContain('executable-secret');
+  });
+  it('detects a base URL change that redirects unchanged relative links', () => {
+    const a = normalizeHtml(
+      documentWith('<a href="apply">Apply</a>', '<base href="https://example.org/old/">'),
+      source.requiredPhrases,
+    );
+    const b = normalizeHtml(
+      documentWith('<a href="apply">Apply</a>', '<base href="https://example.org/new/">'),
+      source.requiredPhrases,
+    );
+    expect(digest(a)).not.toBe(digest(b));
+  });
+  it('re-extracts retained bytes after an extractor upgrade even on a 304', async () => {
+    const dir = await mkdtemp(join(tmpdir(), 'swf-extractor-upgrade-'));
+    try {
+      const body = documentWith('<a href="/apply">Apply</a>');
+      const response = { status: 200, headers: { etag: 'fixture-tag' }, body, url: source.url };
+      const current = await retain(source, response, dir);
+      const oldText = current.normalizedText.split('\n[Navigation evidence]')[0]!;
+      const oldHash = digest(oldText);
+      await immutableWrite(join(dir, `${oldHash}.txt`), oldText);
+      const previous = {
+        ...current,
+        extractorVersion: 'parse5-content-v2:main:https',
+        sourceVersionId: 'old_version',
+        normalizedText: oldText,
+        normalizedSha256: oldHash,
+      };
+      const upgraded = await retain(
+        source,
+        { ...response, status: 304, body: Buffer.alloc(0) },
+        dir,
+        previous,
+      );
+      expect(upgraded.extractorVersion).toBe(`${EXTRACTOR_VERSION}:main:https`);
+      expect(upgraded.sourceVersionId).not.toBe(previous.sourceVersionId);
+      expect(upgraded.normalizedText).toContain('/apply');
+      expect(upgraded.normalizedSha256).not.toBe(oldHash);
+      expect(upgraded.snapshotSha256).toBe(previous.snapshotSha256);
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
   });
   it('deduplicates immutable evidence and verifies bytes before accepting 304', async () => {
     const dir = await mkdtemp(join(tmpdir(), 'swf-evidence-'));

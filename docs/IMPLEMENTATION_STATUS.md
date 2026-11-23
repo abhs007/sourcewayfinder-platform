@@ -1,12 +1,32 @@
 # SourceWayfinder implementation status and technical record
 
-**Status date: November 22, 2026 — America/Los_Angeles.**
+**Status date: November 23, 2026 — America/Los_Angeles.**
 
-SourceWayfinder has an implemented platform candidate, an operational local Paperclip/Codex environment, and passing local and hosted engineering checks. The production platform has not been released. The Verizon and SSA bundles are drafts; their source interpretations and expected answers still require human approval before source-dependent acceptance testing.
+SourceWayfinder has an implemented platform candidate, an operational local Paperclip/Codex environment, and passing local and hosted engineering checks. The production platform has not been released. The Verizon and SSA bundles remain unpublished drafts. The owner has reviewed all 18 Verizon cases, and 36 local UI/API/session-D1 journeys passed. Authenticated policy decisions and protected acceptance remain pending; SSA content review has not been completed.
 
 This document records what was built, how it works, the evidence observed during implementation, and the remaining delivery gates. “Implemented” means code exists. “Verified locally” means the stated behavior was observed in the local test environment. Neither term means that protected staging, production operations, or the real guidance have passed their outstanding acceptance gates.
 
-## 1. Delivery snapshot
+## Current hosted milestone — November 23, 2026
+
+The owner-run bootstrap is now observed working: the protected admin dashboard and public staging homepage load after owner authentication, the domain API returns an empty registry, and the isolated survey service reports Cloudflare storage. The admin has zero source, flow, proposal, release and audit records. No hosted guidance journey or content approval is implied. Screenshots and exact observations are recorded in [the staging plan](validation/verizon-sim-protection/HOSTED_STAGING_PLAN.md).
+
+A missing admin source-registration form has been implemented locally. It shows the proposed Verizon scope and source boundaries, requires an explicit owner decision, and safely resumes partial registration by comparing exact server records. The owner ran the constrained staging admin update, and the hosted registration form is now independently verified. The owner then registered the flow and all three official source boundaries. The hosted audit trail confirms four events; the flow remains under review with no source evidence uploaded. The historical setup entries below describe their original checkpoints; actual sign-in is now verified.
+
+## Local reliability follow-up — November 22, 2026
+
+The working tree now fixes source normalization that missed destinations/form instructions and status polling that could block session expiry. The modified checkout passes 104 unit/integration tests, 25 browser checks, type checking and the artifact build. New tests include a fictional link-only source change propagated through the policy service, local D1, actual Worker API and browser, with guidance suspension and refusal of new sessions. See [the reliability report](validation/RELIABILITY_FIXES_2026-11-22.md).
+
+These changes are local and uncommitted; the runtime snapshots and hosted results recorded below remain historical. No runtime synchronization, merge or deployment occurred. The [Verizon review packet](validation/verizon-sim-protection/REVIEW.md) now records the owner’s **Keep as written** decisions for all eighteen cases. The matching draft and expectations passed 36 local browser journeys at 320px and 1440px, covering all 27 transitions at each width. Full API outcomes, visible guidance, source links and session deletion matched expectations; 104 unit/integration tests also passed again.
+
+See [the local validation report](validation/verizon-sim-protection/LOCAL_VALIDATION_RESULTS.md). This run used the actual built UI/API and ephemeral session D1 with a read-only content test provider. It did not validate policy authorization, the deployed control service, hosted access, or any Verizon account transaction. Those gates remain open. Your exact marked review was preserved byte-for-byte.
+
+## Protected staging setup follow-up — November 22, 2026
+
+The owner activated Cloudflare Zero Trust Free and connected Google. The Google provider test succeeded with the confirmed owner email. Both full-host Access applications are now saved for staging and its approval dashboard, restricted to that Google identity with independent Cloudflare authenticator MFA and six-hour sessions. Actual MFA enrollment and application sign-in remain untested.
+
+The four staging deployment configurations now include verified account/database identities, Access audiences, custom hostnames and service bindings. A credential-free bootstrap package is prepared for the owner's separate operator directory. Its seven boundary tests and the full 111-test unit/integration suite passed, along with type checking and the artifact build. The platform has not been deployed by this follow-up. No authenticated content decision, protected acceptance receipt or hosted guidance result exists yet. See [the current staging plan](validation/verizon-sim-protection/HOSTED_STAGING_PLAN.md) and [operator instructions](STAGING_BOOTSTRAP.md).
+
+## 1. Historical implementation delivery snapshot
 
 | Area                     | Implemented and observed                                                                                                                                                   | Still pending                                                                                    |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
@@ -251,7 +271,7 @@ Staging synthetic smoke has its own Access service identity. The Worker checks i
 
 The web layer applies CSP, HSTS, `nosniff`, a no-referrer policy and camera/microphone/geolocation restrictions. Static `_headers` supplies protections for asset-first delivery. Secrets remain outside committed source and agent mounts. No production credential is present in ordinary PR CI.
 
-**Live qualification remains pending:** application JWT/CSRF tests passed with synthetic identities, but Cloudflare Zero Trust enrollment, Google MFA configuration, service tokens and actual protected hosted access are not yet verified.
+**Live qualification remains pending:** application JWT/CSRF tests passed with synthetic identities. Zero Trust activation, Google provider connectivity and both Access application configurations are now observed. Authenticator enrollment, actual protected application sign-in, machine access and hosted flow validation remain pending; see the staging setup follow-up above.
 
 ## 9. Cloudflare routing, deployment shape and scaling
 
@@ -367,7 +387,7 @@ Three Verizon pages were collected over HTTPS. Two SSA pages returned 403 to dir
 
 The SSA flow does not decide online eligibility or prescribe identity documents. The Verizon interpretation retains the protection-disable timing caveat rather than promising immediate activation. Both bundles use the same evaluator/renderer; adding SSA did not require domain-specific engine/UI branching.
 
-Source registers identify retained HTML, normalized text, hashes, capture times and extractor provenance. Those timestamps describe completed captures, not a continuously operating source-monitoring service. Expected-case files explicitly retain `human_review_required` and `semanticExecutionAuthorized: false`.
+Source registers identify retained HTML, normalized text, hashes, capture times and extractor provenance. Those timestamps describe completed captures, not a continuously operating source-monitoring service. Expected-case files retain `human_review_required` and `semanticExecutionAuthorized: false` for the protected policy pipeline. The separate Verizon document-review receipt and scoped local results record the completed owner review and local execution without changing policy authorization metadata.
 
 Review entry point: [DRAFT_REVIEW.md](DRAFT_REVIEW.md), with links to both bundles, complete expected outcomes, source registers and review packets. No live carrier-account procedure, SSA application, identity verification or participant outcome was tested.
 
@@ -573,21 +593,21 @@ Source-dependent tests and publisher commands belong in the separate trusted ope
 
 ## 21. Remaining work before delivery can be called complete
 
-| Remaining item                          | Why it is still open                                                                                     | Required proof                                                                                                         |
-| --------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Zero Trust Free enrollment              | The most recent observed UI still showed “Get started”; earlier checkout returned to domain registration | Active Free dashboard, no paid enrollment, verified account state                                                      |
-| Google identity/MFA and Access          | Signing tests cannot configure the real identity provider                                                | Owner-only admin/staging policies, exact audiences, signed-in positive test and unauthorized negative tests            |
-| Scoped operational credentials          | Deployment and automation must have separate authority                                                   | Collector/bridge/CI/incident/staging/publisher credentials tested without exposing them to agents                      |
-| Slack installation                      | Manifest/sender exist, token and live delivery do not                                                    | Incident, review, release and recovery delivered to the intended channels with deduplication                           |
-| Durable backup identity and key custody | Shared OAuth client retirement and single-Mac key custody remain risks                                   | Owner-owned OAuth client, tested authorization and separately protected recovery key                                   |
-| Supplemental quota/external uptime      | Some required measurements are unknown; no independent monitor is active                                 | Current real provider readings and an outside-Cloudflare outage/recovery notification                                  |
-| Real content review                     | All 31 expected cases remain proposed                                                                    | Owner's exact interpretation and expected-answer decisions, followed by authorized real-flow tests                     |
-| Protected staging                       | D1 is provisioned, but the full hosted service topology is not qualified                                 | UI/API/service-binding/Access/survey smoke through actual staging routes                                               |
-| Hosted concurrency and capacity         | Local tests cannot establish provider behavior and quota cost                                            | Simultaneous release checks, bounded latency/CPU/read/write measurements and failure behavior                          |
-| Full maintenance cycle                  | Components passed separate engineering checks                                                            | Source change → suspension → one proposal → human review → candidate/tests → authorized recovery                       |
-| Production migrations                   | Automatic schema-changing releases are blocked                                                           | Reviewed compatibility/migration/bookmark/restore workflow                                                             |
-| Production and full recovery            | No production promotion/rollback or hosted D1 restoration has run                                        | Exact manifest approval, post-activation smoke, suspension-preserving rollback, lost-runtime and hosted restore drills |
-| Owner operation                         | Instructions exist; owner acceptance is not inferred                                                     | Ability to review, approve, diagnose, suspend and recover from dashboard/runbooks                                      |
+| Remaining item                          | Why it is still open                                                                                       | Required proof                                                                                                         |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Zero Trust Free enrollment              | The most recent observed UI still showed “Get started”; earlier checkout returned to domain registration   | Active Free dashboard, no paid enrollment, verified account state                                                      |
+| Google identity/MFA and Access          | Signing tests cannot configure the real identity provider                                                  | Owner-only admin/staging policies, exact audiences, signed-in positive test and unauthorized negative tests            |
+| Scoped operational credentials          | Deployment and automation must have separate authority                                                     | Collector/bridge/CI/incident/staging/publisher credentials tested without exposing them to agents                      |
+| Slack installation                      | Manifest/sender exist, token and live delivery do not                                                      | Incident, review, release and recovery delivered to the intended channels with deduplication                           |
+| Durable backup identity and key custody | Shared OAuth client retirement and single-Mac key custody remain risks                                     | Owner-owned OAuth client, tested authorization and separately protected recovery key                                   |
+| Supplemental quota/external uptime      | Some required measurements are unknown; no independent monitor is active                                   | Current real provider readings and an outside-Cloudflare outage/recovery notification                                  |
+| Real content review                     | Verizon’s 18 written cases reviewed and locally exercised; SSA’s 13 await review; policy decisions pending | Owner's exact interpretation and expected-answer decisions, followed by authorized real-flow tests                     |
+| Protected staging                       | D1 is provisioned, but the full hosted service topology is not qualified                                   | UI/API/service-binding/Access/survey smoke through actual staging routes                                               |
+| Hosted concurrency and capacity         | Local tests cannot establish provider behavior and quota cost                                              | Simultaneous release checks, bounded latency/CPU/read/write measurements and failure behavior                          |
+| Full maintenance cycle                  | Components passed separate engineering checks                                                              | Source change → suspension → one proposal → human review → candidate/tests → authorized recovery                       |
+| Production migrations                   | Automatic schema-changing releases are blocked                                                             | Reviewed compatibility/migration/bookmark/restore workflow                                                             |
+| Production and full recovery            | No production promotion/rollback or hosted D1 restoration has run                                          | Exact manifest approval, post-activation smoke, suspension-preserving rollback, lost-runtime and hosted restore drills |
+| Owner operation                         | Instructions exist; owner acceptance is not inferred                                                       | Ability to review, approve, diagnose, suspend and recover from dashboard/runbooks                                      |
 
 The delivery boundary remains explicit: both real flows must pass authorized acceptance, the complete source-change cycle must work, unauthorized actions must be rejected, recovery must be exercised, and the owner must be able to operate the system. The existing prototype and survey remain in place while those gates are completed.
 

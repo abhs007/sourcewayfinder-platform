@@ -1,0 +1,17 @@
+{
+  "accountId": "a03d9f71f863eed1dc764ca7d4e34c49",
+  "workersPlan": "free",
+  "d1DatabaseCount": 5,
+  "adminEmail": "abhishek51891@gmail.com",
+  "staging": {
+    "accessTeamDomain": "sweet-forest-7bc9.cloudflareaccess.com",
+    "adminAud": "6052d6a24a8e7d99d572feeb4a8ad21a525f9fc7aa179f3851f5ab130535e5e9",
+    "stagingAud": "840c085ad328fd6f353290f01d6863651b4979a0307b164dcc31d7a8b73c3f1a",
+    "databases": {
+      "control": "7f8af66e-aad4-44c4-b25b-245242210e5a",
+      "evidence": "11fca07a-9464-4c5e-bb05-ea786f7f7f55",
+      "sessions": "c529829b-2b21-46b5-bbee-665c6221961a",
+      "survey": "4c677b42-27d9-4112-bd8a-9f7a7911a050"
+    }
+  }
+}

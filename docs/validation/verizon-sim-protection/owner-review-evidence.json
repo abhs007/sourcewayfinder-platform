@@ -1,0 +1,32 @@
+{
+  "kind": "owner-marked-document",
+  "recordedAt": "2026-11-23T06:33:24.744Z",
+  "document": "ALL_CASES_REVIEW.md",
+  "documentSha256": "f954104a238b95d5366a300779c94914b40885a8e8fe7b201790676db3e1d369",
+  "markedDecision": "Keep as written",
+  "marker": "*",
+  "caseIds": [
+    "wrong-account",
+    "account-unknown",
+    "enable-authorized",
+    "enable-member",
+    "enable-role-unknown",
+    "enable-access-unknown",
+    "enable-forgot",
+    "replace-enabled",
+    "replace-disabled",
+    "protection-unknown",
+    "replace-role-member",
+    "replace-role-unknown",
+    "replace-access-unknown",
+    "replace-no-verification",
+    "access-other",
+    "access-unknown",
+    "port-different",
+    "intent-unknown"
+  ],
+  "bundleHash": "9eaf8eaf24743ee7fbaf14380fdf05fd5d5e12d2ba42eb09b7a43a1022e06fb7",
+  "expectedPacketHash": "384ce059a3755682de23ff07a972d392cb0861d15225ab861db8850ff80e65a6",
+  "casesHash": "51d82e09017494ef076e0c4f2df54c402fe323b07220abcaf88bd5ceec763b65",
+  "scope": "Owner review of exact written scenarios and expected results; user requested local end-to-end validation. This is not a policy-service approval, merge or release authorization."
+}

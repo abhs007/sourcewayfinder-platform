@@ -13,6 +13,7 @@
     "test:contracts": "vitest run tests/core.test.ts",
     "test:e2e": "node ops/authorized-tests.mjs",
     "test:ui": "playwright test",
+    "test:reviewed:verizon": "node --import tsx tests/reviewed/verizon-local.mts",
     "build": "vite build --config apps/web/vite.config.ts && vite build --config apps/admin/vite.config.ts && node ops/build-workers.mjs",
     "dev": "node --import tsx ops/dev.mts",
     "doctor": "node ops/doctor.mjs",

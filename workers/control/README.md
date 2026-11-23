@@ -22,7 +22,7 @@ Apply every numbered migration in `migrations/` in order to the control database
 
 A service credential record has `id`, `sha256`, `enabled`, `expiresAt`, and `scopes`. Hash a cryptographically random bearer token locally and retain only its hash in this Worker. Give each component its own credential and scopes. A service credential never authenticates a human. Access JWT validation checks the signature, issuer, audience, expiration and exact email. There is no development authentication bypass.
 
-Configure the Access application to require your Google identity and Google MFA. Protect static admin assets as well as API routes. Disable unrestricted `workers.dev` access. Internal automation routes require scoped credentials even when Cloudflare Access allows a narrowly configured service path. Never give the public API a binding to the default policy entrypoint.
+Configure the Access application to require your Google identity and Cloudflare's independent authenticator-app MFA. Protect static admin assets as well as API routes. Disable unrestricted `workers.dev` access. Internal automation routes require scoped credentials even when Cloudflare Access allows a narrowly configured service path. Never give the public API a binding to the default policy entrypoint.
 
 ## Review and release
 

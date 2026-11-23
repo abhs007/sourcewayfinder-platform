@@ -9,7 +9,7 @@ import { parse } from 'parse5';
 
 export const MAX_BYTES = 1024 * 1024,
   MAX_TEXT_BYTES = 100 * 1024,
-  EXTRACTOR_VERSION = 'parse5-content-v2';
+  EXTRACTOR_VERSION = 'parse5-content-v4';
 export type SourceConfig = {
   id: string;
   flowId: string;
@@ -335,7 +335,10 @@ export function normalizeHtml(raw: Buffer, requiredPhrases: string[], contentId?
   if (!/<\/html\s*>/i.test(html)) throw Error('INCOMPLETE_HTML');
   const doc = parse(html) as unknown as HtmlNode;
   const candidates: HtmlNode[] = [];
+  let baseHref: string | undefined;
   const discover = (n: HtmlNode) => {
+    if (n.tagName === 'base' && baseHref === undefined)
+      baseHref = n.attrs?.find((a) => a.name === 'href')?.value;
     if (
       contentId
         ? n.attrs?.some((a) => a.name === 'id' && a.value === contentId)
@@ -356,32 +359,81 @@ export function normalizeHtml(raw: Buffer, requiredPhrases: string[], contentId?
     'nav',
     'header',
     'footer',
-    'form',
     'iframe',
     'svg',
     'template',
   ]);
-  const extract = (n: HtmlNode): string => {
+  type Navigation = { tag: string; attributes: Record<string, string>; label: string };
+  const extract = (n: HtmlNode, navigation: Navigation[]): string => {
+    // Some publishers embed standalone server-render timestamps in hidden spans.
+    // Exclude only that metadata shape, never hidden accordion instructions or dates
+    // in visible prose. Raw HTML remains retained in immutable evidence.
+    const hiddenTimestamp =
+      n.tagName === 'span' &&
+      n.attrs?.some(
+        (a) =>
+          a.name === 'style' && /^\s*display\s*:\s*none\s*(?:!important\s*)?;?\s*$/i.test(a.value),
+      ) &&
+      n.childNodes?.every((child) => child.nodeName === '#text') &&
+      /^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:?\d{2})?$/.test(
+        (n.childNodes ?? [])
+          .map((child) => child.value ?? '')
+          .join('')
+          .trim(),
+      );
+    if (hiddenTimestamp) return '';
+
     if (
       ignored.has(n.tagName ?? '') ||
       n.attrs?.some((a) => a.name === 'aria-hidden' && a.value === 'true')
     )
       return '';
     if (n.nodeName === '#text') return n.value ?? '';
-    return (n.childNodes ?? []).map(extract).join(' ');
+    const prose = (n.childNodes ?? []).map((child) => extract(child, navigation)).join(' ');
+    // Keep prose contiguous for passage review. Retain destinations separately as inert
+    // evidence: changing where a link/form leads must invalidate the semantic hash.
+    const keys =
+      n.tagName === 'a' || n.tagName === 'area'
+        ? ['href']
+        : n.tagName === 'form'
+          ? ['action', 'method']
+          : n.tagName === 'button' || n.tagName === 'input'
+            ? ['formaction', 'formmethod']
+            : [];
+    const attributes = Object.fromEntries(
+      keys.flatMap((key) => {
+        const attr = n.attrs?.find((a) => a.name === key);
+        return attr ? [[key, attr.value.trim()]] : [];
+      }),
+    );
+    if (Object.keys(attributes).length)
+      navigation.push({
+        tag: n.tagName!,
+        attributes,
+        label: prose.normalize('NFC').replace(/\s+/g, ' ').trim(),
+      });
+    return prose;
   };
-  const text = candidates
-    .map(extract)
-    .map((t) => t.normalize('NFC').replace(/\s+/g, ' ').trim())
-    .sort((a, b) => b.length - a.length)[0]!;
+  const selected = candidates
+    .map((node) => {
+      const navigation: Navigation[] = [];
+      const text = extract(node, navigation).normalize('NFC').replace(/\s+/g, ' ').trim();
+      return { text, navigation };
+    })
+    .sort((a, b) => b.text.length - a.text.length)[0]!;
+  const text = selected.text;
   if (
     text.length < 100 ||
     !requiredPhrases.length ||
     requiredPhrases.some((p) => !text.toLowerCase().includes(p.toLowerCase()))
   )
     throw Error('EXTRACTION_REQUIRED_PASSAGE_MISSING');
-  if (Buffer.byteLength(text) > MAX_TEXT_BYTES) throw Error('EXTRACTION_TOO_LARGE');
-  return text;
+  const normalized =
+    selected.navigation.length || baseHref !== undefined
+      ? `${text}\n[Navigation evidence]\n${JSON.stringify({ baseHref, navigation: selected.navigation })}`
+      : text;
+  if (Buffer.byteLength(normalized) > MAX_TEXT_BYTES) throw Error('EXTRACTION_TOO_LARGE');
+  return normalized;
 }
 export async function immutableWrite(path: string, body: Buffer | string) {
   try {
@@ -398,6 +450,7 @@ export async function retain(
   directory: string,
   previous?: Snapshot,
 ): Promise<Snapshot> {
+  const extractorVersion = `${EXTRACTOR_VERSION}:${source.contentId ?? 'main'}:${source.acquisition ?? 'https'}`;
   if (response.status === 304) {
     if (!previous) throw Error('UNEXPECTED_NOT_MODIFIED');
     const raw = await readFile(join(directory, `${previous.snapshotSha256}.html`));
@@ -405,6 +458,20 @@ export async function retain(
     const text = await readFile(join(directory, `${previous.normalizedSha256}.txt`), 'utf8');
     if (digest(text) !== previous.normalizedSha256 || text !== previous.normalizedText)
       throw Error('EVIDENCE_INTEGRITY');
+    if (previous.extractorVersion !== extractorVersion)
+      return retain(
+        source,
+        {
+          status: 200,
+          body: raw,
+          url: previous.url,
+          headers: {
+            ...(previous.etag ? { etag: previous.etag } : {}),
+            ...(previous.lastModified ? { 'last-modified': previous.lastModified } : {}),
+          },
+        },
+        directory,
+      );
     return { ...previous, checkedAt: new Date().toISOString() };
   }
   const normalizedText = normalizeHtml(response.body, source.requiredPhrases, source.contentId),
@@ -413,7 +480,6 @@ export async function retain(
   await mkdir(directory, { recursive: true, mode: 0o700 });
   await immutableWrite(join(directory, `${snapshotSha256}.html`), response.body);
   await immutableWrite(join(directory, `${normalizedSha256}.txt`), normalizedText);
-  const extractorVersion = `${EXTRACTOR_VERSION}:${source.contentId ?? 'main'}:${source.acquisition ?? 'https'}`;
   const versionKey = digest(
     `${source.id}:${snapshotSha256}:${normalizedSha256}:${extractorVersion}`,
   );
@@ -493,7 +559,7 @@ async function policyClient() {
     return (await res.json()) as Record<string, any>;
   };
 }
-async function upload(
+export async function upload(
   snapshot: Snapshot,
   directory: string,
   api: NonNullable<Awaited<ReturnType<typeof policyClient>>>,
@@ -614,7 +680,9 @@ export async function main() {
             runId,
             sourceId: source.id,
             artifactHash: snapshot.snapshotSha256,
-            changed: previous?.snapshot?.normalizedSha256 !== snapshot.normalizedSha256,
+            changed:
+              previous?.snapshot?.normalizedSha256 !== snapshot.normalizedSha256 ||
+              previous?.snapshot?.extractorVersion !== snapshot.extractorVersion,
             remote: !!remote,
             duration: Date.now() - started,
           }),

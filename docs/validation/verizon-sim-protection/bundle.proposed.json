@@ -1,0 +1,461 @@
+{
+  "schemaVersion": "1.0",
+  "usage": "production_candidate",
+  "flowId": "verizon-sim-protection",
+  "scope": "English guidance for Verizon consumer postpaid mobile accounts: SIM Protection and My Verizon account access. Prepaid, business accounts, port-outs, identity disputes and unsupported recovery circumstances are handed to official support.",
+  "entryQuestionId": "account-type",
+  "questions": [
+    {
+      "id": "account-type",
+      "prompt": "Is this a Verizon consumer postpaid mobile account?",
+      "choices": [
+        {
+          "id": "postpaid",
+          "label": "Yes, a consumer postpaid account"
+        },
+        {
+          "id": "other",
+          "label": "No, a prepaid, business, or different account"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "intent",
+      "prompt": "What are you trying to do?",
+      "choices": [
+        {
+          "id": "enable",
+          "label": "Turn on SIM Protection"
+        },
+        {
+          "id": "replace",
+          "label": "Change a SIM or device while SIM Protection may be on"
+        },
+        {
+          "id": "access",
+          "label": "Get back into My Verizon"
+        },
+        {
+          "id": "port",
+          "label": "Move my number to another carrier"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "enable-access",
+      "prompt": "Can you sign in to My Verizon now?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes"
+        },
+        {
+          "id": "no",
+          "label": "No"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ],
+      "help": "Do not share your credentials here. Complete sign-in only on Verizon’s official site."
+    },
+    {
+      "id": "enable-role",
+      "prompt": "Does that sign-in have Account Owner or Account Manager access?",
+      "choices": [
+        {
+          "id": "authorized",
+          "label": "Yes, Owner or Manager"
+        },
+        {
+          "id": "member",
+          "label": "No, Account Member or another role"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "replace-access",
+      "prompt": "Can you sign in to My Verizon now?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes"
+        },
+        {
+          "id": "no",
+          "label": "No"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ],
+      "help": "Do not share your credentials here. Complete sign-in only on Verizon’s official site."
+    },
+    {
+      "id": "replace-role",
+      "prompt": "Does that sign-in have Account Owner or Account Manager access?",
+      "choices": [
+        {
+          "id": "authorized",
+          "label": "Yes, Owner or Manager"
+        },
+        {
+          "id": "member",
+          "label": "No, Account Member or another role"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "protection-state",
+      "prompt": "Is SIM Protection currently enabled for the affected line?",
+      "choices": [
+        {
+          "id": "enabled",
+          "label": "Yes"
+        },
+        {
+          "id": "disabled",
+          "label": "No"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "access-issue",
+      "prompt": "What is preventing you from signing in?",
+      "choices": [
+        {
+          "id": "password",
+          "label": "I forgot my password or was locked out after failed attempts"
+        },
+        {
+          "id": "verification",
+          "label": "I cannot complete a verification step"
+        },
+        {
+          "id": "other",
+          "label": "Something else"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "questionId": "account-type",
+      "choiceId": "postpaid",
+      "targetType": "question",
+      "targetId": "intent"
+    },
+    {
+      "questionId": "account-type",
+      "choiceId": "other",
+      "targetType": "outcome",
+      "targetId": "outside-scope"
+    },
+    {
+      "questionId": "account-type",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "confirm-account"
+    },
+    {
+      "questionId": "intent",
+      "choiceId": "enable",
+      "targetType": "question",
+      "targetId": "enable-access"
+    },
+    {
+      "questionId": "intent",
+      "choiceId": "replace",
+      "targetType": "question",
+      "targetId": "replace-access"
+    },
+    {
+      "questionId": "intent",
+      "choiceId": "access",
+      "targetType": "question",
+      "targetId": "access-issue"
+    },
+    {
+      "questionId": "intent",
+      "choiceId": "port",
+      "targetType": "outcome",
+      "targetId": "port-handoff"
+    },
+    {
+      "questionId": "intent",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "clarify-task"
+    },
+    {
+      "questionId": "enable-access",
+      "choiceId": "yes",
+      "targetType": "question",
+      "targetId": "enable-role"
+    },
+    {
+      "questionId": "enable-access",
+      "choiceId": "no",
+      "targetType": "question",
+      "targetId": "access-issue"
+    },
+    {
+      "questionId": "enable-access",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "check-signin"
+    },
+    {
+      "questionId": "enable-role",
+      "choiceId": "authorized",
+      "targetType": "outcome",
+      "targetId": "enable-protection"
+    },
+    {
+      "questionId": "enable-role",
+      "choiceId": "member",
+      "targetType": "outcome",
+      "targetId": "authorized-role"
+    },
+    {
+      "questionId": "enable-role",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "authorized-role"
+    },
+    {
+      "questionId": "replace-access",
+      "choiceId": "yes",
+      "targetType": "question",
+      "targetId": "replace-role"
+    },
+    {
+      "questionId": "replace-access",
+      "choiceId": "no",
+      "targetType": "question",
+      "targetId": "access-issue"
+    },
+    {
+      "questionId": "replace-access",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "check-signin"
+    },
+    {
+      "questionId": "replace-role",
+      "choiceId": "authorized",
+      "targetType": "question",
+      "targetId": "protection-state"
+    },
+    {
+      "questionId": "replace-role",
+      "choiceId": "member",
+      "targetType": "outcome",
+      "targetId": "authorized-role"
+    },
+    {
+      "questionId": "replace-role",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "authorized-role"
+    },
+    {
+      "questionId": "protection-state",
+      "choiceId": "enabled",
+      "targetType": "outcome",
+      "targetId": "disable-protection"
+    },
+    {
+      "questionId": "protection-state",
+      "choiceId": "disabled",
+      "targetType": "outcome",
+      "targetId": "activation-handoff"
+    },
+    {
+      "questionId": "protection-state",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "check-protection"
+    },
+    {
+      "questionId": "access-issue",
+      "choiceId": "password",
+      "targetType": "outcome",
+      "targetId": "password-recovery"
+    },
+    {
+      "questionId": "access-issue",
+      "choiceId": "verification",
+      "targetType": "outcome",
+      "targetId": "verification-handoff"
+    },
+    {
+      "questionId": "access-issue",
+      "choiceId": "other",
+      "targetType": "outcome",
+      "targetId": "verification-handoff"
+    },
+    {
+      "questionId": "access-issue",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "verification-handoff"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "outside-scope",
+      "title": "Use the guidance for your account type",
+      "nextStep": "This guide covers consumer postpaid accounts. Choose the appropriate account guidance through Verizon’s official support pages.",
+      "prerequisites": [],
+      "unresolved": ["The requirements for your account type are not established by this flow."],
+      "sourceRefs": ["verizon-account-access"]
+    },
+    {
+      "id": "confirm-account",
+      "title": "Confirm your account type first",
+      "nextStep": "Use Verizon’s account help to confirm which service and account type you have before following a SIM Protection procedure.",
+      "prerequisites": [],
+      "unresolved": [],
+      "sourceRefs": ["verizon-account-access"]
+    },
+    {
+      "id": "port-handoff",
+      "title": "Number transfer needs a separate procedure",
+      "nextStep": "SIM Protection and Number Lock address different changes. Use Verizon’s official Number Lock and transfer guidance for a port-out.",
+      "prerequisites": [],
+      "unresolved": ["This flow does not establish your port-out prerequisites."],
+      "sourceRefs": ["verizon-sim-web"]
+    },
+    {
+      "id": "clarify-task",
+      "title": "Check the official options",
+      "nextStep": "Read Verizon’s SIM Protection and account-access pages to identify the task that fits your situation.",
+      "prerequisites": [],
+      "unresolved": [],
+      "sourceRefs": ["verizon-sim-web", "verizon-account-access"]
+    },
+    {
+      "id": "check-signin",
+      "title": "Check account access on Verizon’s site",
+      "nextStep": "Try the official My Verizon sign-in route. If a verification step is unavailable, use Verizon’s account-access help.",
+      "prerequisites": [],
+      "unresolved": ["This guide cannot confirm your sign-in or verification options."],
+      "sourceRefs": ["verizon-account-access"]
+    },
+    {
+      "id": "authorized-role",
+      "title": "Check the account role",
+      "nextStep": "Confirm access with the Account Owner or an authorized Account Manager. Account Member access is limited.",
+      "prerequisites": [],
+      "unresolved": ["No role change or recovery outcome is promised."],
+      "sourceRefs": ["verizon-account-roles", "verizon-sim-web"]
+    },
+    {
+      "id": "enable-protection",
+      "title": "Turn on protection through My Verizon",
+      "nextStep": "Open Account → Account settings → Security settings. Edit SIM Protection for the intended line, turn it on, save, and complete any verification Verizon requests.",
+      "prerequisites": [
+        "An Account Owner or Manager sign-in.",
+        "Access to any verification required by Verizon."
+      ],
+      "unresolved": [],
+      "sourceRefs": ["verizon-sim-web"]
+    },
+    {
+      "id": "disable-protection",
+      "title": "Review the protection change before proceeding",
+      "nextStep": "For an intended SIM or device change, edit SIM Protection in My Verizon’s Security settings. Disabling it does not permit an immediate transaction: Verizon describes a 15-minute block and possible additional delay.",
+      "prerequisites": [
+        "An authorized Owner or Manager sign-in.",
+        "A deliberate, legitimate SIM or device change."
+      ],
+      "unresolved": ["Follow Verizon’s current confirmation and timing instructions."],
+      "sourceRefs": ["verizon-sim-web"]
+    },
+    {
+      "id": "activation-handoff",
+      "title": "Continue with Verizon’s device procedure",
+      "nextStep": "Use Verizon’s official support for the intended SIM or device change. This flow does not complete or validate activation.",
+      "prerequisites": [],
+      "unresolved": ["Activation prerequisites and timing remain with Verizon."],
+      "sourceRefs": ["verizon-sim-web"]
+    },
+    {
+      "id": "check-protection",
+      "title": "Check the affected line’s setting",
+      "nextStep": "Review SIM Protection for the line in My Verizon’s Security settings before deciding whether any change is needed.",
+      "prerequisites": [],
+      "unresolved": [],
+      "sourceRefs": ["verizon-sim-web"]
+    },
+    {
+      "id": "password-recovery",
+      "title": "Use Verizon’s password recovery",
+      "nextStep": "Use the password-recovery link in Verizon’s account-access FAQ and follow its prompts. The same FAQ addresses lockout after repeated failed sign-in attempts.",
+      "prerequisites": [],
+      "unresolved": ["Required verification and recovery success are not established here."],
+      "sourceRefs": ["verizon-account-access"]
+    },
+    {
+      "id": "verification-handoff",
+      "title": "Ask Verizon about the sign-in problem",
+      "nextStep": "Use Verizon’s official account-access support. Explain what prevents sign-in and whether a verification option is unavailable; do not provide credentials or codes to this website.",
+      "prerequisites": [],
+      "unresolved": ["No bypass, store override, or guaranteed recovery route has been verified."],
+      "sourceRefs": ["verizon-account-access"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "verizon-sim-web",
+      "sourceVersionId": "v_e3bddc2d5412215947c1dd023647d45b6f7931dd89140a2d44f84adc90c3",
+      "snapshotSha256": "32b49124d61fbc0b5d6f6536c80603c284a2c05b4e8aa2894e93480769832e04",
+      "url": "https://www.verizon.com/support/knowledge-base-309294/",
+      "title": "My Verizon website: SIM Protection and Number Lock",
+      "passage": "Account Owner or Manager access privileges"
+    },
+    {
+      "id": "verizon-account-access",
+      "sourceVersionId": "v_53a528d190c3b4af90597cc687bae5b738722245a68b25f0e6cfd2d97dd5",
+      "snapshotSha256": "88351b9a06cacabd4058ade4494113e86a9f06af81424f590446f2e948f71eb3",
+      "url": "https://www.verizon.com/support/my-verizon-faqs/",
+      "title": "My Verizon account access FAQ",
+      "passage": "Go to the Forgot your password page."
+    },
+    {
+      "id": "verizon-account-roles",
+      "sourceVersionId": "v_8275ff60b1b1616cfe9f28e610c94fd4937f1417e52537bd416c10b14edd",
+      "snapshotSha256": "41718eae3f28a0ae07d453196c7c829f40b269bb3243f4fda055b157e1285609",
+      "url": "https://www.verizon.com/support/assign-account-manager-roles-faqs/",
+      "title": "Verizon mobile account roles",
+      "passage": "Account Members have limited access"
+    }
+  ]
+}
