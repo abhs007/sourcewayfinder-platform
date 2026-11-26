@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-26",
+  "status": "Local development candidate; no semantic acceptance or production deployment",
+  "screenshots": "Local API-unavailable state; screenshots at 1440 and 390 pixels with animation disabled. Not hosted or real-user evidence.",
+  "files": [
+    {
+      "path": "apps/web/index.html",
+      "sha256": "1bd8739b01669966632e400fd1387847dddafc27fffa2052d55d89fa701fba6e"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "3c0876b2fe8c60fe01aaf0dce532413cd138e8d3583c8f9119e1698cc09319f2"
+    },
+    {
+      "path": "apps/web/src/catalog.ts",
+      "sha256": "e5bf867fe32aae33c76bc54a09ebee22f0de8afaed7f385f7bbebb47431e9bed"
+    },
+    {
+      "path": "apps/web/src/styles.css",
+      "sha256": "32b6b853b174224723a7a1860d8b8fe0301fa5a31d494307ae28bbb275b6dc73"
+    },
+    {
+      "path": "apps/web/src/types.ts",
+      "sha256": "156284c1073c4e95d2bb946166c046f3bb8235c1d2f6c3aed51fea756cd1e510"
+    },
+    {
+      "path": "docs/PRODUCT_ENHANCEMENTS_2026-11-26.md",
+      "sha256": "f294e200efbaae5bf75d99170c8deeb9268474f90c97bfbcc1f944f5bf5c61cd"
+    },
+    {
+      "path": "domains/google-lost-second-factor/review-packet.json",
+      "sha256": "7ae41dab12e5bb567bf181ad299ddb4656028f4c3fce18ec25013c25d984ae4a"
+    },
+    {
+      "path": "domains/google-lost-second-factor/bundle.draft.json",
+      "sha256": "b5d158ee3b2fc4a54ca443fa78ef2765ce95bb0d2b537d399af3c159e2c8df7a"
+    },
+    {
+      "path": "domains/google-lost-second-factor/expected-cases.proposed.json",
+      "sha256": "dc4bf7e75a4b081143cc3b7e85161f49d84871855b9a35ffb9fb701a7415ca3e"
+    },
+    {
+      "path": "domains/google-lost-second-factor/REVIEW.md",
+      "sha256": "3735c8c78074844377f01fabf087b8058984466aea331bf3bc85bd4748a9f39e"
+    },
+    {
+      "path": "domains/google-compromised-account/review-packet.json",
+      "sha256": "df6d9a9db5070249c95e5abc2a68ba7efd1fc6d8feb8479bbb69cc17bf110811"
+    },
+    {
+      "path": "domains/google-compromised-account/bundle.draft.json",
+      "sha256": "6a4587f787d853d837cfb7b4f5ab696df776b38d909cc9ccb6f6c27a31a89305"
+    },
+    {
+      "path": "domains/google-compromised-account/expected-cases.proposed.json",
+      "sha256": "439e30cbef6b5b33e4c28c78c989e1227e945a66137ddf6e1e7235b5a2ef31fc"
+    },
+    {
+      "path": "domains/google-compromised-account/REVIEW.md",
+      "sha256": "48155f2a083900adab32751f292f397ef1c5af628e25b3cbcc460d09bb2d578e"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-lost-factor.txt",
+      "sha256": "e48df4b40b6fd291c3437d7573eb359b315f581c319692ea2e01ff19ef3b32b6"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-lost-factor.html",
+      "sha256": "7dcfca5b5162648d298eebc089b0bf20efd3af70d3276019e683084ff6d92fa9"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/capture-register.json",
+      "sha256": "a2b302f5b98772d598861c3e1638640ea9c22f69fa3424ddadff99cdea1a2f48"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-compromised.html",
+      "sha256": "9b74ad444667bda36608f10c816b6f3f279d445ab83efcd42caa5bc48bfc87da"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-compromised.txt",
+      "sha256": "660495a7352a08f8f92d4d696d23752138ea3998f393ebebaf51131b0bc5b3ea"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-compromised.md",
+      "sha256": "300305d21be56aabc0c41d4e8af892ea7fed500c968c6132ded08699082df47e"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-lost-factor.md",
+      "sha256": "876b882107417c83f3703f789820ceb78d033ca04db03d9f64a16948051b4f47"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-recovery.md",
+      "sha256": "1bdb308a1657f6bab0b4edaec7e7b1c64076f8544be7bd27757640aee7f4d756"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-recovery.txt",
+      "sha256": "8225477560f79ea4dcb48fa25d4ce1ddb16e79dbdb0fa0c6a44955e03eef5803"
+    },
+    {
+      "path": "domains/research/account-recovery-2026-11-26/google-recovery.html",
+      "sha256": "35b02ec4952297b8160afcf153d9aa2f495ff3bda43cba121449bb7dc459a1ed"
+    }
+  ]
+}

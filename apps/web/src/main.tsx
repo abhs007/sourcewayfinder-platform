@@ -10,6 +10,7 @@ import {
   type GuidanceSession,
 } from './types';
 import './styles.css';
+import { filterTopics, mergeDirectory, topicFilters, type TopicFilter } from './catalog';
 
 const statusLabel = (s: FlowSummary['status']) =>
   s === 'active'
@@ -47,7 +48,10 @@ export function App() {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<ApiError | null>(null);
   const [choice, setChoice] = useState('');
-  const [history, setHistory] = useState<string[]>([]);
+  const [history, setHistory] = useState<{ question: string; answer: string }[]>([]);
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState<TopicFilter>('all');
+  const visibleFlows = filterTopics(flows, query, category);
   const generation = useRef(0);
   const operation = useRef<AbortController | null>(null);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -57,18 +61,27 @@ export function App() {
 
   useEffect(() => {
     const ctrl = new AbortController();
+    const deadline = window.setTimeout(() => {
+      setDirectoryState('unavailable');
+      ctrl.abort();
+    }, 10000);
     fetch('/api/v1/domains', { signal: ctrl.signal, cache: 'no-store' })
       .then(async (r) => {
         if (!r.ok) throw Error();
         const body = (await r.json()) as { domains?: unknown };
         if (!body || !Array.isArray(body.domains) || !body.domains.every(isFlow)) throw Error();
-        setFlows(body.domains);
+        if (ctrl.signal.aborted) return;
+        setFlows(mergeDirectory(body.domains));
         setDirectoryState('ready');
       })
       .catch(() => {
         if (!ctrl.signal.aborted) setDirectoryState('unavailable');
-      });
-    return () => ctrl.abort();
+      })
+      .finally(() => clearTimeout(deadline));
+    return () => {
+      clearTimeout(deadline);
+      ctrl.abort();
+    };
   }, []);
   useEffect(() => {
     setChoice('');
@@ -301,7 +314,13 @@ export function App() {
         };
       if (epoch === generation.current) {
         sessionClock.current.lastAnsweredAt = Date.now();
-        setHistory((h) => [...h, question.prompt]);
+        setHistory((h) => [
+          ...h,
+          {
+            question: question.prompt,
+            answer: question.choices.find((c) => c.id === choice)!.label,
+          },
+        ]);
         setSession(next);
       }
     } catch (e) {
@@ -384,9 +403,59 @@ export function App() {
                 <div className="panel-heading">
                   <p className="eyebrow">Start here</p>
                   <h2>What do you need help with?</h2>
+                  <label className="search-label" htmlFor="topic-search">
+                    Find a topic
+                  </label>
+                  <input
+                    id="topic-search"
+                    className="topic-search"
+                    type="search"
+                    value={query}
+                    maxLength={120}
+                    onChange={(event) => setQuery(event.target.value)}
+                    placeholder="Try lost phone, Gmail or Social Security"
+                    aria-describedby="search-privacy"
+                    autoComplete="off"
+                  />
+                  <p id="search-privacy" className="search-help">
+                    Use general words. Don’t enter passwords, codes or account details.
+                  </p>
+                  <div className="topic-filters" role="group" aria-label="Filter topics">
+                    {topicFilters.map((filter) => (
+                      <button
+                        key={filter.id}
+                        type="button"
+                        aria-pressed={category === filter.id}
+                        onClick={() => setCategory(filter.id)}
+                      >
+                        {filter.label}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="topic-count" aria-live="polite">
+                    {visibleFlows.length} {visibleFlows.length === 1 ? 'topic' : 'topics'} found
+                  </p>
                 </div>
                 <div className="task-list">
-                  {flows.map((flow, i) => (
+                  {visibleFlows.length === 0 && (
+                    <div className="empty-topics">
+                      <h3>No matching topic yet</h3>
+                      <p>Try a shorter search or browse all topics.</p>
+                      <button
+                        className="button secondary"
+                        onClick={() => {
+                          setQuery('');
+                          setCategory('all');
+                        }}
+                      >
+                        Show all topics
+                      </button>
+                      <a className="text-link" href="/survey.html">
+                        Suggest a topic
+                      </a>
+                    </div>
+                  )}
+                  {visibleFlows.map((flow, i) => (
                     <article className="task-item" key={flow.id}>
                       <span className="task-index" aria-hidden="true">
                         {String(i + 1).padStart(2, '0')}
@@ -587,6 +656,20 @@ export function App() {
                     {session.step.outcome.title}
                   </h1>
                   <p className="lead">{session.step.outcome.nextStep}</p>
+                  {history.length > 0 && (
+                    <details className="answer-review">
+                      <summary>Review your choices</summary>
+                      <dl>
+                        {history.map((item, i) => (
+                          <div key={i}>
+                            <dt>{item.question}</dt>
+                            <dd>{item.answer}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                      <p>To change a choice, finish this session and begin again.</p>
+                    </details>
+                  )}
                   {(session.step.outcome.prerequisites ?? []).length > 0 && (
                     <div className="outcome-block">
                       <h2>What needs to be in place</h2>

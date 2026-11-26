@@ -1,5 +1,13 @@
 # Reviewed-domain inputs
 
+## Account-recovery additions — November 26, 2026
+
+`google-lost-second-factor/` and `google-compromised-account/` add two **unapproved research drafts** with 23 proposed cases in total. Read each `REVIEW.md` and `review-packet.json`. Official research captures are retained under `research/account-recovery-2026-11-26/`; provisional `draft_` source identities are not policy-service approvals.
+
+Google's raw research pages are approximately 1.6 MiB each, exceeding the production collector's 1 MiB limit. Their production ingestion therefore requires separately reviewed bounded acquisition work. Do not raise limits or bypass the collector to publish these drafts. No semantic acceptance tests have been run for these new procedures. Public discovery entries expose official-source handoffs while guided answers remain unavailable.
+
+## Original pilot inputs
+
 `verizon-sim-protection/` and `ssa-replacement-card/` contain draft production candidates, proposed expected answers, exact source registers, and review packets. Neither bundle is an active release. Start with `docs/DRAFT_REVIEW.md`.
 
 `sources.json` is a narrow local acquisition allowlist. The hosted collector additionally requires the same URL, exact path, and origin to exist in the human-approved policy registry. Editing this local file never grants hosted source approval.

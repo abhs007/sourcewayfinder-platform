@@ -1,0 +1,264 @@
+[
+  {
+    "id": "case-01",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "managed"
+      }
+    ],
+    "expectedOutcomeId": "managed-account",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-02",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "other"
+      }
+    ],
+    "expectedOutcomeId": "outside-scope",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-03",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "unknown"
+      }
+    ],
+    "expectedOutcomeId": "confirm-scope",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-04",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "yes"
+      }
+    ],
+    "expectedOutcomeId": "check-advanced",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-05",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "unknown"
+      }
+    ],
+    "expectedOutcomeId": "check-advanced",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-06",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "no"
+      },
+      {
+        "questionId": "backup-method",
+        "choiceId": "device"
+      }
+    ],
+    "expectedOutcomeId": "use-device",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-07",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "no"
+      },
+      {
+        "questionId": "backup-method",
+        "choiceId": "code"
+      }
+    ],
+    "expectedOutcomeId": "use-code",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-08",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "no"
+      },
+      {
+        "questionId": "backup-method",
+        "choiceId": "key"
+      }
+    ],
+    "expectedOutcomeId": "use-key",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-09",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "no"
+      },
+      {
+        "questionId": "backup-method",
+        "choiceId": "passkey"
+      }
+    ],
+    "expectedOutcomeId": "use-passkey",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-10",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "no"
+      },
+      {
+        "questionId": "backup-method",
+        "choiceId": "number"
+      }
+    ],
+    "expectedOutcomeId": "use-number",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-11",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "no"
+      },
+      {
+        "questionId": "backup-method",
+        "choiceId": "none"
+      }
+    ],
+    "expectedOutcomeId": "recovery",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-12",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "advanced",
+        "choiceId": "no"
+      },
+      {
+        "questionId": "backup-method",
+        "choiceId": "unknown"
+      }
+    ],
+    "expectedOutcomeId": "check-method",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-13",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "no"
+      }
+    ],
+    "expectedOutcomeId": "recovery",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-14",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "password",
+        "choiceId": "unknown"
+      }
+    ],
+    "expectedOutcomeId": "recovery",
+    "reviewStatus": "proposed; human review required"
+  }
+]

@@ -122,6 +122,26 @@ export function isSession(value: unknown): value is GuidanceSession {
 }
 export const fallbackFlows: FlowSummary[] = [
   {
+    id: 'google-lost-second-factor',
+    title: 'Lost phone or Google verification access',
+    scope:
+      'Personal Google accounts. Find the official options when your usual second step is unavailable.',
+    status: 'under_review',
+    officialUrl: 'https://support.google.com/accounts/answer/185834?hl=en',
+    lastSuccessfulCheckAt: null,
+    statusEpoch: 0,
+  },
+  {
+    id: 'google-compromised-account',
+    title: 'Secure a Google account after suspicious activity',
+    scope:
+      'Personal Google accounts and Gmail. Different routes for people who can and cannot sign in.',
+    status: 'under_review',
+    officialUrl: 'https://support.google.com/accounts/answer/6294825?hl=en',
+    lastSuccessfulCheckAt: null,
+    statusEpoch: 0,
+  },
+  {
     id: 'verizon-sim-protection',
     title: 'Phone and account access',
     scope: 'Verizon consumer postpaid accounts. SIM Protection and access to your account.',

@@ -100,6 +100,9 @@ test('fictional question and outcome work through keyboard only', async ({ page 
   await page.keyboard.press('Tab');
   await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { name: 'Fictional next step' })).toBeVisible();
+  await page.getByText('Review your choices', { exact: true }).click();
+  await expect(page.locator('.answer-review')).toContainText('Which fictional option fits?');
+  await expect(page.locator('.answer-review')).toContainText('Fictional yes');
   expect(submitted.body).toEqual({ questionId: 'first', choiceId: 'yes', sequence: 0 });
   expect(submitted.headers.authorization).toBe('Bearer fictional-capability');
   expect(submitted.headers['idempotency-key']).toBeTruthy();

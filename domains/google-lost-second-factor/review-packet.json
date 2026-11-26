@@ -1,0 +1,17 @@
+{
+  "status": "UNAPPROVED_RESEARCH_DRAFT",
+  "createdAt": "2026-11-26T23:17:33.541497+00:00",
+  "feedbackConnection": "Feedback suggested account lockouts and lost 2FA recovery. Do not implement the blueprint\u2019s universal password-before-device-erase order or any promise of immediate recovery.",
+  "scope": "English guidance for an adult with their own personal Google account whose primary phone or usual second step is unavailable. Excludes managed accounts, child/representative recovery and detailed Advanced Protection recovery.",
+  "structuralCounts": {
+    "questions": 4,
+    "outcomes": 11,
+    "transitions": 17,
+    "proposedCases": 14
+  },
+  "sourceIdentityNote": "draft_ identities are provisional; replace using the approved production collector before interpretation submission.",
+  "approvals": [],
+  "semanticTestsRun": false,
+  "releaseReady": false,
+  "ingestionBlocker": "Current Google research captures exceed the production collector 1 MiB raw-body limit. Separately reviewed bounded acquisition work is required; no guard is changed."
+}

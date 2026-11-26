@@ -1,0 +1,53 @@
+[
+  {
+    "id": "google-lost-factor",
+    "sourceVersionId": "draft_7dcfca5b5162648d298eebc089b0bf20efd3af70d3276019e683084ff6",
+    "snapshotSha256": "7dcfca5b5162648d298eebc089b0bf20efd3af70d3276019e683084ff6d92fa9",
+    "url": "https://support.google.com/accounts/answer/185834?hl=en",
+    "title": "Google: Fix common issues with 2-Step Verification",
+    "passage": "Another phone signed in to your Google Account.",
+    "acquiredAt": "2026-11-26T23:17:32.383308+00:00",
+    "finalUrl": "https://support.google.com/accounts/answer/185834?hl=en",
+    "httpStatus": 200,
+    "rawFile": "domains/research/account-recovery-2026-11-26/google-lost-factor.html",
+    "textFile": "domains/research/account-recovery-2026-11-26/google-lost-factor.txt",
+    "versionStatus": "Provisional research identity only; not registered or approved by the policy service.",
+    "extractor": "stdlib-htmlparser-prose-v1; all non-script/style text, not the production collector",
+    "rawBytes": 1645272,
+    "productionCollectorCompatible": false
+  },
+  {
+    "id": "google-compromised",
+    "sourceVersionId": "draft_9b74ad444667bda36608f10c816b6f3f279d445ab83efcd42caa5bc48b",
+    "snapshotSha256": "9b74ad444667bda36608f10c816b6f3f279d445ab83efcd42caa5bc48bfc87da",
+    "url": "https://support.google.com/accounts/answer/6294825?hl=en",
+    "title": "Google: Secure a hacked or compromised account",
+    "passage": "Someone changed your account info, like your password or recovery phone number.",
+    "acquiredAt": "2026-11-26T23:17:32.981553+00:00",
+    "finalUrl": "https://support.google.com/accounts/answer/6294825?hl=en",
+    "httpStatus": 200,
+    "rawFile": "domains/research/account-recovery-2026-11-26/google-compromised.html",
+    "textFile": "domains/research/account-recovery-2026-11-26/google-compromised.txt",
+    "versionStatus": "Provisional research identity only; not registered or approved by the policy service.",
+    "extractor": "stdlib-htmlparser-prose-v1; all non-script/style text, not the production collector",
+    "rawBytes": 1653232,
+    "productionCollectorCompatible": false
+  },
+  {
+    "id": "google-recovery",
+    "sourceVersionId": "draft_35b02ec4952297b8160afcf153d9aa2f495ff3bda43cba121449bb7dc4",
+    "snapshotSha256": "35b02ec4952297b8160afcf153d9aa2f495ff3bda43cba121449bb7dc459a1ed",
+    "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+    "title": "Google: Recover your Google Account or Gmail",
+    "passage": "Do not give out your passwords or verification codes.",
+    "acquiredAt": "2026-11-26T23:17:33.540058+00:00",
+    "finalUrl": "https://support.google.com/accounts/answer/7682439?hl=en",
+    "httpStatus": 200,
+    "rawFile": "domains/research/account-recovery-2026-11-26/google-recovery.html",
+    "textFile": "domains/research/account-recovery-2026-11-26/google-recovery.txt",
+    "versionStatus": "Provisional research identity only; not registered or approved by the policy service.",
+    "extractor": "stdlib-htmlparser-prose-v1; all non-script/style text, not the production collector",
+    "rawBytes": 1629941,
+    "productionCollectorCompatible": false
+  }
+]

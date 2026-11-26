@@ -9,3 +9,8 @@ playwright-report/
 test-results/
 coverage/
 .DS_Store
+# Preserve full third-party research evidence locally, outside the public source tree.
+domains/research/**/*.html
+domains/research/**/*.txt
+domains/research/**/*.md
+!domains/research/**/README.md

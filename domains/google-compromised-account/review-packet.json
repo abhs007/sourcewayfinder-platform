@@ -1,0 +1,17 @@
+{
+  "status": "UNAPPROVED_RESEARCH_DRAFT",
+  "createdAt": "2026-11-26T23:17:33.542534+00:00",
+  "feedbackConnection": "Feedback suggested primary-email compromise triage. The user\u2019s ability to sign in changes the official starting point; uncertainty remains an explicit handoff.",
+  "scope": "English guidance for an adult securing their own personal Google account or Gmail after suspected unauthorized activity. It selects an official recovery or review route; it does not diagnose compromise, assess financial loss or guarantee account security.",
+  "structuralCounts": {
+    "questions": 3,
+    "outcomes": 8,
+    "transitions": 11,
+    "proposedCases": 9
+  },
+  "sourceIdentityNote": "draft_ identities are provisional; replace using the approved production collector before interpretation submission.",
+  "approvals": [],
+  "semanticTestsRun": false,
+  "releaseReady": false,
+  "ingestionBlocker": "Current Google research captures exceed the production collector 1 MiB raw-body limit. Separately reviewed bounded acquisition work is required; no guard is changed."
+}

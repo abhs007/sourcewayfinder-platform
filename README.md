@@ -2,7 +2,17 @@
 
 SourceWayfinder provides deterministic, source-linked guidance with human review of interpretations, expected answers, merges, and releases. Public requests never call a model or Paperclip.
 
-The implementation includes a React public site and review dashboard, four independently deployable Cloudflare Workers, D1 persistence, a local isolated Paperclip/Codex runtime, source collection, bounded maintenance dispatch, release tooling, and encrypted backups. Verizon and SSA guidance are **drafts awaiting human approval**. Production has not been released.
+The implementation includes a React public site and review dashboard, four independently deployable Cloudflare Workers, D1 persistence, a local isolated Paperclip/Codex runtime, source collection, bounded maintenance dispatch, release tooling, and encrypted backups. The Verizon pilot has retained owner decisions and isolated acceptance evidence; SSA and two new Google account-recovery flows remain unapproved drafts. Production has not been released. See [the current status](docs/IMPLEMENTATION_STATUS.md) for the distinction between tested candidates and hosted qualification.
+
+## Open-source development
+
+Project-authored code and documentation are available under the [MIT license](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md) for upstream profiles, dependency licenses and official-source material.
+
+The current development work is on [`implementation/platform-foundation`](https://github.com/abhs007/sourcewayfinder-platform/tree/implementation/platform-foundation). That branch contains candidate work; publication of source does not merge it, approve any procedure or deploy the application. `main` remains the earlier baseline until a separately authorized merge.
+
+This source tree contains no operator credentials or private survey responses. Full third-party research captures remain outside Git; public registers include their metadata and trace excerpts. Source-dependent semantic tests require exact human authorization. Ordinary fictional fixtures and structural checks are available for contributors.
+
+See [the account-recovery and website update](docs/PRODUCT_ENHANCEMENTS_2026-11-26.md), [publication review](docs/OPEN_SOURCE_PUBLICATION_2026-11-26.md) and [security guidance](SECURITY.md).
 
 ## Start locally
 

@@ -1,6 +1,16 @@
 # SourceWayfinder implementation status and technical record
 
-**Status date: November 23, 2026 — America/Los_Angeles.**
+**Current update: November 26, 2026 — America/Los_Angeles.**
+
+The current development candidate adds two account-recovery research drafts and website discovery improvements. See [the dated product handoff](PRODUCT_ENHANCEMENTS_2026-11-26.md). Type checking and builds pass; the source-independent suite passed 150 unit/integration tests and 34 browser checks, followed by targeted layout/fallback and search checks. The new 23 proposed recovery cases have **not** been semantically accepted or approved.
+
+The later retained November 23 policy evidence records interpretation approval, expected-answer approval, an authorized isolated run passing all 18 Verizon cases plus branch coverage, merge-candidate authorization and a prepared staging receipt. Those milestones supersede the earlier pending/empty-dashboard checkpoints preserved below. They do not establish a Git merge, deployment approval, traffic promotion, activation or complete hosted source-change qualification. Today's changed web artifacts are a new candidate and cannot inherit that older run's authorization.
+
+No production deployment or credential use occurred in this update. New Google scenarios remain under review and offer official-source handoffs only. Their approximately 1.6 MiB raw research pages also exceed the current production collector's 1 MiB limit; a reviewed bounded ingestion approach is needed before hosted content review.
+
+## Historical November 23 implementation record
+
+The following sections preserve their original checkpoints; use the current update above for the later milestone and today's work.
 
 SourceWayfinder has an implemented platform candidate, an operational local Paperclip/Codex environment, and passing local and hosted engineering checks. The production platform has not been released. The Verizon and SSA bundles remain unpublished drafts. The owner has reviewed all 18 Verizon cases, and 36 local UI/API/session-D1 journeys passed. Authenticated policy decisions and protected acceptance remain pending; SSA content review has not been completed.
 

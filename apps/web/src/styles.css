@@ -170,9 +170,12 @@ fieldset {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 80px;
-  align-items: center;
+  align-items: start;
   min-height: calc(100svh - 92px);
-  padding-block: 76px 90px;
+  padding-block: 52px 64px;
+}
+.hero-copy {
+  padding-top: 32px;
 }
 .hero-copy h1 span {
   color: #5c6b60;
@@ -217,6 +220,88 @@ fieldset {
   overflow: hidden;
   box-shadow: 0 8px 32px #243b3705;
 }
+.search-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.topic-search {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #789d89;
+  background: white;
+  border-radius: 6px;
+  padding: 12px;
+  color: var(--ink);
+}
+.search-help,
+.topic-count {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 10px 0 12px;
+}
+.topic-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.topic-filters button {
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 6px;
+  min-height: 44px;
+  padding: 8px 10px;
+  font-size: 0.875rem;
+  transition: background 120ms;
+}
+.topic-filters button:hover {
+  background: var(--soft);
+}
+.topic-filters button[aria-pressed='true'] {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.empty-topics {
+  padding: 24px 28px;
+  border-top: 1px solid var(--line);
+}
+.empty-topics .text-link {
+  display: block;
+  min-height: 44px;
+  padding-top: 16px;
+}
+.answer-review {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+.answer-review summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-block: 10px;
+  font-weight: 600;
+}
+.answer-review dl > div {
+  padding-block: 12px;
+  border-top: 1px solid var(--line);
+}
+.answer-review dt {
+  color: var(--muted);
+  line-height: 1.5;
+}
+.answer-review dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.answer-review p {
+  margin-bottom: 0;
+  font-size: 0.875rem;
+}
 .panel-heading {
   padding: 36px 36px 16px;
 }
@@ -233,7 +318,7 @@ fieldset {
   display: grid;
   grid-template-columns: 24px 1fr;
   gap: 18px;
-  padding: 28px 36px;
+  padding: 16px 28px;
   border-top: 1px solid var(--line);
 }
 .task-index {
@@ -242,7 +327,7 @@ fieldset {
   padding-top: 6px;
 }
 .task-item h3 {
-  margin: 0 0 10px;
+  margin: 0 0 4px;
 }
 .task-button {
   position: relative;
@@ -270,9 +355,9 @@ fieldset {
   transform: translateX(3px);
 }
 .task-item p {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--muted);
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .status-label {
   display: inline-block;
@@ -856,7 +941,7 @@ fieldset {
     padding: 28px 24px 12px;
   }
   .task-item {
-    padding: 24px;
+    padding: 16px 24px;
     gap: 12px;
   }
   .panel-footnote {
@@ -906,6 +991,9 @@ fieldset {
   }
   .hero h1 {
     font-size: clamp(2.2rem, 7vw, 3.6rem);
+  }
+  .hero-copy {
+    padding-top: 0;
   }
   .hero-copy .lead {
     max-width: 32em;
