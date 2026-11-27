@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-17",
+  "synthetic": true,
+  "content": {
+    "providers": 6,
+    "rules": 48,
+    "tasks": 12,
+    "sources": 12
+  },
+  "unit_tests_passed": 31,
+  "host_regression_tests_passed": 36,
+  "browser_tests_passed": 75,
+  "browser_projects": [
+    "chromium",
+    "firefox",
+    "webkit",
+    "android-emulation",
+    "iphone-emulation"
+  ],
+  "participant_study_performed": false,
+  "live_carrier_testing_performed": false,
+  "independent_human_coding_performed": false,
+  "actual_screen_reader_session_performed": false,
+  "archive": {
+    "version": "0.1.0",
+    "file": "phone-loss-recovery-0.1.0.zip",
+    "bytes": 100331,
+    "sha256": "3af91b93092c763003513b484543f78e33fa7acf657e1735a81a0018043673ca"
+  }
+}

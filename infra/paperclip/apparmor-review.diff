@@ -1,0 +1,14 @@
+--- docker-default-renamed
++++ sourcewayfinder-codex-proposed
+@@ -34,7 +34,10 @@
+   deny @{PROC}/sysrq-trigger rwklx,
+   deny @{PROC}/kcore rwklx,
+ 
+-  deny mount,
++  # Codex bubblewrap creates mounts only inside its new unprivileged user namespace.
++  # The container receives no outer CAP_SYS_ADMIN and has no host mounts.
++  mount,
++  pivot_root,
+ 
+   deny /sys/[^f]*/** wklx,
+   deny /sys/f[^s]*/** wklx,

@@ -1,0 +1,30 @@
+.static-fallback {
+  max-width: 48rem;
+  margin: 10vh auto;
+  padding: 2rem;
+  font:
+    1rem/1.7 system-ui,
+    sans-serif;
+  color: #233b37;
+}
+.static-fallback h1 {
+  font:
+    2.5rem/1.2 Georgia,
+    serif;
+}
+.static-fallback a {
+  display: inline-block;
+  padding: 12px 0;
+  color: #164c47;
+}
+.static-fallback ul {
+  padding-left: 1.5rem;
+}
+@media (max-width: 400px) {
+  .static-fallback {
+    padding: 1rem;
+  }
+  .static-fallback h1 {
+    font-size: 2rem;
+  }
+}

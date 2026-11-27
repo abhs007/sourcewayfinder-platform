@@ -1,0 +1,26 @@
+{
+  "flow": {
+    "id": "google-compromised-account",
+    "title": "Google account after suspected unauthorized access",
+    "scope": "English guidance for an adult securing their own personal Google account or Gmail after suspected unauthorized activity. It selects an official recovery or review route; it does not diagnose compromise, assess financial loss or guarantee account security.",
+    "officialUrl": "https://support.google.com/accounts/answer/6294825?hl=en"
+  },
+  "sources": [
+    {
+      "id": "google-compromised",
+      "flowId": "google-compromised-account",
+      "title": "Google: Secure a hacked or compromised account",
+      "url": "https://support.google.com/accounts/answer/6294825?hl=en",
+      "approvedOrigin": "https://support.google.com",
+      "approvedPath": "/accounts/answer/6294825"
+    },
+    {
+      "id": "google-compromised-recovery",
+      "flowId": "google-compromised-account",
+      "title": "Google: Recover your Google Account or Gmail",
+      "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+      "approvedOrigin": "https://support.google.com",
+      "approvedPath": "/accounts/answer/7682439"
+    }
+  ]
+}

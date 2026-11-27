@@ -1,0 +1,48 @@
+{
+  "name": "sourcewayfinder",
+  "main": "cloudflare/worker.js",
+  "compatibility_date": "2026-11-21",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "none"
+  },
+  "observability": {
+    "enabled": false
+  },
+  "ratelimits": [
+    {
+      "name": "SURVEY_LIMITER",
+      "namespace_id": "7391121",
+      "simple": {
+        "limit": 6,
+        "period": 60
+      }
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sourcewayfinder-survey",
+      "database_id": "bf62ec0c-1e07-4ec6-a0ef-b105cdf0d6c5",
+      "migrations_dir": "cloudflare/migrations"
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "15 4 * * *"
+    ]
+  },
+  "routes": [
+    {
+      "pattern": "sourcewayfinder.org",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.sourcewayfinder.org",
+      "custom_domain": true
+    }
+  ]
+}

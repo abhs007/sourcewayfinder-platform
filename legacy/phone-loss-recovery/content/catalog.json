@@ -1,0 +1,1375 @@
+{
+  "version": "0.1.0",
+  "reviewed": "2026-11-17",
+  "reviewWindowDays": 90,
+  "providers": [
+    {
+      "id": "att",
+      "name": "AT&T",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager"
+      ],
+      "roleNote": "Owner means primary access; Manager means secondary access."
+    },
+    {
+      "id": "tmobile",
+      "name": "T-Mobile",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "roleNote": "Owner means Primary Account Holder (postpaid) or Primary Line (prepaid)."
+    },
+    {
+      "id": "verizon",
+      "name": "Verizon",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager"
+      ],
+      "roleNote": "Owner or Account Manager privileges are required."
+    },
+    {
+      "id": "fi",
+      "name": "Google Fi",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "member"
+      ],
+      "roleNote": "Use the Google Account associated with the relevant Fi line; group ownership alone does not establish access."
+    },
+    {
+      "id": "visible",
+      "name": "Visible",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "roleNote": "Use the relevant individual Visible account."
+    },
+    {
+      "id": "usmobile",
+      "name": "US Mobile",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager"
+      ],
+      "roleNote": "Owner or Admin (shown here as Manager) can manage Enhanced Security."
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Enable Number Lock",
+      "url": "https://support.google.com/fi/answer/15147412?hl=en",
+      "provider": "Google Fi",
+      "reviewed": "2026-11-17",
+      "locator": "How to use Number Lock; account-access warning",
+      "summary": "Number Lock prevents device transfers and porting. Disabling it requires Google Fi sign-in and credential re-entry; account loss can prevent obtaining port-out parameters.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S02",
+      "title": "Secure your number and SIM with Line Lock by Visible",
+      "url": "https://www.visible.com/m/help/your-account/line-lock",
+      "provider": "Visible",
+      "reviewed": "2026-11-17",
+      "locator": "Toggle Line Lock to Unlocked, Until I lock it again, steps 1\u20139",
+      "summary": "The general unlock procedure names a text-message code and a thirty-minute cooldown. It is not interchangeable with account-login recovery.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S03",
+      "title": "Member Security",
+      "url": "https://www.visible.com/m/help/your-account/multi-factor-authentication",
+      "provider": "Visible",
+      "reviewed": "2026-11-17",
+      "locator": "Lost-device and password-reset questions",
+      "summary": "Lost-device login and password reset are account-access procedures. Their availability does not by itself establish Line Lock removal authority.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S06",
+      "title": "Learn about Wireless Account Lock",
+      "url": "https://www.att.com/support/article/wireless/000102016/",
+      "provider": "AT&T",
+      "reviewed": "2026-11-17",
+      "locator": "Wireless versus Prepaid; how to turn the lock on or off",
+      "summary": "Wireless lock controls require primary or secondary access and the app on an active account device. Prepaid has its own app and SMS-code procedure; special device exceptions are separate.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S07",
+      "title": "Protect your T-Mobile account from fraud",
+      "url": "https://www.t-mobile.com/support/plans-features/help-with-t-mobile-account-fraud",
+      "provider": "T-Mobile",
+      "reviewed": "2026-11-17",
+      "locator": "Digital ID eligibility; Postpaid and Prepaid SIM Protection; Port Out Protection",
+      "summary": "Postpaid digital ID verification has consumer voice-account eligibility. Postpaid SIM Protection removal requires the Primary Account Holder. Prepaid SIM controls require the Primary Line session. Port-out protection is a separate feature.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S08",
+      "title": "Privacy and security",
+      "url": "https://www.usmobile.com/help/docs/managing-lines/privacy-security",
+      "provider": "US Mobile",
+      "reviewed": "2026-11-17",
+      "locator": "2FA, lost-passkey advice and Enhanced Security settings",
+      "summary": "General sign-in retains password and 2FA. Enhanced Security is managed by Owners or Admins after sign-in, with password or authenticator confirmation. Abbreviated lost-passkey advice does not establish a 2FA bypass.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S10",
+      "title": "My Verizon Website - Enable / Disable SIM Protection and Number Lock",
+      "url": "https://www.verizon.com/support/knowledge-base-309294/",
+      "provider": "Verizon",
+      "reviewed": "2026-11-17",
+      "locator": "Website controls, steps 1\u20133 and conditional security prompt",
+      "summary": "The website route requires Owner or Manager access and may request additional security steps. The page also identifies a post-disable delay; lock removal is not completed SIM provisioning.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S12",
+      "title": "Fix common issues with 2-Step Verification",
+      "url": "https://support.google.com/accounts/answer/185834?hl=en",
+      "provider": "Google Fi / Google Account",
+      "reviewed": "2026-11-17",
+      "locator": "Lost phone and no available second step",
+      "summary": "Previously configured alternatives and account recovery may help regain access. The instructions do not guarantee that email alone satisfies a particular recovery request.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S14",
+      "title": "SIM Swapping",
+      "url": "https://www.verizon.com/about/account-security/sim-swapping",
+      "provider": "Verizon",
+      "reviewed": "2026-11-17",
+      "locator": "SIM Protection management restrictions",
+      "summary": "SIM Protection blocks SIM changes. Customer-service and retail staff cannot disable it directly; the app or website is the identified control channel.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S15",
+      "title": "Sign in if you lost your security key",
+      "url": "https://support.google.com/fi/answer/9153624?hl=en",
+      "provider": "Google Fi",
+      "reviewed": "2026-11-17",
+      "locator": "No other second step or forgotten password",
+      "summary": "Account recovery can involve ownership questions and a contact address. This is separate from removing Fi Number Lock and completing a transfer.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "S16",
+      "title": "How to transfer or port your number out of Visible",
+      "url": "https://www.visible.com/m/help/setup-and-activation/port-out-transfer-out-of-visible",
+      "provider": "Visible",
+      "reviewed": "2026-11-17",
+      "locator": "Locked Status, steps 1\u201310",
+      "summary": "The port-out unlock instructions name an email code, unlike the general Line Lock page\u2019s SMS code. The guidance preserves that cross-source disagreement and does not choose an assumed exception.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text; no independent human validation."
+    },
+    {
+      "id": "C01",
+      "provider": "T-Mobile",
+      "title": "Suspend or restore your line",
+      "url": "https://www.t-mobile.com/support/account/suspend-or-restore-your-line",
+      "reviewed": "2026-11-17",
+      "locator": "Lost or stolen suspension and IMEI reporting",
+      "summary": "Lost-device suspension and IMEI reporting concern the line and equipment. They do not establish replacement-device authentication or protection removal.",
+      "availability": "reviewed",
+      "reviewMethod": "Assistant reinspection of official web text."
+    }
+  ],
+  "rules": [
+    {
+      "id": "att-suspension-1",
+      "provider": "att",
+      "operation": "suspension",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "AT&T consumer postpaid/prepaid; Owner means primary access; Manager means secondary access.",
+      "summary": "Ask the provider about lost-line suspension and its consequences. Suspension is distinct from cancellation, handset blocking and restoring service.",
+      "requirements": [],
+      "sourceIds": [
+        "S06"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "att-device_block-2",
+      "provider": "att",
+      "operation": "device_block",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "AT&T consumer postpaid/prepaid; Owner means primary access; Manager means secondary access.",
+      "summary": "Ask the provider about reporting the handset identifier and blocking the lost equipment. A device block does not restore account access or the number.",
+      "requirements": [],
+      "sourceIds": [
+        "S06"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "att-credentials-3",
+      "provider": "att",
+      "operation": "credentials",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "AT&T consumer postpaid/prepaid; Owner means primary access; Manager means secondary access.",
+      "summary": "A password reset is a separate credential operation. Use the provider\u2019s official recovery instructions; a reset does not prove account access or lock-removal authority.",
+      "requirements": [],
+      "sourceIds": [
+        "S06"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "att-access-4",
+      "provider": "att",
+      "operation": "access",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "conditional",
+      "scope": "AT&T consumer postpaid/prepaid; Owner means primary access; Manager means secondary access.",
+      "summary": "Signing in does not establish access to Wireless Account Lock on an eligible active account device. Check both account authority and the app/device requirement.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S06"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "att-protection-5",
+      "provider": "att",
+      "operation": "protection",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager"
+      ],
+      "status": "documented_step",
+      "scope": "AT&T consumer postpaid; Owner means primary access; Manager means secondary access.",
+      "summary": "Wireless Account Lock is managed in the AT&T app on an active account device by a user with primary or secondary access. Data-only device exceptions do not establish a smartphone exception.",
+      "requirements": [
+        [
+          "session"
+        ],
+        [
+          "activeDevice"
+        ]
+      ],
+      "sourceIds": [
+        "S06"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "att-protection-6",
+      "provider": "att",
+      "operation": "protection",
+      "plans": [
+        "prepaid"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "status": "documented_step",
+      "scope": "AT&T consumer prepaid; Owner means primary access; Manager means secondary access.",
+      "summary": "The Prepaid lock procedure uses the AT&T app and an SMS code to the prepaid device. A route without the named proof remains unresolved.",
+      "requirements": [
+        [
+          "session"
+        ],
+        [
+          "sms"
+        ]
+      ],
+      "sourceIds": [
+        "S06"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "att-sim-7",
+      "provider": "att",
+      "operation": "sim",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "AT&T consumer postpaid/prepaid; Owner means primary access; Manager means secondary access.",
+      "summary": "Check the relevant protection state with the provider before requesting a SIM/eSIM replacement. Removing a lock is not completed provisioning; device compatibility, activation and verification remain separate.",
+      "requirements": [],
+      "sourceIds": [
+        "S06"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "att-port-8",
+      "provider": "att",
+      "operation": "port",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "AT&T consumer postpaid/prepaid; Owner means primary access; Manager means secondary access.",
+      "summary": "Check the relevant protection and the provider\u2019s transfer credentials. Obtaining a credential or removing a lock does not itself complete a number transfer.",
+      "requirements": [],
+      "sourceIds": [
+        "S06"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "tmobile-suspension-9",
+      "provider": "tmobile",
+      "operation": "suspension",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "T-Mobile consumer postpaid/prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Ask the provider about lost-line suspension and its consequences. Suspension is distinct from cancellation, handset blocking and restoring service.",
+      "requirements": [],
+      "sourceIds": [
+        "C01"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "tmobile-device_block-10",
+      "provider": "tmobile",
+      "operation": "device_block",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "T-Mobile consumer postpaid/prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Ask the provider about reporting the handset identifier and blocking the lost equipment. A device block does not restore account access or the number.",
+      "requirements": [],
+      "sourceIds": [
+        "C01"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "tmobile-credentials-11",
+      "provider": "tmobile",
+      "operation": "credentials",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "T-Mobile consumer postpaid/prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "A password reset is a separate credential operation. Use the provider\u2019s official recovery instructions; a reset does not prove account access or lock-removal authority.",
+      "requirements": [],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "tmobile-access-12",
+      "provider": "tmobile",
+      "operation": "access",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "conditional",
+      "scope": "T-Mobile consumer postpaid/prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Postpaid consumer voice accounts may be offered digital ID verification instead of an OTP. Follow the eligibility, consent and ID/selfie instructions on T-Mobile\u2019s own site; do not send documents here. Prepaid eligibility is not established by that alternative.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "tmobile-protection-13",
+      "provider": "tmobile",
+      "operation": "protection",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "status": "conditional",
+      "scope": "T-Mobile consumer postpaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Only the postpaid Primary Account Holder can remove SIM Protection in T-Life or the website. Account access and the accepted verification method remain separate prerequisites.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider.",
+      "goal": "secure"
+    },
+    {
+      "id": "tmobile-protection-14",
+      "provider": "tmobile",
+      "operation": "protection",
+      "plans": [
+        "prepaid"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "status": "conditional",
+      "scope": "T-Mobile consumer prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "The Primary Line must be signed in to manage prepaid SIM Protection. The postpaid digital-ID alternative does not establish a prepaid lost-factor route.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider.",
+      "goal": "secure"
+    },
+    {
+      "id": "tmobile-protection-15",
+      "provider": "tmobile",
+      "operation": "protection",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "status": "conditional",
+      "scope": "T-Mobile consumer postpaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Only the postpaid Primary Account Holder can remove SIM Protection in T-Life or the website. Account access and the accepted verification method remain separate prerequisites.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider.",
+      "goal": "restore"
+    },
+    {
+      "id": "tmobile-protection-16",
+      "provider": "tmobile",
+      "operation": "protection",
+      "plans": [
+        "prepaid"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "status": "conditional",
+      "scope": "T-Mobile consumer prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "The Primary Line must be signed in to manage prepaid SIM Protection. The postpaid digital-ID alternative does not establish a prepaid lost-factor route.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider.",
+      "goal": "restore"
+    },
+    {
+      "id": "tmobile-protection-17",
+      "provider": "tmobile",
+      "operation": "protection",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "status": "conditional",
+      "scope": "T-Mobile consumer postpaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Port Out Protection is separate from SIM Protection. Only the Primary Account Holder can remove it on postpaid; prepaid users may contact support but must pass an additional security step.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider.",
+      "goal": "transfer"
+    },
+    {
+      "id": "tmobile-protection-18",
+      "provider": "tmobile",
+      "operation": "protection",
+      "plans": [
+        "prepaid"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "status": "conditional",
+      "scope": "T-Mobile consumer prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Port Out Protection is separate from SIM Protection. Only the Primary Account Holder can remove it on postpaid; prepaid users may contact support but must pass an additional security step.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider.",
+      "goal": "transfer"
+    },
+    {
+      "id": "tmobile-sim-19",
+      "provider": "tmobile",
+      "operation": "sim",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "T-Mobile consumer postpaid/prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Check the relevant protection state with the provider before requesting a SIM/eSIM replacement. Removing a lock is not completed provisioning; device compatibility, activation and verification remain separate.",
+      "requirements": [],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "tmobile-port-20",
+      "provider": "tmobile",
+      "operation": "port",
+      "plans": [
+        "postpaid",
+        "prepaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "T-Mobile consumer postpaid/prepaid; Owner means Primary Account Holder (postpaid) or Primary Line (prepaid).",
+      "summary": "Check the relevant protection and the provider\u2019s transfer credentials. Obtaining a credential or removing a lock does not itself complete a number transfer.",
+      "requirements": [],
+      "sourceIds": [
+        "S07"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "verizon-suspension-21",
+      "provider": "verizon",
+      "operation": "suspension",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Verizon consumer postpaid; Owner or Account Manager privileges are required.",
+      "summary": "Ask the provider about lost-line suspension and its consequences. Suspension is distinct from cancellation, handset blocking and restoring service.",
+      "requirements": [],
+      "sourceIds": [
+        "S10",
+        "S14"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "verizon-device_block-22",
+      "provider": "verizon",
+      "operation": "device_block",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Verizon consumer postpaid; Owner or Account Manager privileges are required.",
+      "summary": "Ask the provider about reporting the handset identifier and blocking the lost equipment. A device block does not restore account access or the number.",
+      "requirements": [],
+      "sourceIds": [
+        "S10",
+        "S14"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "verizon-credentials-23",
+      "provider": "verizon",
+      "operation": "credentials",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Verizon consumer postpaid; Owner or Account Manager privileges are required.",
+      "summary": "A password reset is a separate credential operation. Use the provider\u2019s official recovery instructions; a reset does not prove account access or lock-removal authority.",
+      "requirements": [],
+      "sourceIds": [
+        "S10",
+        "S14"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "verizon-access-24",
+      "provider": "verizon",
+      "operation": "access",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "conditional",
+      "scope": "Verizon consumer postpaid; Owner or Account Manager privileges are required.",
+      "summary": "Sign in through My Verizon with the required Owner or Manager privileges. Additional security challenges may still apply.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S10",
+        "S14"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "verizon-protection-25",
+      "provider": "verizon",
+      "operation": "protection",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager"
+      ],
+      "status": "conditional",
+      "scope": "Verizon consumer postpaid; Owner or Account Manager privileges are required.",
+      "summary": "Use the website/app with Owner or Manager access. Complete additional security steps if prompted; their available proofs are not fully enumerated. Staff cannot directly disable SIM Protection.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S10",
+        "S14"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "verizon-sim-26",
+      "provider": "verizon",
+      "operation": "sim",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Verizon consumer postpaid; Owner or Account Manager privileges are required.",
+      "summary": "Check the relevant protection state with the provider before requesting a SIM/eSIM replacement. Removing a lock is not completed provisioning; device compatibility, activation and verification remain separate.",
+      "requirements": [],
+      "sourceIds": [
+        "S10",
+        "S14"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "verizon-port-27",
+      "provider": "verizon",
+      "operation": "port",
+      "plans": [
+        "postpaid"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Verizon consumer postpaid; Owner or Account Manager privileges are required.",
+      "summary": "Check the relevant protection and the provider\u2019s transfer credentials. Obtaining a credential or removing a lock does not itself complete a number transfer.",
+      "requirements": [],
+      "sourceIds": [
+        "S10",
+        "S14"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "fi-suspension-28",
+      "provider": "fi",
+      "operation": "suspension",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Google Fi consumer consumer; Use the Google Account associated with the relevant Fi line; group ownership alone does not establish access.",
+      "summary": "Ask the provider about lost-line suspension and its consequences. Suspension is distinct from cancellation, handset blocking and restoring service.",
+      "requirements": [],
+      "sourceIds": [
+        "S01",
+        "S12",
+        "S15"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "fi-device_block-29",
+      "provider": "fi",
+      "operation": "device_block",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Google Fi consumer consumer; Use the Google Account associated with the relevant Fi line; group ownership alone does not establish access.",
+      "summary": "Ask the provider about reporting the handset identifier and blocking the lost equipment. A device block does not restore account access or the number.",
+      "requirements": [],
+      "sourceIds": [
+        "S01",
+        "S12",
+        "S15"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "fi-credentials-30",
+      "provider": "fi",
+      "operation": "credentials",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Google Fi consumer consumer; Use the Google Account associated with the relevant Fi line; group ownership alone does not establish access.",
+      "summary": "A password reset is a separate credential operation. Use the provider\u2019s official recovery instructions; a reset does not prove account access or lock-removal authority.",
+      "requirements": [],
+      "sourceIds": [
+        "S12",
+        "S15"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "fi-access-31",
+      "provider": "fi",
+      "operation": "access",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "conditional",
+      "scope": "Google Fi consumer consumer; Use the Google Account associated with the relevant Fi line; group ownership alone does not establish access.",
+      "summary": "Use an already available Google Account sign-in method or its official recovery procedure. Remembering a password and accessing email do not guarantee recovery.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S01",
+        "S12",
+        "S15"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "fi-protection-32",
+      "provider": "fi",
+      "operation": "protection",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "member"
+      ],
+      "status": "documented_step",
+      "scope": "Google Fi consumer consumer; Use the Google Account associated with the relevant Fi line; group ownership alone does not establish access.",
+      "summary": "Sign in to the associated Google Fi account, open Privacy & security, manage Number Lock and re-enter account credentials. The lock must be off for a device transfer or port.",
+      "requirements": [
+        [
+          "session"
+        ],
+        [
+          "password"
+        ]
+      ],
+      "sourceIds": [
+        "S01",
+        "S12",
+        "S15"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "fi-sim-33",
+      "provider": "fi",
+      "operation": "sim",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Google Fi consumer consumer; Use the Google Account associated with the relevant Fi line; group ownership alone does not establish access.",
+      "summary": "Check the relevant protection state with the provider before requesting a SIM/eSIM replacement. Removing a lock is not completed provisioning; device compatibility, activation and verification remain separate.",
+      "requirements": [],
+      "sourceIds": [
+        "S01",
+        "S12",
+        "S15"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "fi-port-34",
+      "provider": "fi",
+      "operation": "port",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Google Fi consumer consumer; Use the Google Account associated with the relevant Fi line; group ownership alone does not establish access.",
+      "summary": "Check the relevant protection and the provider\u2019s transfer credentials. Obtaining a credential or removing a lock does not itself complete a number transfer.",
+      "requirements": [],
+      "sourceIds": [
+        "S01",
+        "S12",
+        "S15"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "visible-suspension-35",
+      "provider": "visible",
+      "operation": "suspension",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Visible consumer consumer; Use the relevant individual Visible account.",
+      "summary": "Ask the provider about lost-line suspension and its consequences. Suspension is distinct from cancellation, handset blocking and restoring service.",
+      "requirements": [],
+      "sourceIds": [
+        "S02",
+        "S03",
+        "S16"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "visible-device_block-36",
+      "provider": "visible",
+      "operation": "device_block",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Visible consumer consumer; Use the relevant individual Visible account.",
+      "summary": "Ask the provider about reporting the handset identifier and blocking the lost equipment. A device block does not restore account access or the number.",
+      "requirements": [],
+      "sourceIds": [
+        "S02",
+        "S03",
+        "S16"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "visible-credentials-37",
+      "provider": "visible",
+      "operation": "credentials",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Visible consumer consumer; Use the relevant individual Visible account.",
+      "summary": "A password reset is a separate credential operation. Use the provider\u2019s official recovery instructions; a reset does not prove account access or lock-removal authority.",
+      "requirements": [],
+      "sourceIds": [
+        "S02",
+        "S03",
+        "S16"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "visible-access-38",
+      "provider": "visible",
+      "operation": "access",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "conditional",
+      "scope": "Visible consumer consumer; Use the relevant individual Visible account.",
+      "summary": "Use Visible\u2019s official lost-device sign-in guidance. A recovered login or reset password does not establish which Line Lock proof channel applies.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S02",
+        "S03",
+        "S16"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "visible-protection-39",
+      "provider": "visible",
+      "operation": "protection",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "status": "conflicting",
+      "scope": "Visible consumer consumer; Use the relevant individual Visible account.",
+      "summary": "The general Line Lock page names SMS proof, while the port-out page names email proof. Both describe unlocking and a cooldown. Ask Visible which procedure applies to your account and operation.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S02",
+        "S16"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "visible-sim-40",
+      "provider": "visible",
+      "operation": "sim",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Visible consumer consumer; Use the relevant individual Visible account.",
+      "summary": "Check the relevant protection state with the provider before requesting a SIM/eSIM replacement. Removing a lock is not completed provisioning; device compatibility, activation and verification remain separate.",
+      "requirements": [],
+      "sourceIds": [
+        "S02",
+        "S03",
+        "S16"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "visible-port-41",
+      "provider": "visible",
+      "operation": "port",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "Visible consumer consumer; Use the relevant individual Visible account.",
+      "summary": "Check the relevant protection and the provider\u2019s transfer credentials. Obtaining a credential or removing a lock does not itself complete a number transfer.",
+      "requirements": [],
+      "sourceIds": [
+        "S02",
+        "S03",
+        "S16"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "usmobile-suspension-42",
+      "provider": "usmobile",
+      "operation": "suspension",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "US Mobile consumer consumer; Owner or Admin (shown here as Manager) can manage Enhanced Security.",
+      "summary": "Ask the provider about lost-line suspension and its consequences. Suspension is distinct from cancellation, handset blocking and restoring service.",
+      "requirements": [],
+      "sourceIds": [
+        "S08"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "usmobile-device_block-43",
+      "provider": "usmobile",
+      "operation": "device_block",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "US Mobile consumer consumer; Owner or Admin (shown here as Manager) can manage Enhanced Security.",
+      "summary": "Ask the provider about reporting the handset identifier and blocking the lost equipment. A device block does not restore account access or the number.",
+      "requirements": [],
+      "sourceIds": [
+        "S08"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "usmobile-credentials-44",
+      "provider": "usmobile",
+      "operation": "credentials",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "US Mobile consumer consumer; Owner or Admin (shown here as Manager) can manage Enhanced Security.",
+      "summary": "A password reset is a separate credential operation. Use the provider\u2019s official recovery instructions; a reset does not prove account access or lock-removal authority.",
+      "requirements": [],
+      "sourceIds": [
+        "S08"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "usmobile-access-45",
+      "provider": "usmobile",
+      "operation": "access",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "conditional",
+      "scope": "US Mobile consumer consumer; Owner or Admin (shown here as Manager) can manage Enhanced Security.",
+      "summary": "Use the configured sign-in method. The general instructions retain 2FA even where lost-passkey advice abbreviates the steps.",
+      "requirements": [
+        [
+          "session"
+        ]
+      ],
+      "sourceIds": [
+        "S08"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "usmobile-protection-46",
+      "provider": "usmobile",
+      "operation": "protection",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager"
+      ],
+      "status": "documented_step",
+      "scope": "US Mobile consumer consumer; Owner or Admin (shown here as Manager) can manage Enhanced Security.",
+      "summary": "After signing in, Owners or Admins manage Enhanced Security for a line and confirm with a password or authenticator. Regaining a session remains a separate requirement.",
+      "requirements": [
+        [
+          "session"
+        ],
+        [
+          "password",
+          "authenticator"
+        ]
+      ],
+      "sourceIds": [
+        "S08"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "usmobile-sim-47",
+      "provider": "usmobile",
+      "operation": "sim",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "US Mobile consumer consumer; Owner or Admin (shown here as Manager) can manage Enhanced Security.",
+      "summary": "Check the relevant protection state with the provider before requesting a SIM/eSIM replacement. Removing a lock is not completed provisioning; device compatibility, activation and verification remain separate.",
+      "requirements": [],
+      "sourceIds": [
+        "S08"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    },
+    {
+      "id": "usmobile-port-48",
+      "provider": "usmobile",
+      "operation": "port",
+      "plans": [
+        "consumer"
+      ],
+      "roles": [
+        "owner",
+        "manager",
+        "member",
+        "unknown"
+      ],
+      "status": "unresolved",
+      "scope": "US Mobile consumer consumer; Owner or Admin (shown here as Manager) can manage Enhanced Security.",
+      "summary": "Check the relevant protection and the provider\u2019s transfer credentials. Obtaining a credential or removing a lock does not itself complete a number transfer.",
+      "requirements": [],
+      "sourceIds": [
+        "S08"
+      ],
+      "limitations": "These inspected instructions do not establish every challenge, exception or final operational outcome. Confirm the applicable procedure with the provider."
+    }
+  ]
+}

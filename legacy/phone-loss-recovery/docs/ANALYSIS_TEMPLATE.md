@@ -1,0 +1,3 @@
+# Evaluation report template
+
+Record actual study date, review determination, consent process, recruitment/sample, source/catalog version, schedule allocation, task variants, order and deviations. Separate synthetic rehearsals from actual participants. Summarize per-task rubric matches, help, omissions and elapsed-time distributions by condition, with denominators. Inspect errors qualitatively. Disclose variant, ordering, small-sample and source-change limitations. Report corrections and negative findings. No result implies successful recovery or prevented fraud. Release deidentified data only if the actual consent/privacy arrangements permit it.

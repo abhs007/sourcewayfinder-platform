@@ -1,0 +1,7 @@
+finding,claim,sources,observations,interpretation,unresolved_question
+F1,Different proof channels are described for Visible Line Lock unlocking.,"S02, S16","O06, O50",Cross-source discrepancy,Which channel applies to the same account and requested operation?
+F2,Lost-device sign-in advice abbreviates separately stated MFA requirements at Visible and US Mobile.,"S03, S08","O09, O33",Within-page ambiguity,Does the abbreviated advice assume an available second step?
+F3,T-Mobile’s digital-ID alternative is scoped to postpaid consumer voice accounts; prepaid protection controls have a separate scope.,S07,"O39, O40, O41",Eligibility boundary,What unavailable-factor route applies to an eligible prepaid Primary Line?
+F4,AT&T documents different prerequisites for managing Wireless Account Lock and obtaining a transfer PIN.,"S06, S13","O21, O42",Operation and actor boundary,How is the lock removed when no eligible active account device is usable?
+F5,Verizon describes website controls and conditional security steps while explicitly excluding direct staff disabling of SIM Protection.,"S10, S14","O34, O35, O48",Specified channel; unspecified conditional proof,Which challenges can a customer with the stipulated remaining resources satisfy?
+F6,Fi conditions port-out parameters on account access while describing account-recovery options separately.,"S01, S12, S15","O02, O03, O37, O38, O49",Recovery endpoint boundary,Does account recovery succeed for this particular resource configuration?

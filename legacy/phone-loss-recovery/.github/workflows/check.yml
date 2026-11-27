@@ -1,0 +1,44 @@
+name: Test and publish demo
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run validate && npm test
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:e2e
+      - run: npm run package:module
+      - run: BASE_PATH=/phone-loss-recovery/ SITE_URL=https://abhs007.github.io/phone-loss-recovery npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/client
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-report
+          path: playwright-report
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

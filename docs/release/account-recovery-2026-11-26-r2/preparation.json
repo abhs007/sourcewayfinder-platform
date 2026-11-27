@@ -1,0 +1,34 @@
+{
+  "preparedAt": "2026-11-27T07:13:12.434Z",
+  "sourceProfile": "Exact three English Google help URLs; 2 MiB raw ceiling, 100 KiB normalized ceiling; ordinary sources retain 1 MiB.",
+  "sourceSnapshots": 4,
+  "flows": [
+    {
+      "flowId": "google-lost-second-factor",
+      "cases": 14,
+      "bundleHash": "84e98b5bc3e4a3c3a0486b75f26edbc92ac3ba7c4ec96d9f1777cae25140e7ba",
+      "files": {
+        "bundle.proposed.json": "9e959b44fb62a6cd4775e73a55202b97860de917ece55b99dc0b2b4694cde627",
+        "expected-cases.proposed.json": "3e7c7b347e0341e5ec5b7cdb2c95f54e8c25b6cbd34aba62256e9a2b113492f7",
+        "interpretation.proposed.json": "a3a6399842ad7c9392ac46c2ebf1e009bd8dd9096bdabbeb60c5b87540b6fc5c"
+      },
+      "approvals": [],
+      "semanticTestsRun": false,
+      "policySourceBindingsVerified": false
+    },
+    {
+      "flowId": "google-compromised-account",
+      "cases": 9,
+      "bundleHash": "e1c2e433a9376d1f83273037863c432069e7c4e735e6248929b8b2904d3f0df1",
+      "files": {
+        "bundle.proposed.json": "0374d0bbbc7906770af1305091070e9a316b31860ea2bb275d272aad10bf4820",
+        "expected-cases.proposed.json": "234d8c235889e8554fcb7909d8a1aa98637df6373fe8f40ecc7e25942db479e0",
+        "interpretation.proposed.json": "287886c5eb3a6eef58d407f93068aad62ea10d974a863a0658e19cb651b0c21c"
+      },
+      "approvals": [],
+      "semanticTestsRun": false,
+      "policySourceBindingsVerified": false
+    }
+  ],
+  "deployed": false
+}

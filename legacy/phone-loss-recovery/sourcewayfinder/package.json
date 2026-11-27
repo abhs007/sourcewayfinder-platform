@@ -1,0 +1,1 @@
+{"name":"sourcewayfinder","private":true,"type":"module","scripts":{"build":"node cloudflare/build.mjs","test:worker":"node --test tests/worker.test.mjs","dev":"npm run build && wrangler dev","deploy":"npm run build && wrangler deploy","export:survey":"node cloudflare/export.mjs"},"devDependencies":{"wrangler":"4.166.0"}}

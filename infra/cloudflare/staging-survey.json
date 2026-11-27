@@ -1,0 +1,36 @@
+{
+  "account_id": "a03d9f71f863eed1dc764ca7d4e34c49",
+  "compatibility_date": "2026-11-21",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  },
+  "name": "sourcewayfinder-staging-survey",
+  "main": "../../dist/workers/survey.mjs",
+  "vars": {
+    "ENVIRONMENT": "staging"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sourcewayfinder-staging-survey",
+      "database_id": "4c677b42-27d9-4112-bd8a-9f7a7911a050",
+      "migrations_dir": "../../workers/survey/migrations"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "SURVEY_LIMITER",
+      "namespace_id": "7391124",
+      "simple": {
+        "limit": 6,
+        "period": 60
+      }
+    }
+  ],
+  "triggers": {
+    "crons": []
+  }
+}

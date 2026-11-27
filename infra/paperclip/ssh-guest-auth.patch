@@ -1,0 +1,30 @@
+--- a/server/src/services/heartbeat/run-preparation.ts
++++ b/server/src/services/heartbeat/run-preparation.ts
+@@ -324,6 +324,7 @@
+   environmentId?: string | null;
+   environmentEnv?: unknown;
+   environmentDriver?: string | null;
++  environmentUseHostAuth?: boolean;
+   projectId?: string | null;
+   routineId?: string | null;
+   executionRunConfig: Record<string, unknown>;
+@@ -620,7 +621,8 @@
+   // remains the authority there; it probes the sandbox before failing.
+   if (
+     !input.managedAiCredentials && (input.adapterType ?? null) === "codex_local" &&
+-    (input.environmentDriver ?? null) !== "sandbox"
++    (input.environmentDriver ?? null) !== "sandbox" &&
++    !(input.environmentDriver === "ssh" && input.environmentUseHostAuth === true)
+   ) {
+     const resolvedEnv = parseObject(resolvedConfig.env);
+     const readiness = await evaluateCodexCredentialReadiness({
+--- a/server/src/services/heartbeat/execution-configuration.ts
++++ b/server/src/services/heartbeat/execution-configuration.ts
+@@ -214,6 +214,7 @@
+       environmentId: selectedEnvironmentForConfig?.id ?? null,
+       environmentEnv: aiBinding ? stripAiAuthBindings(selectedEnvironmentForConfig?.envVars) : selectedEnvironmentForConfig?.envVars ?? null,
+       environmentDriver: selectedEnvironmentForConfig?.driver ?? null,
++      environmentUseHostAuth: selectedEnvironmentForConfig?.driver === "ssh" && parseObject(selectedEnvironmentForConfig.config).useHostAuth === true,
+       projectId: taskProjectContext?.id ?? null,
+       routineId: routineEnvContext.routineId,
+       responsibleUserId,

@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-11-27T07:20:36.002058+00:00",
+  "environment": "local candidate; no hosted mutations",
+  "typecheck": "passed",
+  "build": "passed",
+  "unitIntegrationTests": {
+    "passed": 155,
+    "failed": 0
+  },
+  "browserTests": {
+    "passed": 36,
+    "failed": 0,
+    "scope": "fictional UI/API and intercepted registration operations; not the 23 proposed Google acceptance cases"
+  },
+  "backupTests": {
+    "passed": 2,
+    "failed": 0
+  },
+  "sourceRecordsVerified": 4,
+  "proposedCases": 23,
+  "semanticAcceptanceRun": false,
+  "ownerContentReviewRecorded": false,
+  "policyApprovals": [],
+  "productionDeployed": false
+}

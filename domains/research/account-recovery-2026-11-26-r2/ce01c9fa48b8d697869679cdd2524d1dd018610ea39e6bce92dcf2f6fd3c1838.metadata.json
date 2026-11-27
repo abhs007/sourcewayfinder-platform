@@ -1,0 +1,10 @@
+{
+  "sourceId": "google-lost-factor",
+  "sourceVersionId": "v_ce01c9fa48b8d697869679cdd2524d1dd018610ea39e6bce92dcf2f6fd3c",
+  "evidenceId": "e_ec7696170608a18564520d9519cbce8336f01d82ead556e5361c28c522d5",
+  "snapshotSha256": "ec7696170608a18564520d9519cbce8336f01d82ead556e5361c28c522d51f83",
+  "normalizedSha256": "f214f02860387b06956f6b492bde0e7e06fb73bf9f1b2eb923dc28f8f0a15dab",
+  "extractorVersion": "parse5-content-v4:main:https",
+  "bytes": 1630396,
+  "url": "https://support.google.com/accounts/answer/185834?hl=en"
+}

@@ -1,0 +1,141 @@
+[
+  {
+    "id": "case-01",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "managed"
+      }
+    ],
+    "expectedOutcomeId": "managed-account",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-02",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "other"
+      }
+    ],
+    "expectedOutcomeId": "outside-scope",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-03",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "unknown"
+      }
+    ],
+    "expectedOutcomeId": "confirm-scope",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-04",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "can-sign-in",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "concern",
+        "choiceId": "activity"
+      }
+    ],
+    "expectedOutcomeId": "review-events",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-05",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "can-sign-in",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "concern",
+        "choiceId": "device"
+      }
+    ],
+    "expectedOutcomeId": "review-devices",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-06",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "can-sign-in",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "concern",
+        "choiceId": "other"
+      }
+    ],
+    "expectedOutcomeId": "review-security",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-07",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "can-sign-in",
+        "choiceId": "yes"
+      },
+      {
+        "questionId": "concern",
+        "choiceId": "unknown"
+      }
+    ],
+    "expectedOutcomeId": "review-security",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-08",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "can-sign-in",
+        "choiceId": "no"
+      }
+    ],
+    "expectedOutcomeId": "recover-access",
+    "reviewStatus": "proposed; human review required"
+  },
+  {
+    "id": "case-09",
+    "answers": [
+      {
+        "questionId": "account-scope",
+        "choiceId": "personal"
+      },
+      {
+        "questionId": "can-sign-in",
+        "choiceId": "unknown"
+      }
+    ],
+    "expectedOutcomeId": "check-access",
+    "reviewStatus": "proposed; human review required"
+  }
+]

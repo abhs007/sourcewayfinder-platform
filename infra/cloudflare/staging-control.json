@@ -1,0 +1,47 @@
+{
+  "account_id": "a03d9f71f863eed1dc764ca7d4e34c49",
+  "compatibility_date": "2026-11-21",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  },
+  "name": "sourcewayfinder-staging-control",
+  "main": "../../dist/workers/control.mjs",
+  "vars": {
+    "ENVIRONMENT": "staging",
+    "ACCESS_TEAM_DOMAIN": "sweet-forest-7bc9.cloudflareaccess.com",
+    "ACCESS_AUD": "6052d6a24a8e7d99d572feeb4a8ad21a525f9fc7aa179f3851f5ab130535e5e9",
+    "ADMIN_EMAIL": "abhishek51891@gmail.com",
+    "ADMIN_ORIGIN": "https://admin-staging.sourcewayfinder.org"
+  },
+  "assets": {
+    "directory": "../../dist/admin",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "routes": [
+    {
+      "pattern": "admin-staging.sourcewayfinder.org",
+      "custom_domain": true
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "CONTROL_DB",
+      "database_name": "sourcewayfinder-staging-control",
+      "database_id": "7f8af66e-aad4-44c4-b25b-245242210e5a",
+      "migrations_dir": "../../workers/control/migrations"
+    },
+    {
+      "binding": "EVIDENCE_DB",
+      "database_name": "sourcewayfinder-staging-evidence",
+      "database_id": "11fca07a-9464-4c5e-bb05-ea786f7f7f55",
+      "migrations_dir": "../../workers/control/evidence-migrations"
+    }
+  ],
+  "triggers": {
+    "crons": []
+  }
+}

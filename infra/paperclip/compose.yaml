@@ -1,0 +1,85 @@
+name: sourcewayfinder
+x-logging: &logging
+  driver: json-file
+  options: { max-size: 10m, max-file: '5' }
+services:
+  db:
+    image: postgres:17.9-alpine@sha256:c7526c0f6c3f30260a563d7bcf8ad778effac59a44f8ffa86678c35418338609
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: paperclip
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run ops/paperclip-runtime.py prepare}
+      POSTGRES_DB: paperclip
+    volumes: [postgres:/var/lib/postgresql/data]
+    networks: [database]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U paperclip -d paperclip]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    logging: *logging
+  controller:
+    image: sourcewayfinder-paperclip:7671e0c-codex01691
+    restart: unless-stopped
+    init: true
+    pids_limit: 2048
+    stop_grace_period: 90s
+    ports: ['127.0.0.1:3100:3100']
+    environment:
+      DATABASE_URL: postgres://paperclip:${POSTGRES_PASSWORD}@db:5432/paperclip
+      HOST: 0.0.0.0
+      PORT: 3100
+      SERVE_UI: 'true'
+      PAPERCLIP_HOME: /paperclip
+      PAPERCLIP_DEPLOYMENT_MODE: authenticated
+      PAPERCLIP_DEPLOYMENT_EXPOSURE: private
+      PAPERCLIP_PUBLIC_URL: http://localhost:3100
+      # Remote adapters create a callback relay. Force that relay through the
+      # same task-only gateway, never directly to the privileged controller.
+      PAPERCLIP_AGENT_CALLBACK_UPSTREAM: http://egress:8081
+      PAPERCLIP_ALLOWED_HOSTNAMES: localhost,127.0.0.1,controller
+      PAPERCLIP_SECRETS_STRICT_MODE: 'true'
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?Prepare runtime secrets}
+      TOOL_ACTION_SIGNING_SECRET: ${TOOL_ACTION_SIGNING_SECRET:?Prepare runtime secrets}
+    volumes: [paperclip:/paperclip]
+    networks: [database, control, internet]
+    depends_on:
+      db: {condition: service_healthy}
+    logging: *logging
+  agent:
+    image: sourcewayfinder-agent:codex01691
+    build: {context: ., dockerfile: Agent.Dockerfile}
+    restart: unless-stopped
+    read_only: true
+    pids_limit: 512
+    mem_limit: 6g
+    cpus: 3
+    security_opt: [no-new-privileges:true, 'seccomp=./codex-seccomp.json', 'apparmor=sourcewayfinder-codex']
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE, SETUID, SETGID, SYS_CHROOT, AUDIT_WRITE]
+    tmpfs: ['/tmp:rw,nosuid,nodev,size=1g', '/run:rw,nosuid,nodev,size=16m']
+    volumes: [agent-home:/home/agent, workspaces:/workspaces, ssh-host-keys:/etc/ssh/keys]
+    networks: [execution]
+    logging: *logging
+  egress:
+    image: sourcewayfinder-egress:v1
+    build: {context: ., dockerfile: Proxy.Dockerfile}
+    restart: unless-stopped
+    read_only: true
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    pids_limit: 96
+    mem_limit: 128m
+    networks: [execution, control, internet]
+    logging: *logging
+networks:
+  database: {internal: true}
+  execution: {internal: true}
+  control: {internal: true}
+  internet: {}
+volumes:
+  postgres: {}
+  paperclip: {}
+  agent-home: {}
+  workspaces: {}
+  ssh-host-keys: {}

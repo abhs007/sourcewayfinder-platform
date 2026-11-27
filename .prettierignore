@@ -1,0 +1,13 @@
+node_modules/
+private/
+dist/
+test-results/
+coverage/
+package-lock.json
+packages/core/generated-validator.cjs
+apps/web/public/survey/
+domains/
+infra/paperclip/
+
+# Owner-submitted review retained byte-for-byte for digest-bound evidence.
+docs/validation/verizon-sim-protection/ALL_CASES_REVIEW.md

@@ -1,0 +1,105 @@
+{
+  "flowId": "verizon-sim-protection",
+  "state": "interpretation_review",
+  "status": "draft_unapproved",
+  "approvalRecords": [],
+  "gates": {
+    "interpretation_review": "required",
+    "expected_answer_review": "required",
+    "merge_review": "required",
+    "deployment_review": "required"
+  },
+  "sources": [
+    {
+      "id": "verizon-sim-web",
+      "url": "https://www.verizon.com/support/knowledge-base-309294/",
+      "sourceVersionId": "v_e3bddc2d5412215947c1dd023647d45b6f7931dd89140a2d44f84adc90c3",
+      "snapshotSha256": "32b49124d61fbc0b5d6f6536c80603c284a2c05b4e8aa2894e93480769832e04",
+      "normalizedSha256": "cb2fcba59ed7509c7218107aa091a33f3807c3b281bedfbcb8fb15b0f2368974",
+      "extractorVersion": "parse5-content-v3:kbArticleNew:https",
+      "lastSuccessfulCheckAt": "2026-11-23T01:55:55.255Z",
+      "acquisition": "https",
+      "rawEvidencePath": "test-results/source-review/verizon-v3/32b49124d61fbc0b5d6f6536c80603c284a2c05b4e8aa2894e93480769832e04.html",
+      "normalizedEvidencePath": "test-results/source-review/verizon-v3/cb2fcba59ed7509c7218107aa091a33f3807c3b281bedfbcb8fb15b0f2368974.txt",
+      "reviewStatus": "unapproved"
+    },
+    {
+      "id": "verizon-account-access",
+      "url": "https://www.verizon.com/support/my-verizon-faqs/",
+      "sourceVersionId": "v_53a528d190c3b4af90597cc687bae5b738722245a68b25f0e6cfd2d97dd5",
+      "snapshotSha256": "88351b9a06cacabd4058ade4494113e86a9f06af81424f590446f2e948f71eb3",
+      "normalizedSha256": "bc35ce9033609f346f399f5d1f8cb3fa6684db61d510b3da67e2a7be04ae9df9",
+      "extractorVersion": "parse5-content-v3:SupportContentWrapper:https",
+      "lastSuccessfulCheckAt": "2026-11-23T01:55:58.140Z",
+      "acquisition": "https",
+      "rawEvidencePath": "test-results/source-review/verizon-v3/88351b9a06cacabd4058ade4494113e86a9f06af81424f590446f2e948f71eb3.html",
+      "normalizedEvidencePath": "test-results/source-review/verizon-v3/bc35ce9033609f346f399f5d1f8cb3fa6684db61d510b3da67e2a7be04ae9df9.txt",
+      "reviewStatus": "unapproved"
+    },
+    {
+      "id": "verizon-account-roles",
+      "url": "https://www.verizon.com/support/assign-account-manager-roles-faqs/",
+      "sourceVersionId": "v_8275ff60b1b1616cfe9f28e610c94fd4937f1417e52537bd416c10b14edd",
+      "snapshotSha256": "41718eae3f28a0ae07d453196c7c829f40b269bb3243f4fda055b157e1285609",
+      "normalizedSha256": "ac45bb3db47b9a79b8e23ce38c6741c52c28945be7149b8e37ee998054a10f54",
+      "extractorVersion": "parse5-content-v3:SupportContentWrapper:https",
+      "lastSuccessfulCheckAt": "2026-11-23T01:56:00.409Z",
+      "acquisition": "https",
+      "rawEvidencePath": "test-results/source-review/verizon-v3/41718eae3f28a0ae07d453196c7c829f40b269bb3243f4fda055b157e1285609.html",
+      "normalizedEvidencePath": "test-results/source-review/verizon-v3/ac45bb3db47b9a79b8e23ce38c6741c52c28945be7149b8e37ee998054a10f54.txt",
+      "reviewStatus": "unapproved"
+    }
+  ],
+  "reviewQuestions": [
+    "Does each cited passage support the proposed interpretation in its full page context?",
+    "Are unsupported and unknown branches appropriately conservative?",
+    "Does the current source disagree with any date, condition, or distinction in this bundle?",
+    "Do the proposed expected cases independently represent the intended behavior?",
+    "Does the 15-minute statement plus possible additional delay adequately avoid promising immediate activation?",
+    "Account-access FAQ contains clearly labeled AI summaries; review the full official answers, not those summaries.",
+    "Consumer-postpaid restriction is a conservative project boundary, not a claim that every cited page excludes other accounts."
+  ],
+  "limitations": [
+    "Owner reviewed all eighteen written cases; authenticated policy decisions and release approval remain pending.",
+    "Local journey validation does not demonstrate a Verizon account transaction or participant outcome.",
+    "No hosted acceptance or production release is authorized by this packet."
+  ],
+  "bundleHash": "9eaf8eaf24743ee7fbaf14380fdf05fd5d5e12d2ba42eb09b7a43a1022e06fb7",
+  "expectedCasesHash": "384ce059a3755682de23ff07a972d392cb0861d15225ab861db8850ff80e65a6",
+  "sourceRegisterHash": "02d53b7af964096264195337da83d7748f27e0357d2353b923d15f6ca7132caa",
+  "structuralValidation": {
+    "passed": true,
+    "questions": 8,
+    "outcomes": 12,
+    "transitions": 27,
+    "semanticTestsExecuted": true
+  },
+  "ownerReviewEvidence": {
+    "path": "docs/validation/verizon-sim-protection/owner-review-evidence.json",
+    "documentSha256": "f954104a238b95d5366a300779c94914b40885a8e8fe7b201790676db3e1d369",
+    "cases": 18
+  },
+  "localReviewedJourneyValidation": {
+    "scope": "Local owner-reviewed browser/API/session-D1 journeys; read-only content test provider.",
+    "passed": true,
+    "completedAt": "2026-11-23T06:37:54.112Z",
+    "cases": 18,
+    "journeys": 36,
+    "coverage": [
+      {
+        "width": 320,
+        "covered": 27,
+        "total": 27
+      },
+      {
+        "width": 1440,
+        "covered": 27,
+        "total": 27
+      }
+    ],
+    "report": "docs/validation/verizon-sim-protection/local-validation-results.json",
+    "reportSha256": "2f0b49cace8e97089c72b56ec4ea6657bf105ce3a0a6a230dbc7855e8cd17e75",
+    "policyAuthorizationTested": false,
+    "hostedDeploymentTested": false
+  }
+}

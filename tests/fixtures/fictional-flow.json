@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0",
+  "usage": "test_fixture",
+  "flowId": "fictional-token-review",
+  "scope": "Fictional training fixture only; not an official procedure or public guidance.",
+  "entryQuestionId": "has-confirmation",
+  "questions": [
+    {
+      "id": "has-confirmation",
+      "prompt": "Do you have the fictional office confirmation?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes"
+        },
+        {
+          "id": "no",
+          "label": "No"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "questionId": "has-confirmation",
+      "choiceId": "yes",
+      "targetType": "outcome",
+      "targetId": "request-review"
+    },
+    {
+      "questionId": "has-confirmation",
+      "choiceId": "no",
+      "targetType": "outcome",
+      "targetId": "seek-clarification"
+    },
+    {
+      "questionId": "has-confirmation",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "seek-clarification"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "request-review",
+      "title": "Review can be requested in this fictional scenario",
+      "nextStep": "Use the fictional official review route. This does not establish that replacement is complete.",
+      "unresolved": ["The office still reviews the request."],
+      "sourceRefs": ["fictional-p1"]
+    },
+    {
+      "id": "seek-clarification",
+      "title": "Clarify the prerequisite",
+      "nextStep": "Consult the fictional official guide before proceeding.",
+      "unresolved": ["Required confirmation is absent or unknown."],
+      "sourceRefs": ["fictional-p1"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "fictional-p1",
+      "sourceVersionId": "fictional-source-v1",
+      "snapshotSha256": "3b46090af3f156c137590b1cd23cb5037c340d6529ca66f55ec5daa547f0d895",
+      "url": "https://example.org/fictional-guide",
+      "passage": "FICTIONAL: An existing confirmation is required before a token-replacement review request. The office reviews the request afterward."
+    }
+  ]
+}

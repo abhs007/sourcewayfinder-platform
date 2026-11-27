@@ -1,0 +1,87 @@
+.survey-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 72px;
+}
+.survey-main h1 {
+  font-size: clamp(2.3rem, 6vw, 3.6rem);
+  line-height: 1.12;
+  margin: 12px 0 24px;
+}
+.survey-main fieldset {
+  border: 0;
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+  margin: 24px 0 0;
+  min-width: 0;
+}
+.survey-main legend {
+  font-size: 1.2rem;
+  font-weight: 650;
+  padding: 0 0 10px;
+  max-width: 100%;
+}
+.survey-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-height: 48px;
+  padding: 12px 14px;
+  margin: 8px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+}
+.survey-option:has(input:checked) {
+  border-color: var(--green);
+  background: var(--pale);
+}
+.survey-option input {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin: 2px 0;
+  accent-color: var(--green);
+}
+.survey-main .tiny {
+  font-size: 0.9rem;
+}
+.survey-main .concept {
+  padding: 20px;
+  background: var(--pale);
+  border-radius: 14px;
+  margin: 24px 0;
+}
+.survey-main h2 {
+  font-size: 1.4rem;
+}
+.survey-main textarea {
+  width: 100%;
+  min-height: 120px;
+}
+.survey-main .notice {
+  margin: 24px 0;
+}
+.survey-main [hidden] {
+  display: none !important;
+}
+#survey-error {
+  color: #8a291b;
+  font-weight: 600;
+}
+.survey-main .actions {
+  flex-wrap: wrap;
+}
+.survey-privacy {
+  margin: 24px 0;
+}
+@media (max-width: 700px) {
+  .survey-main {
+    margin: 0;
+    padding: 32px 20px;
+  }
+  .survey-main .primary {
+    width: 100%;
+  }
+}

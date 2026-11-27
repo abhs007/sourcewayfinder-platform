@@ -1,0 +1,25 @@
+name: Validate preserved website and survey
+on:
+  pull_request:
+    paths:
+      - 'legacy/**'
+      - 'ops/*legacy*.mjs'
+      - '.github/workflows/legacy-validation.yml'
+      - 'package.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    if: vars.SWF_FREE_CI_VERIFIED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '26.13.1'
+      - run: npm run check:legacy
+# No install, network collection, semantic guidance acceptance, or deployment.

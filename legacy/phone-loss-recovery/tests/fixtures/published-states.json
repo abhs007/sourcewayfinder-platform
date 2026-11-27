@@ -1,0 +1,278 @@
+[
+  {
+    "id": "att-N",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "att",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "sms": "yes",
+        "authenticator": "yes",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "documented_step"
+  },
+  {
+    "id": "att-L",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "att",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "sms": "no",
+        "authenticator": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conditional"
+  },
+  {
+    "id": "tmobile-N",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "tmobile",
+      "plan": "prepaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "sms": "yes",
+        "authenticator": "yes",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conditional"
+  },
+  {
+    "id": "tmobile-L",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "tmobile",
+      "plan": "prepaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "sms": "no",
+        "authenticator": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conditional"
+  },
+  {
+    "id": "verizon-N",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "verizon",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "sms": "yes",
+        "authenticator": "yes",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conditional"
+  },
+  {
+    "id": "verizon-L",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "verizon",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "sms": "no",
+        "authenticator": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conditional"
+  },
+  {
+    "id": "fi-N",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "fi",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "sms": "yes",
+        "authenticator": "yes",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "documented_step"
+  },
+  {
+    "id": "fi-L",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "fi",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "sms": "no",
+        "authenticator": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conditional"
+  },
+  {
+    "id": "visible-N",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "visible",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "sms": "yes",
+        "authenticator": "yes",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conflicting"
+  },
+  {
+    "id": "visible-L",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "visible",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "sms": "no",
+        "authenticator": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conflicting"
+  },
+  {
+    "id": "usmobile-N",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "usmobile",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "sms": "yes",
+        "authenticator": "yes",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "documented_step"
+  },
+  {
+    "id": "usmobile-L",
+    "basis": "Published Scenario_Definitions.md resource assumptions, evaluated against separate current guidance. This is not live validation or a claim to reproduce the historical interpretation unchanged.",
+    "context": {
+      "provider": "usmobile",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "sms": "no",
+        "authenticator": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    },
+    "expectedProtectionStatus": "conditional"
+  }
+]

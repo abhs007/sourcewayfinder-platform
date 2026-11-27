@@ -1,0 +1,51 @@
+observation,source,capture_locator,audit_decision,reason,review_type,date
+O01,S01,S01.txt:29–31,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O02,S01,S01.txt:55–68,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O03,S01,S01.txt:32–38,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O04,S01,S01.txt:27–68,source_scoped_unknown_retained,No delay specified in the inspected feature procedure; this is not a finding of zero delay.,same-assistant reinspection,2026-11-15
+O05,S02,S02.txt:105–114,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O06,S02,S02.txt:193–241; compare S16.txt:150–200,supported_as_scoped,Retain both SMS and email statements; discrepancy is not resolved by this audit.,same-assistant reinspection,2026-11-15
+O07,S02,"S02.txt:112–123,164–165",supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O08,S02,"S02.txt:124–125,162–192,239–240,289–321",supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O09,S03,S03.txt:108–130,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O10,S03,"S03.txt:108–130,215–227",source_scoped_unknown_retained,Login proof is not stated to be equivalent to lock-removal proof. S16 does not establish passkey substitution.,same-assistant reinspection,2026-11-15
+O11,S04,S04.txt:125–150,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O12,S04,"S04.txt:128,150",supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O13,S04,S04.txt:154–162,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O14,S04,S04.txt:131–162,source_scoped_unknown_retained,Toggle/confirmation steps do not specify the authentication factors.,same-assistant reinspection,2026-11-15
+O15,S04,S04.txt:125–162; S10.txt:126–150; S14.txt:268,qualification_revised,Cross-reference newer sources; no corpus-wide absence inference.,same-assistant reinspection,2026-11-15
+O16,S05,S05.txt:111–120,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O17,S05,S05.txt:121–125,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O18,S05,"S05.txt:141–147; compare S09.txt:150–152,212–215",supported_as_scoped,Future general high-risk-operation coverage is distinct from later-described protection-toggle reauthentication.,same-assistant reinspection,2026-11-15
+O19,S05,S05.txt:111–147; S08.txt:209–227; S09.txt:150–152,qualification_revised,Narrow historical unknown; later records supply change-confirmation proof but not complete missing-factor recovery.,same-assistant reinspection,2026-11-15
+O20,S06,S06_faq.txt:12–26,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O21,S06,"S06.txt:30–32,47–58",supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O22,S06,S06.txt:60,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O23,S06,S06.txt:40–44,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O24,S06,S06_faq.txt:5–11,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O25,S06,S06.txt:30–60; S06_faq.txt:5–11,source_scoped_unknown_retained,App-device and special-device provisions do not establish a complete lost-smartphone procedure. No impossibility finding.,same-assistant reinspection,2026-11-15
+O26,S07,S07.txt:250–259,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O27,S07,S07.txt:294–313,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O28,S07,S07.txt:320–336,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O29,S07,S07.txt:230–248,qualification_revised,Replace stale eligibility caveat with the inspected postpaid scope.,same-assistant reinspection,2026-11-15
+O30,S07,"S07.txt:230–259,294–336",source_scoped_unknown_retained,Generic identity alternative is insufficient to reconstruct each operation; no absence finding.,same-assistant reinspection,2026-11-15
+O31,S08,S08.txt:209–227,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O32,S09,"S09.txt:146–152,212–215",supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O33,S08,"S08.txt:60–62,161–172",supported_as_scoped,Password-and-2FA statement coexists with abbreviated lost-passkey advice. No password-only bypass established.,same-assistant reinspection,2026-11-15
+O34,S10,S10.txt:126–150,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O35,S10,S10.txt:137–150,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O36,S11,S11.txt:197–215,qualification_revised,Added omitted 30-day previous-email condition; resource assumptions must identify the receiving address.,same-assistant reinspection,2026-11-15
+O37,S12,S12.txt:87–106,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O38,S12,S12.txt:107–114,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O39,S07,S07.txt:234–235,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O40,S07,S07.txt:235–248,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O41,S07,S07.txt:294–313,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O42,S13,"S13.txt:40–42,51–55; S13_faq.txt:3–4",supported_as_scoped,Preserve separate device-unlock eligibility and Wireless Account Lock requirements.,same-assistant reinspection,2026-11-15
+O43,S13,S13.txt:34; S13_faq.txt:5–8,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O44,S13,S13_faq.txt:19–20,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O45,S06,S06.txt:67–87,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O46,S06,S06.txt:88–92,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O47,S06,S06.txt:69–71,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O48,S14,S14.txt:266–270,supported_as_scoped,Inspected passage supports the recorded scoped description; enforcement and customer outcomes are not verified.,same-assistant reinspection,2026-11-15
+O49,S15,S15.txt:47–56,supported_as_scoped,"Contact-code verification proves access to contact address, not by itself account ownership or lock-removal success.",same-assistant reinspection,2026-11-15
+O50,S16,S16.txt:150–200; compare S02.txt:193–241,supported_as_scoped,Email verification is documented in port-out context. Implementation and cross-context applicability remain untested.,same-assistant reinspection,2026-11-15

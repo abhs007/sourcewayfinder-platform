@@ -1,0 +1,20 @@
+Port 2222
+HostKey /etc/ssh/keys/ssh_host_ed25519_key
+PidFile /run/sshd.pid
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PubkeyAuthentication yes
+AuthorizedKeysFile /etc/ssh/sourcewayfinder_authorized_keys
+AllowUsers agent
+AllowAgentForwarding no
+AllowTcpForwarding no
+X11Forwarding no
+PermitTunnel no
+PermitUserEnvironment no
+UsePAM no
+PrintMotd no
+LogLevel VERBOSE
+AcceptEnv LANG LC_*
+SetEnv HTTP_PROXY=http://egress:8080 HTTPS_PROXY=http://egress:8080 ALL_PROXY=http://egress:8080 NO_PROXY=egress,localhost,127.0.0.1
+Subsystem sftp internal-sftp

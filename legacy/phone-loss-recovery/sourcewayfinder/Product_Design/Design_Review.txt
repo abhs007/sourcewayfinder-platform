@@ -1,0 +1,26 @@
+DESIGN REVIEW — NOVEMBER 21, 2026
+
+Local interaction checks passed in Chromium. See QA_results.json for the exact scenarios. Browser tests used a temporary local server and closed it afterward.
+Checks covered both procedures, positive and uncertain inputs, back/edit navigation, summary and issue-draft downloads, refresh behavior, reduced motion, runtime errors and overflow at 320, 390, 768, 1024 and 1440 pixels.
+
+Design skill gate result from the first run: GATE: FAIL 28.
+The landing-page checker expects full-screen marketing sections, decorative visual moments, hero CTA duplication, specific wrapper classes, and literal section IDs for hash links. This prototype is a routed, task-focused application. Its working hash routes and actual task controls are verified by functional tests. These marketing-specific checks do not establish usability failures, and were not used to add unnecessary content or motion.
+Meaningful findings corrected after the gate run: darker secondary text, 44px navigation/footer link targets, an explicit guidance headline, system font declarations, focus presentation and heading order for result steps.
+No gate pass is claimed. The final styling changes have functional/reflow verification. Full manual assistive-technology testing, user evaluation and a production accessibility audit remain outstanding.
+
+The design reuses the earlier demo’s subject and source inputs, with a new consumer-oriented flow. It adds no empirical evidence of improved real-world outcomes.
+Assumptions for user review: topic selection before questions, serif and green visual direction, browser-local exports, Verizon as the phone walkthrough in this design preview, broader carrier coverage in the release plan.
+Source limitations: SSA criteria carried from the prior demo; fresh retrieval failed. Report delivery, automated discovery, synchronization, and developer APIs are planned.
+Product_Specification.txt records product decisions and the evaluation plan.
+
+BRAND UPDATE — NOVEMBER 21, 2026
+Public Clarity applied as the user-selected working name, with a pc monogram and the approved tagline. Existing adjacent business identified at publicclarity.com. Naming remains provisional for public use.
+
+CURRENT BRAND — NOVEMBER 21, 2026
+SourceWayfinder replaces Public Clarity in the interface and current product specification, using an sw monogram. The approved tagline is unchanged. Earlier naming notes are retained as history. Domain registration and trademark availability remain unverified.
+
+LOGO UPDATE — NOVEMBER 21, 2026
+Replaced the initials with a vector mark combining an open document and a northeast navigation pointer. Forest green, warm white and pale mint retain the interface palette. The same SVG supplies the browser favicon. Decorative image has empty alternative text because the adjacent wordmark names the link.
+
+SURVEY INTEGRATION — NOVEMBER 21, 2026
+Added a separate accessible survey page linked from home and footer, using the existing visual system. Optional experience questions precede the concept-interest question. A local Python/SQLite endpoint collects consented responses and supports private CLI CSV export. The file preview explicitly disables collection. Thirteen grouped synthetic QA checks passed; see ../Survey_Research/QA_results.json. Mobile screenshot reviewed. No public collection deployment or participant findings exist. The prior design-skill gate limitations remain unchanged.

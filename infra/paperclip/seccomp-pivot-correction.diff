@@ -1,0 +1,12 @@
+--- approved-81d0-seccomp
++++ approved-pivot-operation-corrected
+@@ -1274,7 +1274,8 @@
+         "fsconfig",
+         "fsmount",
+         "setns",
+-        "sethostname"
++        "sethostname",
++        "pivot_root"
+       ],
+       "action": "SCMP_ACT_ALLOW",
+       "comment": "Codex bubblewrap filesystem/namespace setup. Kernel still requires namespace-local capabilities; outer container has no CAP_SYS_ADMIN."

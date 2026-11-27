@@ -1,0 +1,30 @@
+{
+  "paperDOI": "10.5281/zenodo.24301157",
+  "collection": "Unmodified files from the published supplementary ZIP; historical corpus is not current guidance.",
+  "files": [
+    {
+      "name": "Audit_Provenance_2026-11-15.md",
+      "sha256": "b0057d403004b5d7745e29eb61bd97a63b9169b91ecec249feebae3f70093dec"
+    },
+    {
+      "name": "Codebook_with_amendments.md",
+      "sha256": "1122b33985869e60917ad15e2bb1e22e949df342dcd3a5a5880ace7d41e9e6d5"
+    },
+    {
+      "name": "Findings_Evidence_Map.csv",
+      "sha256": "726a67d12fac4a336dd31deb7b28ff62db1eff6a6f89adf7f3a287277b0cd788"
+    },
+    {
+      "name": "Passage_Audit.csv",
+      "sha256": "470272b620a7f99679bf5f4a6955a16a21330a1ef133237c1b047f2a3c32f5f7"
+    },
+    {
+      "name": "Scenario_Definitions.md",
+      "sha256": "997984073dfccfd152edf0c55e448aec5b5540df01c693f5bcadb2853fe7b8a0"
+    },
+    {
+      "name": "carrier_evidence_v0.8.json",
+      "sha256": "4a460f80eb64be9f23ac13558d6f31ccaa7d21a627864075ab2e7c744ba694c9"
+    }
+  ]
+}

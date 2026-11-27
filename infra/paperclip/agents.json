@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "paperclipCommit": "7671e0cf0d718351f3b0c4d6a7d33df9867ffb8a",
+  "codexVersion": "0.169.1",
+  "agents": [
+    {
+      "key": "coordinator",
+      "name": "Delivery coordinator",
+      "role": "pm",
+      "title": "Delivery coordinator",
+      "model": "gpt-6.2-sol",
+      "effort": "medium",
+      "instructionFile": "roles/coordinator.md"
+    },
+    {
+      "key": "backend",
+      "name": "Backend engineer",
+      "role": "engineer",
+      "title": "Backend engineer",
+      "model": "gpt-6.2-sol",
+      "effort": "medium",
+      "instructionFile": "roles/backend.md"
+    },
+    {
+      "key": "frontend",
+      "name": "Frontend engineer",
+      "role": "designer",
+      "title": "Frontend engineer",
+      "model": "gpt-6.2-sol",
+      "effort": "medium",
+      "instructionFile": "roles/frontend.md"
+    },
+    {
+      "key": "source",
+      "name": "Source analyst",
+      "role": "researcher",
+      "title": "Source analyst",
+      "model": "gpt-6.2-sol",
+      "effort": "high",
+      "instructionFile": "roles/source.md"
+    },
+    {
+      "key": "qa",
+      "name": "QA engineer",
+      "role": "qa",
+      "title": "QA engineer",
+      "model": "gpt-6.2-sol",
+      "effort": "high",
+      "instructionFile": "roles/qa.md"
+    },
+    {
+      "key": "security",
+      "name": "Security reviewer",
+      "role": "security",
+      "title": "Security reviewer",
+      "model": "gpt-6.2-astra",
+      "effort": "high",
+      "instructionFile": "roles/security.md"
+    },
+    {
+      "key": "operations",
+      "name": "Operations engineer",
+      "role": "devops",
+      "title": "Operations engineer",
+      "model": "gpt-6.2-sol",
+      "effort": "medium",
+      "instructionFile": "roles/operations.md"
+    }
+  ]
+}

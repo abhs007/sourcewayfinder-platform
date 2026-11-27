@@ -1,0 +1,35 @@
+[
+  {
+    "id": "verizon-sim-web",
+    "normalizedSha256": "cb2fcba59ed7509c7218107aa091a33f3807c3b281bedfbcb8fb15b0f2368974",
+    "extractorVersion": "parse5-content-v4:kbArticleNew:https",
+    "derivedFrom": {
+      "snapshotSha256": "32b49124d61fbc0b5d6f6536c80603c284a2c05b4e8aa2894e93480769832e04",
+      "normalizedSha256": "cb2fcba59ed7509c7218107aa091a33f3807c3b281bedfbcb8fb15b0f2368974",
+      "extractorVersion": "parse5-content-v3:kbArticleNew:https"
+    },
+    "humanInterpretationApproval": false
+  },
+  {
+    "id": "verizon-account-access",
+    "normalizedSha256": "bc35ce9033609f346f399f5d1f8cb3fa6684db61d510b3da67e2a7be04ae9df9",
+    "extractorVersion": "parse5-content-v4:SupportContentWrapper:https",
+    "derivedFrom": {
+      "snapshotSha256": "88351b9a06cacabd4058ade4494113e86a9f06af81424f590446f2e948f71eb3",
+      "normalizedSha256": "bc35ce9033609f346f399f5d1f8cb3fa6684db61d510b3da67e2a7be04ae9df9",
+      "extractorVersion": "parse5-content-v3:SupportContentWrapper:https"
+    },
+    "humanInterpretationApproval": false
+  },
+  {
+    "id": "verizon-account-roles",
+    "normalizedSha256": "9fb6522c304180112c6827d4bcf37590948698575a639e1cf396eb331090b48a",
+    "extractorVersion": "parse5-content-v4:SupportContentWrapper:https",
+    "derivedFrom": {
+      "snapshotSha256": "41718eae3f28a0ae07d453196c7c829f40b269bb3243f4fda055b157e1285609",
+      "normalizedSha256": "ac45bb3db47b9a79b8e23ce38c6741c52c28945be7149b8e37ee998054a10f54",
+      "extractorVersion": "parse5-content-v3:SupportContentWrapper:https"
+    },
+    "humanInterpretationApproval": false
+  }
+]

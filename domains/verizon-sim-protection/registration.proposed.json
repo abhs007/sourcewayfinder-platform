@@ -1,0 +1,34 @@
+{
+  "flow": {
+    "id": "verizon-sim-protection",
+    "title": "Verizon SIM Protection",
+    "scope": "English guidance for Verizon consumer postpaid mobile accounts: SIM Protection and My Verizon account access. Prepaid, business accounts, port-outs, identity disputes and unsupported recovery circumstances are handed to official support.",
+    "officialUrl": "https://www.verizon.com/support/knowledge-base-309294/"
+  },
+  "sources": [
+    {
+      "id": "verizon-sim-web",
+      "flowId": "verizon-sim-protection",
+      "title": "SIM Protection instructions",
+      "url": "https://www.verizon.com/support/knowledge-base-309294/",
+      "approvedOrigin": "https://www.verizon.com",
+      "approvedPath": "/support/knowledge-base-309294/"
+    },
+    {
+      "id": "verizon-account-access",
+      "flowId": "verizon-sim-protection",
+      "title": "My Verizon account access",
+      "url": "https://www.verizon.com/support/my-verizon-faqs/",
+      "approvedOrigin": "https://www.verizon.com",
+      "approvedPath": "/support/my-verizon-faqs/"
+    },
+    {
+      "id": "verizon-account-roles",
+      "flowId": "verizon-sim-protection",
+      "title": "Account Owner and Manager roles",
+      "url": "https://www.verizon.com/support/assign-account-manager-roles-faqs/",
+      "approvedOrigin": "https://www.verizon.com",
+      "approvedPath": "/support/assign-account-manager-roles-faqs/"
+    }
+  ]
+}

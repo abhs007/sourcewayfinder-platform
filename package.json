@@ -1,0 +1,61 @@
+{
+  "name": "sourcewayfinder-platform",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.11"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/core.test.ts tests/api.test.ts",
+    "test:contracts": "vitest run tests/core.test.ts",
+    "test:e2e": "node ops/authorized-tests.mjs",
+    "test:ui": "playwright test",
+    "test:reviewed:verizon": "node --import tsx tests/reviewed/verizon-local.mts",
+    "build": "vite build --config apps/web/vite.config.ts && vite build --config apps/admin/vite.config.ts && node ops/build-workers.mjs",
+    "dev": "node --import tsx ops/dev.mts",
+    "doctor": "node ops/doctor.mjs",
+    "lint": "tsc --noEmit",
+    "db:migrate": "node ops/migrate.mjs",
+    "collect": "node --import tsx ops/collector.mts",
+    "bridge": "node --import tsx ops/bridge.mts",
+    "prebuild": "node ops/build-schema.mjs",
+    "pretest": "node ops/build-schema.mjs",
+    "monitor": "node --import tsx ops/monitor.mts",
+    "backup": "node ops/backup.mjs",
+    "test:backup": "node --test ops/backup.test.mjs",
+    "deploy:staging": "node ops/staging-deploy.mjs",
+    "format": "prettier --write apps packages workers ops tests infra/cloudflare docs *.json *.ts .github/workflows",
+    "format:check": "prettier --check apps packages workers ops tests infra/cloudflare docs *.json *.ts .github/workflows",
+    "build:legacy": "node ops/build-legacy.mjs",
+    "check:legacy": "node ops/verify-legacy-consolidation.mjs && node --test legacy/phone-loss-recovery/sourcewayfinder/tests/worker.test.mjs && npm run build:legacy",
+    "sources:legacy": "node ops/check-legacy-sources.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "hono": "4.13.20",
+    "jose": "6.2.18",
+    "parse5": "8.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261121.1",
+    "@playwright/test": "1.65.1",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "esbuild": "0.28.2",
+    "miniflare": "5.20261119.0-beta",
+    "prettier": "3.10.1",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "vitest": "5.1.1",
+    "wrangler": "4.166.0",
+    "zod": "4.6.7"
+  }
+}
