@@ -1,0 +1,20 @@
+name: Attach reproducible module
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+jobs:
+  module:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci && npm run validate && npm test && npm run package:module
+      - run: gh release upload "$RELEASE_TAG" release/*.zip release/checksums.json --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}

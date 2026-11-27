@@ -1,0 +1,12 @@
+Survey_Research/.data/
+*.sqlite3*
+*.db
+*.csv
+__pycache__/
+.DS_Store
+node_modules/
+.wrangler/
+dist/
+.dev.vars*
+.env*
+exports/

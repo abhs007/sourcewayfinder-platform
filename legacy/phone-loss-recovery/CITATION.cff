@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite this software and the underlying documentation study."
+title: "Phone-Loss Recovery Navigator"
+type: software
+version: 0.1.0
+authors:
+  - family-names: Vaishnav
+    given-names: Abhishek
+    orcid: "https://orcid.org/0009-0008-6318-8190"
+repository-code: "https://github.com/abhs007/phone-loss-recovery"
+license: MIT
+references:
+  - type: generic
+    title: "Phone Lost, Number Protected: Examining Recovery Guidance from US Wireless Carriers"
+    doi: "10.5281/zenodo.24301157"
+    authors:
+      - family-names: Vaishnav
+        given-names: Abhishek
+    year: 2026

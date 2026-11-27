@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-21",
+  "checks": [
+    "Consent required before submission",
+    "Survey reflow at 320, 390, 768 and 1440 pixels",
+    "Contradictory checkbox selections blocked",
+    "Network failure never shows success; response preserved for retry",
+    "Successful retry persists response and shows confirmation",
+    "Repeated response ID is idempotent",
+    "Changed duplicate rejected",
+    "Server rejects missing consent and invalid answer values",
+    "Cross-origin submissions rejected",
+    "Private data not served by static route",
+    "CSV export escapes spreadsheet formulas; exactly two test responses stored",
+    "File preview clearly blocks collection",
+    "No browser runtime errors"
+  ],
+  "synthetic": true,
+  "real_participants": 0
+}

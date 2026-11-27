@@ -1,0 +1,846 @@
+{
+  "version": "0.8",
+  "date": "2026-11-15",
+  "status": "Initial AI-assisted coding with same-assistant source reinspection; author review and independent coding pending",
+  "sample": "Purposive six-brand sample; not representative of all US carriers or subscribers",
+  "sources": [
+    {
+      "id": "S01",
+      "provider": "Google Fi",
+      "title": "Enable Number Lock",
+      "url": "https://support.google.com/fi/answer/15147412?hl=en",
+      "displayed_date": "not displayed",
+      "access_method": "web text",
+      "locator": "Number Lock overview; How to use Number Lock",
+      "limitations": "Read main article; linked Google Account recovery procedures not yet coded.",
+      "accessed": "2026-11-14",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S01.html",
+        "completed_utc": "2026-11-15T18:38:17.978059+00:00"
+      }
+    },
+    {
+      "id": "S02",
+      "provider": "Visible",
+      "title": "Secure your number and SIM with Line Lock by Visible",
+      "url": "https://www.visible.com/m/help/your-account/line-lock",
+      "displayed_date": "2026-09-23",
+      "access_method": "web text",
+      "locator": "What is Line Lock?; Toggle Line Lock to Unlocked; Cancel Unlock",
+      "limitations": "One sentence says toggle to Locked before switching devices, contrary to the surrounding unlock instructions; exclude that sentence from coding.",
+      "accessed": "2026-11-14",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S02.html",
+        "completed_utc": "2026-11-15T18:38:17.718920+00:00"
+      }
+    },
+    {
+      "id": "S03",
+      "provider": "Visible",
+      "title": "Member Security",
+      "url": "https://www.visible.com/m/help/your-account/multi-factor-authentication",
+      "displayed_date": "2026-09-22",
+      "access_method": "web text",
+      "locator": "Authentication; Multi-Factor Authentication; Passkeys; Lost Devices",
+      "limitations": "Account login instructions do not establish the proof accepted to remove Line Lock.",
+      "accessed": "2026-11-14",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S03.html",
+        "completed_utc": "2026-11-15T18:38:17.899230+00:00"
+      }
+    },
+    {
+      "id": "S04",
+      "provider": "Verizon",
+      "title": "My Verizon app - Enable / Disable SIM Protection and Number Lock",
+      "url": "https://www.verizon.com/support/knowledge-base-309293/",
+      "displayed_date": "uncertain: page contains a runtime-looking timestamp",
+      "access_method": "web text",
+      "locator": "Before you begin; Steps",
+      "limitations": "Do not treat page timestamp as verified publication or revision date; other plan-specific instructions pending.",
+      "accessed": "2026-11-14",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S04.html",
+        "completed_utc": "2026-11-15T18:38:17.719079+00:00"
+      }
+    },
+    {
+      "id": "S05",
+      "provider": "US Mobile",
+      "title": "Security would be our middle name if we had one",
+      "url": "https://www.usmobile.com/blog/security-updates-2026/",
+      "displayed_date": "2026-03-04",
+      "access_method": "web text",
+      "locator": "Enhanced Security; Passkeys in the Web App; Stronger Verification for High-Risk Changes",
+      "limitations": "Feature announcement is a provider assertion. Coming-soon statements are not evidence of subsequent deployment. Comments excluded.",
+      "accessed": "2026-11-14",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S05.html",
+        "completed_utc": "2026-11-15T18:38:17.821761+00:00"
+      }
+    },
+    {
+      "id": "S06",
+      "provider": "AT&T",
+      "title": "Learn about Wireless Account Lock",
+      "url": "https://www.att.com/support/article/wireless/000102016/",
+      "displayed_date": "2026-04-22",
+      "access_method": "rendered browser accessibility text",
+      "locator": "AT&T Wireless tab; What to know; How to turn Wireless Account Lock on or off; expanded FAQs",
+      "limitations": "Embedded FAQ content extracted from preserved application/json and inspected; no live account transaction or rendered UI validation.",
+      "accessed": "2026-11-14",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S06.html",
+        "completed_utc": "2026-11-15T18:38:18.782665+00:00"
+      },
+      "followup_access": "November 15 raw HTTP capture and extracted body text, including AT&T Prepaid instructions; dynamic FAQs not present in extracted text",
+      "faq_capture": "review/embedded_faq/S06_faq.txt"
+    },
+    {
+      "id": "S07",
+      "provider": "T-Mobile",
+      "title": "Protect your T-Mobile account from fraud",
+      "url": "https://www.t-mobile.com/support/plans-features/help-with-t-mobile-account-fraud",
+      "displayed_date": "not displayed",
+      "access_method": "rendered browser accessibility text",
+      "locator": "Set up digital ID scan; Prevent unauthorized SIM swap; Prevent unauthorized port out",
+      "limitations": "Digital-ID eligibility and steps now inspected; no account transaction tested.",
+      "accessed": "2026-11-14",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "followup_access": "November 15 raw HTTP capture and extracted digital-ID / SIM Protection body sections inspected",
+      "followup_url": "https://www.t-mobile.com/support/plans-features/help-with-t-mobile-account-fraud?msockid=214428a52a1661d525013ee32b5c604c",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S07.html",
+        "completed_utc": "2026-11-15T18:38:18.042472+00:00"
+      }
+    },
+    {
+      "id": "S08",
+      "provider": "US Mobile",
+      "title": "Privacy and security",
+      "url": "https://www.usmobile.com/help/docs/managing-lines/privacy-security",
+      "locator": "Enhanced Security; Passkeys; Troubleshooting",
+      "accessed": "2026-11-14",
+      "displayed_date": "Not established in inspected excerpt",
+      "access_method": "web text",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "limitations": "No live account verification; selected relevant sections coded.",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S08.html",
+        "completed_utc": "2026-11-15T18:38:18.134308+00:00"
+      }
+    },
+    {
+      "id": "S09",
+      "provider": "US Mobile",
+      "title": "Under the Hood: How We Actually Secure Your Account (A Technical Deep Dive)",
+      "url": "https://www.usmobile.com/blog/us-mobile-account-security-technical-deep-dive/",
+      "locator": "Re-Auth; Enhanced Security; What We Are Building Next",
+      "accessed": "2026-11-14",
+      "displayed_date": "Not established in inspected excerpt",
+      "access_method": "web text",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "limitations": "No live account verification; selected relevant sections coded.",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S09.html",
+        "completed_utc": "2026-11-15T18:38:19.294126+00:00"
+      }
+    },
+    {
+      "id": "S10",
+      "provider": "Verizon",
+      "title": "My Verizon Website - Enable / Disable SIM Protection and Number Lock",
+      "url": "https://www.verizon.com/support/knowledge-base-309294/",
+      "locator": "Steps 1 and 3",
+      "accessed": "2026-11-14",
+      "displayed_date": "Not established in inspected excerpt",
+      "access_method": "web text",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "limitations": "No live account verification; selected relevant sections coded.",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S10.html",
+        "completed_utc": "2026-11-15T18:38:18.233488+00:00"
+      }
+    },
+    {
+      "id": "S11",
+      "provider": "Visible",
+      "title": "Manage your Visible account",
+      "url": "https://www.visible.com/m/help/your-account/managing-visible-account",
+      "locator": "Update your password",
+      "accessed": "2026-11-14",
+      "displayed_date": "Not established in inspected excerpt",
+      "access_method": "web text",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "limitations": "No live account verification; selected relevant sections coded.",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S11.html",
+        "completed_utc": "2026-11-15T18:38:18.300956+00:00"
+      }
+    },
+    {
+      "id": "S12",
+      "provider": "Google Fi / Google Account",
+      "title": "Fix common issues with 2-Step Verification",
+      "url": "https://support.google.com/accounts/answer/185834?hl=en",
+      "locator": "My phone was lost or stolen",
+      "accessed": "2026-11-14",
+      "displayed_date": "Not established in inspected excerpt",
+      "access_method": "web text",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "limitations": "No live account verification; selected relevant sections coded.",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S12.html",
+        "completed_utc": "2026-11-15T18:38:18.535669+00:00"
+      }
+    },
+    {
+      "id": "S13",
+      "provider": "AT&T",
+      "title": "Get a PIN to transfer your wireless number",
+      "url": "https://www.att.com/support/article/wireless/KM1447526/",
+      "displayed_date": "2026-08-21",
+      "accessed": "2026-11-14",
+      "access_method": "web text, targeted find",
+      "locator": "About Number Transfer PINs; AT&T Wireless; lost or broken device FAQ",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15; original November 14 full-page version remains unavailable",
+      "limitations": "Embedded FAQ content extracted from preserved application/json and inspected; no live account transaction or rendered UI validation.",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-http/capture_manifest.json",
+        "status": "captured_requires_content_review",
+        "raw_file": "S13.html",
+        "completed_utc": "2026-11-15T18:38:18.617309+00:00"
+      },
+      "faq_capture": "review/embedded_faq/S13_faq.txt"
+    },
+    {
+      "id": "S14",
+      "provider": "Verizon",
+      "title": "SIM Swapping",
+      "url": "https://www.verizon.com/about/account-security/sim-swapping",
+      "accessed": "2026-11-15",
+      "displayed_date": "not established",
+      "locator": "How do I remove SIM Protection?",
+      "evidence_type": "provider documentation",
+      "access_method": "web text and preserved HTTP response",
+      "archive_status": "New HTTP response preserved",
+      "capture_manifest": "captures/2026-11-15-followup/capture_manifest.json",
+      "limitations": "Provider instructions only; no observed enforcement or recovery outcome."
+    },
+    {
+      "id": "S15",
+      "provider": "Google Fi",
+      "title": "Sign in if you lost your security key",
+      "url": "https://support.google.com/fi/answer/9153624?hl=en",
+      "accessed": "2026-11-15",
+      "displayed_date": "not established",
+      "locator": "If you don\u2019t have another second step or forgot your password",
+      "evidence_type": "provider documentation",
+      "access_method": "web text and preserved HTTP response",
+      "archive_status": "New HTTP response preserved",
+      "capture_manifest": "captures/2026-11-15-followup/capture_manifest.json",
+      "limitations": "Provider instructions only; no observed enforcement or recovery outcome."
+    },
+    {
+      "id": "S16",
+      "provider": "Visible",
+      "title": "How to transfer or port your number out of Visible",
+      "url": "https://www.visible.com/m/help/setup-and-activation/port-out-transfer-out-of-visible",
+      "displayed_date": "not established",
+      "accessed": "2026-11-15",
+      "access_method": "web text and preserved HTTP response",
+      "locator": "Getting your Port-Out PIN > Locked Status, steps 1\u201310; text derivative lines 150\u2013198",
+      "limitations": "Port-out context; email unlock proof differs from SMS in S02. No live workflow or explanation of the discrepancy established.",
+      "evidence_type": "provider documentation",
+      "archive_status": "New HTTP response preserved November 15",
+      "new_capture": {
+        "manifest": "captures/2026-11-15-visible-followup/capture_manifest.json",
+        "raw_file": "S16.html",
+        "completed_utc": "2026-11-15T19:04:01.902280+00:00",
+        "status": "captured; relevant body text inspected"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "O01",
+      "provider": "Google Fi",
+      "source": "S01",
+      "scope": "Number Lock",
+      "property": "blocked_operations",
+      "status": "documented",
+      "value": "Transfer to another phone; port to another carrier",
+      "caveat": ""
+    },
+    {
+      "id": "O02",
+      "provider": "Google Fi",
+      "source": "S01",
+      "scope": "Number Lock removal / web",
+      "property": "proof",
+      "status": "documented",
+      "value": "Sign in and re-enter Google Account credentials",
+      "caveat": "Specific challenge factors and risk-dependent prompts not enumerated."
+    },
+    {
+      "id": "O03",
+      "provider": "Google Fi",
+      "source": "S01",
+      "scope": "Number Lock enabled / Google Account inaccessible",
+      "property": "recovery_constraint",
+      "status": "documented",
+      "value": "Fi cannot supply port-out parameters; recommends recovery email or recovery contact",
+      "caveat": "Does not establish permanent lockout or inability to recover Google Account."
+    },
+    {
+      "id": "O04",
+      "provider": "Google Fi",
+      "source": "S01",
+      "scope": "Number Lock removal",
+      "property": "delay",
+      "status": "not_specified_in_source",
+      "value": "Unknown",
+      "caveat": ""
+    },
+    {
+      "id": "O05",
+      "provider": "Visible",
+      "source": "S02",
+      "scope": "Line Lock",
+      "property": "blocked_operations",
+      "status": "documented",
+      "value": "Port-PIN generation; port-out; pairing new eSIM or physical SIM",
+      "caveat": ""
+    },
+    {
+      "id": "O06",
+      "provider": "Visible",
+      "source": "S02",
+      "scope": "Line Lock immediate unlock / app or web",
+      "property": "proof",
+      "status": "documented",
+      "value": "SMS six-digit code",
+      "caveat": "Source-specific SMS instruction; S16 separately describes registered-email verification in a port-out unlock procedure (O50). The discrepancy is unresolved."
+    },
+    {
+      "id": "O07",
+      "provider": "Visible",
+      "source": "S02",
+      "scope": "Line Lock removal",
+      "property": "delay",
+      "status": "documented",
+      "value": "30 minutes before restrictions lift",
+      "caveat": ""
+    },
+    {
+      "id": "O08",
+      "provider": "Visible",
+      "source": "S02",
+      "scope": "Line Lock",
+      "property": "notifications_and_relock",
+      "status": "documented",
+      "value": "Email and SMS; indefinite or scheduled unlock; cancellation and relock options",
+      "caveat": "Lapsed accounts have notification exceptions."
+    },
+    {
+      "id": "O09",
+      "provider": "Visible",
+      "source": "S03",
+      "scope": "Account access / lost phone",
+      "property": "recovery_route",
+      "status": "documented",
+      "value": "Contact Care; passkeys also supported for login",
+      "caveat": "No complete Line Lock removal exception procedure established."
+    },
+    {
+      "id": "O10",
+      "provider": "Visible",
+      "source": "S03",
+      "scope": "Account login versus lock removal",
+      "property": "proof_equivalence",
+      "status": "not_specified_in_source",
+      "value": "Unknown",
+      "caveat": "Do not assume a passkey used for login substitutes for the SMS required by S02. S16 now supplies an email-code instruction in a different workflow context; it does not establish passkey equivalence."
+    },
+    {
+      "id": "O11",
+      "provider": "Verizon",
+      "source": "S04",
+      "scope": "SIM Protection / My Verizon app",
+      "property": "blocked_operations",
+      "status": "documented",
+      "value": "SIM and device changes on all or selected numbers",
+      "caveat": ""
+    },
+    {
+      "id": "O12",
+      "provider": "Verizon",
+      "source": "S04",
+      "scope": "SIM Protection removal",
+      "property": "delay",
+      "status": "documented",
+      "value": "15 minutes; steps also mention possible additional delay",
+      "caveat": "Do not apply the 15-minute interval to Number Lock without separate support."
+    },
+    {
+      "id": "O13",
+      "provider": "Verizon",
+      "source": "S04",
+      "scope": "Number Lock",
+      "property": "blocked_operations",
+      "status": "documented",
+      "value": "Number Transfer PIN generation and port-out until disabled",
+      "caveat": ""
+    },
+    {
+      "id": "O14",
+      "provider": "Verizon",
+      "source": "S04",
+      "scope": "Lock removal / My Verizon app",
+      "property": "proof",
+      "status": "not_specified_in_source",
+      "value": "Unknown",
+      "caveat": "Toggle and confirmation instructions do not enumerate the authentication ceremony."
+    },
+    {
+      "id": "O15",
+      "provider": "Verizon",
+      "source": "S04",
+      "scope": "Lost-device lock removal",
+      "property": "recovery_route",
+      "status": "not_specified_in_source",
+      "value": "Unknown",
+      "caveat": "Source-specific unknown in S04. S10 adds a web route and S14 excludes direct staff disabling of SIM Protection, but neither establishes a complete lost-factor recovery procedure."
+    },
+    {
+      "id": "O16",
+      "provider": "US Mobile",
+      "source": "S05",
+      "scope": "Enhanced Security / line",
+      "property": "blocked_operations",
+      "status": "documented",
+      "value": "Port-out; network move; device change; usage-log download",
+      "caveat": "Provider says restrictions cover app and customer service; not independently tested."
+    },
+    {
+      "id": "O17",
+      "provider": "US Mobile",
+      "source": "S05",
+      "scope": "Enhanced Security activation",
+      "property": "prerequisite",
+      "status": "documented",
+      "value": "2FA enabled; feature enabled in Line Settings",
+      "caveat": ""
+    },
+    {
+      "id": "O18",
+      "provider": "US Mobile",
+      "source": "S05",
+      "scope": "High-risk changes / direct reauthorization",
+      "property": "availability",
+      "status": "announced_future",
+      "value": "Described as coming soon in March announcement",
+      "caveat": "Current deployment cannot be inferred.",
+      "followup": "S09 documents reauthentication for Enhanced Security; does not prove all originally announced operation coverage."
+    },
+    {
+      "id": "O19",
+      "provider": "US Mobile",
+      "source": "S05",
+      "scope": "Enhanced Security removal / lost device",
+      "property": "proof_and_recovery",
+      "status": "not_specified_in_source",
+      "value": "Unknown",
+      "caveat": "S05 does not establish removal proof or lost-device recovery. S08 later specifies password or authenticator confirmation for settings changes; S09 describes reauthentication for Enhanced Security. The unknown must not be generalized across the corpus.",
+      "followup": "S08 resolves lock-change proof in ordinary flow; complete lost-device recovery remains unresolved."
+    },
+    {
+      "id": "O20",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "Wireless tab / account lock",
+      "property": "blocked_operations",
+      "status": "documented",
+      "value": "SIM/eSIM and IMEI changes; upgrades; number changes; transfers; selected account and billing changes",
+      "caveat": "",
+      "audit_locator": "review/embedded_faq/S06_faq.txt"
+    },
+    {
+      "id": "O21",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "Wireless tab / lock removal",
+      "property": "role_and_channel",
+      "status": "documented",
+      "value": "Primary or secondary online access; AT&T app on a device active on account",
+      "caveat": "Not necessarily the specific lost phone; another eligible device might exist."
+    },
+    {
+      "id": "O22",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "Wireless tab / lock changes",
+      "property": "notifications",
+      "status": "documented",
+      "value": "Primary-holder email and SMS to each active wireless number",
+      "caveat": ""
+    },
+    {
+      "id": "O23",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "Standalone data-only tablets/hotspots and Wireless Home Phones",
+      "property": "assisted_route",
+      "status": "documented",
+      "value": "Contact support or visit store to lock or unlock",
+      "caveat": "Device-specific route; not a universal lost-smartphone exception."
+    },
+    {
+      "id": "O24",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "Wireless tab / provider exceptions",
+      "property": "exception_categories",
+      "status": "documented",
+      "value": "Error correction; legal obligations; account-owner death",
+      "caveat": "Listed categories do not specify identity proof or authorization mechanics.",
+      "audit_locator": "review/embedded_faq/S06_faq.txt"
+    },
+    {
+      "id": "O25",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "Single-device smartphone account / lost phone",
+      "property": "complete_recovery_path",
+      "status": "not_specified_in_source",
+      "value": "Unknown",
+      "caveat": "No conclusion that recovery is impossible."
+    },
+    {
+      "id": "O26",
+      "provider": "T-Mobile",
+      "source": "S07",
+      "scope": "Postpaid SIM Protection",
+      "property": "role_and_operations",
+      "status": "documented",
+      "value": "Blocks new SIM/eSIM-device move; authorized user can add; primary holder removes",
+      "caveat": ""
+    },
+    {
+      "id": "O27",
+      "provider": "T-Mobile",
+      "source": "S07",
+      "scope": "Prepaid SIM Protection",
+      "property": "availability",
+      "status": "documented",
+      "value": "Separate primary-line sign-in and management instructions",
+      "caveat": "Postpaid role rules not generalized to prepaid."
+    },
+    {
+      "id": "O28",
+      "provider": "T-Mobile",
+      "source": "S07",
+      "scope": "Port Out Protection",
+      "property": "scope_and_roles",
+      "status": "documented",
+      "value": "Per-line; postpaid primary holder removal; prepaid line user can contact support with extra security step",
+      "caveat": "Prepaid step not specified in visible text."
+    },
+    {
+      "id": "O29",
+      "provider": "T-Mobile",
+      "source": "S07",
+      "scope": "Lost/broken/stolen phone / cannot receive OTP",
+      "property": "alternative_proof",
+      "status": "documented",
+      "value": "Digital ID scan described as another way to complete 2FA",
+      "caveat": "Eligibility is now specified in O39: postpaid consumer accounts with voice lines. Applicability to each protection-removal operation remains unresolved; do not generalize to prepaid.",
+      "followup": "O39-O40 establish postpaid eligibility and proof steps; per-operation authorization still not independently observed."
+    },
+    {
+      "id": "O30",
+      "provider": "T-Mobile",
+      "source": "S07",
+      "scope": "Lost-device removal of each protection",
+      "property": "complete_recovery_path",
+      "status": "not_specified_in_source",
+      "value": "Unknown",
+      "caveat": "Generic alternative identity proof does not establish all subsequent authorization steps."
+    },
+    {
+      "id": "O31",
+      "provider": "US Mobile",
+      "source": "S08",
+      "scope": "Enhanced Security settings",
+      "property": "role_and_proof",
+      "status": "documented",
+      "value": "Owners/Admins; confirm change using password or authenticator app",
+      "caveat": "Login requirements remain separate."
+    },
+    {
+      "id": "O32",
+      "provider": "US Mobile",
+      "source": "S09",
+      "scope": "Enhanced Security actions",
+      "property": "reauthentication",
+      "status": "documented",
+      "value": "Provider describes reauthentication as implemented",
+      "caveat": "Expansion to additional sensitive operations remains future work in this source."
+    },
+    {
+      "id": "O33",
+      "provider": "US Mobile",
+      "source": "S08",
+      "scope": "Account sign-in",
+      "property": "fallback",
+      "status": "documented",
+      "value": "Password and 2FA remain available alongside passkeys",
+      "caveat": "Lost-passkey advice does not explain missing-second-factor recovery."
+    },
+    {
+      "id": "O34",
+      "provider": "Verizon",
+      "source": "S10",
+      "scope": "Website management",
+      "property": "role_and_channel",
+      "status": "documented",
+      "value": "Account Owner or Manager can manage protection through website",
+      "caveat": "Does not establish which lost-device users can satisfy login."
+    },
+    {
+      "id": "O35",
+      "provider": "Verizon",
+      "source": "S10",
+      "scope": "SIM Protection changes / web",
+      "property": "conditional_challenge",
+      "status": "documented",
+      "value": "Additional security steps if prompted",
+      "caveat": "Factors and risk conditions unspecified; not generalized to Number Lock."
+    },
+    {
+      "id": "O36",
+      "provider": "Visible",
+      "source": "S11",
+      "scope": "Password reset / SMS unavailable",
+      "property": "alternative_route",
+      "status": "documented",
+      "value": "Email reset offered for lost/stolen/broken device",
+      "caveat": "Does not establish MFA completion or lock-removal authorization. If the account email changed within the preceding 30 days, S11 directs the reset link to the previous email address; access to the current address alone may therefore be insufficient."
+    },
+    {
+      "id": "O37",
+      "provider": "Google Fi",
+      "source": "S12",
+      "scope": "Google Account / phone lost",
+      "property": "backup_options",
+      "status": "documented",
+      "value": "Previously enrolled alternatives include saved backup code, hardware key, or other-device passkey",
+      "caveat": "Requires availability of suitable previously configured proof; special account policies may differ."
+    },
+    {
+      "id": "O38",
+      "provider": "Google Fi",
+      "source": "S12",
+      "scope": "Google Account / no usable sign-in",
+      "property": "recovery_route",
+      "status": "documented",
+      "value": "Account recovery procedure referenced",
+      "caveat": "No guaranteed success; carrier-number transfer suggestion cannot override Fi lock requirements."
+    },
+    {
+      "id": "O39",
+      "provider": "T-Mobile",
+      "source": "S07",
+      "scope": "Digital ID verification",
+      "property": "eligibility",
+      "status": "documented",
+      "value": "Postpaid consumer accounts with voice lines",
+      "caveat": "Do not generalize to prepaid or business."
+    },
+    {
+      "id": "O40",
+      "provider": "T-Mobile",
+      "source": "S07",
+      "scope": "Digital ID verification / lost-phone OTP alternative",
+      "property": "procedure",
+      "status": "documented",
+      "value": "T-Mobile ID password; ID Verify; consent; accepted ID photo and selfie",
+      "caveat": "Prior verification plus ongoing biometric consent permits selfie verification; no measured completion rate."
+    },
+    {
+      "id": "O41",
+      "provider": "T-Mobile",
+      "source": "S07",
+      "scope": "Prepaid SIM Protection",
+      "property": "role_and_channel",
+      "status": "documented",
+      "value": "Primary Line must be signed in; website controls individual lines or entire account",
+      "caveat": "Does not establish prepaid lost-factor recovery."
+    },
+    {
+      "id": "O42",
+      "provider": "AT&T",
+      "source": "S13",
+      "scope": "Consumer Number Transfer PIN",
+      "property": "role_and_recovery_channel",
+      "status": "documented",
+      "value": "Primary online user; online request available for lost or broken device",
+      "caveat": "Wireless Account Lock must still be disabled before transfer. The lost/broken-device FAQ also states that the device must be eligible to unlock before requesting a Number Transfer PIN or signing up with a new provider. This device-unlock condition is distinct from Wireless Account Lock.",
+      "revision_note": "November 15 source audit adds previously omitted FAQ eligibility condition; no claim of backend enforcement.",
+      "audit_locator": "review/embedded_faq/S13_faq.txt"
+    },
+    {
+      "id": "O43",
+      "provider": "AT&T",
+      "source": "S13",
+      "scope": "Consumer Number Transfer PIN",
+      "property": "scope_and_expiry",
+      "status": "documented",
+      "value": "Same PIN for requested numbers on account; four-day expiry; new PIN invalidates earlier PINs",
+      "caveat": "Business expiry differs; not a SIM-change credential.",
+      "audit_locator": "review/embedded_faq/S13_faq.txt"
+    },
+    {
+      "id": "O44",
+      "provider": "AT&T",
+      "source": "S13",
+      "scope": "AT&T Prepaid number transfer",
+      "property": "credential_scope",
+      "status": "documented",
+      "value": "Number Transfer PIN not required",
+      "caveat": "Other prepaid requirements remain; not evidence of unauthenticated port-out.",
+      "audit_locator": "review/embedded_faq/S13_faq.txt"
+    },
+    {
+      "id": "O45",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "AT&T Prepaid / Wireless Account Lock changes",
+      "property": "role_and_channel",
+      "status": "documented",
+      "value": "AT&T app required; sign in, select number if shown, use account profile settings",
+      "caveat": "Does not establish complete lost-factor recovery.",
+      "coded": "2026-11-15",
+      "capture_locator": "S06.txt / AT&T Prepaid / How to turn Wireless Account Lock on or off"
+    },
+    {
+      "id": "O46",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "AT&T Prepaid / Wireless Account Lock changes",
+      "property": "proof",
+      "status": "documented",
+      "value": "SMS one-time code sent to the AT&T Prepaid device; enter code and validate",
+      "caveat": "Specific to the inspected prepaid instructions; do not import into postpaid proof claims.",
+      "coded": "2026-11-15",
+      "capture_locator": "S06.txt / AT&T Prepaid / How to turn Wireless Account Lock on or off"
+    },
+    {
+      "id": "O47",
+      "provider": "AT&T",
+      "source": "S06",
+      "scope": "AT&T Prepaid / standalone tablet or hotspot",
+      "property": "assisted_route",
+      "status": "documented",
+      "value": "Contact provider to manage Wireless Account Lock",
+      "caveat": "Establishes a help channel for these device types, not proof requirements or a universal smartphone exception.",
+      "coded": "2026-11-15",
+      "capture_locator": "S06.txt / AT&T Prepaid / How to turn Wireless Account Lock on or off"
+    },
+    {
+      "id": "O48",
+      "provider": "Verizon",
+      "source": "S14",
+      "scope": "SIM Protection removal",
+      "property": "support_authority",
+      "status": "documented",
+      "value": "Retail and customer-service representatives cannot disable SIM Protection; customer must use My Verizon website or app.",
+      "caveat": "Does not establish whether support can assist account-access recovery; not generalized to Number Lock."
+    },
+    {
+      "id": "O49",
+      "provider": "Google Fi",
+      "source": "S15",
+      "scope": "Lost security key / no other second step or forgotten password",
+      "property": "recovery_route",
+      "status": "documented",
+      "value": "Account recovery includes ownership questions and may request a reachable email or phone and a verification code.",
+      "caveat": "A reachable address is not documented as sufficient proof; no guarantee of success or Number Lock removal. The source addresses lost security keys, not every phone-loss configuration."
+    },
+    {
+      "id": "O50",
+      "provider": "Visible",
+      "source": "S16",
+      "scope": "Line Lock removal within port-out instructions / app or website",
+      "property": "proof",
+      "status": "documented",
+      "value": "After account sign-in and selection of an unlock interval, enter a six-digit code received at the registered email; the instructions then describe confirmation and a 30-minute cooldown before port-PIN generation.",
+      "caveat": "S02 describes SMS for immediate unlocking. Do not silently reconcile the channels, assume email works in every device-change context, or treat the described steps as tested enforcement. Account access remains a prerequisite."
+    }
+  ],
+  "supersedes": "carrier_evidence_v0.7.json",
+  "cross_source_issues": [
+    {
+      "id": "C01",
+      "sources": [
+        "S08",
+        "S09"
+      ],
+      "property": "Enhanced Security control granularity",
+      "status": "unresolved",
+      "description": "Help page describes an enable setting; technical article describes four granular flags/toggles. No live inspection resolves the presentation or coverage difference."
+    },
+    {
+      "sources": [
+        "S02",
+        "S16"
+      ],
+      "issue": "Different Line Lock unlock verification channels: SMS on the feature page, registered email within port-out instructions.",
+      "treatment": "Preserve both as scoped statements. No supported explanation of workflow variation, documentation drift, or error. Do not infer a universal SMS requirement or universal email alternative."
+    }
+  ],
+  "capture_note": "New HTTP captures dated November 15; not reconstructed November 14 snapshots. Captures do not imply full source recoding or backend validation."
+}

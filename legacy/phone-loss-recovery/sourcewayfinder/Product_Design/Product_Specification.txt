@@ -1,0 +1,77 @@
+SOURCEWAYFINDER — PRODUCT DESIGN AND EVALUATION PLAN
+Working design, November 21, 2026
+
+PURPOSE
+Help people understand the next steps official sources support for their situation, including prerequisites and unresolved conditions. The first planned release covers phone-number recovery and Social Security card replacement. A public website comes first; structured developer access follows.
+
+DECISIONS CONFIRMED WITH ABHISHEK
+A reusable framework across domains, beginning with two procedures.
+Independent monitoring of official public sources; voluntary organizational participation later.
+Automatic discovery from an organization’s website or content system.
+Versioned source evidence, periodic synchronization, and traceable rule changes.
+Automatic publication of updates that pass defined validation; ambiguous decisions explicitly remain unresolved.
+Evidence-backed issue reports to responsible source teams. Supporting-agency escalation uses verified, appropriate channels.
+Public users first, AI developers second.
+Paperclip is a separate, parked exploration.
+Research question: How can structured recovery guidance help AI assistants give accurate advice without overlooking recovery options supported by official sources?
+
+DESIGN DIRECTION
+Software product. Calm, legible public-service interface. SourceWayfinder is the user-approved working name. The approved tagline is “Understand your options. Find your next step.”
+Forest-green ink and controls, white surfaces, pale neutral background, serif display headings, system sans-serif interface text. Local fonts avoid external font requests. Consistent 48px controls, visible keyboard focus, and reduced-motion support.
+The primary visual is the actual task interface. The product brief prioritizes quick access to guidance. Marketing-skill patterns such as full-screen promotional sections, shader effects, decorative photographs and scroll scenes do not serve this task-oriented interface.
+Assumptions made for this design: a topic chooser precedes contextual questions; the first prototype is local and uses deterministic rules; the citizen-facing surface presents evidence and reports without research tables or authoring tools. These are implementation choices for review.
+
+INFORMATION ARCHITECTURE
+Home — choose a procedure and understand scope.
+Questions — one clear question per step, Yes / No / I’m not sure, previous-question navigation, editable answers.
+Results — supported route or clarification needed, next steps, remaining conditions, source details, official-service handoff, downloadable summary.
+Source library — URLs, review dates, coverage and retrieval limitations.
+Issue report — evidence and source URL, downloadable draft.
+Method and privacy — implementation status, data handling and independence.
+
+CURRENT PROTOTYPE
+index.html, styles.css and app.js implement a local interactive design.
+Phone flow covers Verizon consumer postpaid SIM Protection using three contextual questions.
+SSA flow covers a straight replacement using six questions carried from the earlier demo.
+All answers remain in page memory and reset on refresh. Downloaded files are user-controlled local exports.
+Issue preparation produces a local file. No owner notification, case number or acknowledgement is simulated.
+Source statuses and dates are fixed content. Monitoring and automatic approvals are not running.
+The new prototype is a separate design artifact beside the existing demo. Its rule implementation is not the paper’s verified engine and does not inherit the paper’s verification claims.
+The eventual phone release requires the other five brands and the appropriate operation-specific flows. Broad phone recovery is not established by a SIM Protection walkthrough.
+Free-text situation entry, intent interpretation and clarification are planned. The topic chooser provides a bounded interaction for the first design evaluation.
+
+SOURCE REVIEW LIMITS
+Verizon’s website-controls page was retrieved during this review on November 21. It describes Owner/Manager access, security settings and a post-disable delay. The interface avoids suggesting immediate SIM completion.
+SSA POMS fresh retrieval failed during this review. The interface carries the earlier demo’s source date and explicitly requires confirmation from SSA. Eligibility claims require renewed source verification before public release.
+No agency endorsement, adoption, actual recovery outcomes or report resolution has been established by this prototype.
+
+PRODUCTION DATA MODEL
+Source — owning organization, official URL, content type, access policy, retrieval/effective dates, immutable versions, hashes, status.
+Procedure — intended outcome, jurisdiction, audience, supported operations, source set and responsible contact when verified.
+Rule — version, conditions, positive supported actions, exceptions, timing, explicit uncertainty, exact source passages, effective/review dates, validation state.
+Change — old/new source versions, meaningful difference, affected rules, validation results, publication decision and actor.
+Issue — evidence, affected decisions, deduplication key, interpretation confidence, verified owner/channel, delivery status, response and resolution.
+Evaluation — immutable scenarios, independently reviewed expected answers, prose/rule references, outputs and analysis.
+Keep retrieved-source authenticity, semantic interpretation review, and implementation verification as separate recorded properties.
+
+MONITORING AND REPORTING WORKFLOW
+Discover candidate official pages from permitted sitemaps, links and connectors.
+Identify scope and authority; retain ambiguity where automatic classification is uncertain.
+Capture and compare content versions; identify dependent guidance.
+Run schema, referential, temporal, contradiction and scenario checks.
+Publish automatically only within the scope and thresholds established through evaluation. Additional agents agreeing does not establish correctness.
+Expose uncertainty for unresolved decisions and link the current official sources.
+Prepare evidence-backed potential-issue reports, deduplicate, verify routing and deliver under the deployment’s authorization policy.
+Track delivery separately from acknowledgement, owner confirmation, correction and verified resolution.
+Recheck corrected sources and affected rules before closing an issue.
+Measure false positives and overlooked changes; aggressive reporting volume is not a success metric.
+
+EVALUATION BEFORE PUBLIC RELEASE
+Reconcile every rule with authoritative current passages, including positive permissions, exceptions and timing.
+Compare structured guidance with equally informative source prose on independently reviewed unseen scenarios.
+Measure unsupported affirmative answers, unsupported negatives, correct next-step selection, explicit uncertainty and citation correctness.
+Evaluate document-change detection using dated natural changes and clearly labelled seeded changes; report precision, recall and missed consequential changes.
+Test task comprehension with people, including people with access needs where feasible and appropriate. Record recruitment, procedure and limitations.
+Perform automated and manual accessibility checks, keyboard and screen-reader review, mobile reflow and zoom tests.
+Measure issue usefulness through substantive owner/user feedback when available.
+

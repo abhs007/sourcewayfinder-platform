@@ -1,0 +1,521 @@
+[
+  {
+    "id": "att-A",
+    "provider": "att",
+    "variant": "A",
+    "question": "Your AT&T smartphone is unavailable. A page describes a Number Transfer PIN. Does that alone establish Wireless Account Lock removal?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. A transfer credential and lock removal have different requirements."
+      },
+      {
+        "id": "guarantee",
+        "label": "The Number Transfer PIN is itself permission to remove every account lock."
+      },
+      {
+        "id": "impossible",
+        "label": "A password reset completes the SIM replacement."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. A transfer credential and lock removal have different requirements.",
+    "sourceIds": [
+      "S06"
+    ],
+    "context": {
+      "provider": "att",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "att-B",
+    "provider": "att",
+    "variant": "B",
+    "question": "You have secondary access and an active account device with the app. What does this establish?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "The documented lock-control step, subject to its scope; not completed SIM replacement."
+      },
+      {
+        "id": "guarantee",
+        "label": "Secondary account access proves every later verification challenge is satisfied."
+      },
+      {
+        "id": "impossible",
+        "label": "The data-only device exception applies to all smartphones."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "The documented lock-control step, subject to its scope; not completed SIM replacement.",
+    "sourceIds": [
+      "S06"
+    ],
+    "context": {
+      "provider": "att",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "tmobile-A",
+    "provider": "tmobile",
+    "variant": "A",
+    "question": "A prepaid Primary Line holder loses their phone. Does the postpaid digital-ID alternative establish their prepaid recovery route?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. The postpaid eligibility must not be transferred to prepaid."
+      },
+      {
+        "id": "guarantee",
+        "label": "The postpaid ID method applies to every prepaid line."
+      },
+      {
+        "id": "impossible",
+        "label": "Email access alone removes prepaid SIM Protection."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. The postpaid eligibility must not be transferred to prepaid.",
+    "sourceIds": [
+      "S07"
+    ],
+    "context": {
+      "provider": "tmobile",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "tmobile-B",
+    "provider": "tmobile",
+    "variant": "B",
+    "question": "An Authorized User can add postpaid SIM Protection. Can that user necessarily remove it?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. The instructions reserve removal for the Primary Account Holder."
+      },
+      {
+        "id": "guarantee",
+        "label": "Anyone who can add the protection can also remove it."
+      },
+      {
+        "id": "impossible",
+        "label": "An Authorized User always has Primary Account Holder authority."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. The instructions reserve removal for the Primary Account Holder.",
+    "sourceIds": [
+      "S07"
+    ],
+    "context": {
+      "provider": "tmobile",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "verizon-A",
+    "provider": "verizon",
+    "variant": "A",
+    "question": "A Verizon user can reach the website but cannot satisfy an unspecified security prompt. Is successful removal established?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. A website route does not resolve an unspecified proof requirement."
+      },
+      {
+        "id": "guarantee",
+        "label": "Reaching the website proves every conditional prompt can be completed."
+      },
+      {
+        "id": "impossible",
+        "label": "Customer support is guaranteed to override the prompt."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. A website route does not resolve an unspecified proof requirement.",
+    "sourceIds": [
+      "S10"
+    ],
+    "context": {
+      "provider": "verizon",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "verizon-B",
+    "provider": "verizon",
+    "variant": "B",
+    "question": "Can a store directly turn off SIM Protection according to the inspected instructions?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. The documented control is through the app or website."
+      },
+      {
+        "id": "guarantee",
+        "label": "Any retail employee can directly disable the feature."
+      },
+      {
+        "id": "impossible",
+        "label": "Turning off Number Lock necessarily turns off SIM Protection too."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. The documented control is through the app or website.",
+    "sourceIds": [
+      "S14"
+    ],
+    "context": {
+      "provider": "verizon",
+      "plan": "postpaid",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "fi-A",
+    "provider": "fi",
+    "variant": "A",
+    "question": "Fi Number Lock is active and the linked Google Account is inaccessible. Does access to email alone guarantee port-out parameters?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. Account recovery, Number Lock and transfer parameters remain distinct."
+      },
+      {
+        "id": "guarantee",
+        "label": "An accessible email always guarantees account recovery."
+      },
+      {
+        "id": "impossible",
+        "label": "Fi must provide transfer parameters without account access."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. Account recovery, Number Lock and transfer parameters remain distinct.",
+    "sourceIds": [
+      "S01",
+      "S12"
+    ],
+    "context": {
+      "provider": "fi",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "fi-B",
+    "provider": "fi",
+    "variant": "B",
+    "question": "A person completes the documented Number Lock toggle. Has the number transfer itself completed?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. Protection removal is a different endpoint from a completed transfer."
+      },
+      {
+        "id": "guarantee",
+        "label": "Toggling Number Lock off completes the port automatically."
+      },
+      {
+        "id": "impossible",
+        "label": "Credential re-entry alone activates a new SIM."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. Protection removal is a different endpoint from a completed transfer.",
+    "sourceIds": [
+      "S01"
+    ],
+    "context": {
+      "provider": "fi",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "visible-A",
+    "provider": "visible",
+    "variant": "A",
+    "question": "Visible\u2019s Line Lock and port-out instructions name different verification channels. Which interpretation is supported?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "Preserve the discrepancy and ask which procedure applies; do not assume a bypass."
+      },
+      {
+        "id": "guarantee",
+        "label": "The email procedure proves SMS is never needed for any Line Lock change."
+      },
+      {
+        "id": "impossible",
+        "label": "The SMS page proves email can never be accepted for any operation."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "Preserve the discrepancy and ask which procedure applies; do not assume a bypass.",
+    "sourceIds": [
+      "S02",
+      "S16"
+    ],
+    "context": {
+      "provider": "visible",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "visible-B",
+    "provider": "visible",
+    "variant": "B",
+    "question": "A Visible customer resets their password without SMS. Does that alone prove Line Lock can be removed?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. Credential recovery does not establish lock-removal proof."
+      },
+      {
+        "id": "guarantee",
+        "label": "A recovered password is the same proof as a Line Lock confirmation."
+      },
+      {
+        "id": "impossible",
+        "label": "A reset password automatically disables Line Lock."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. Credential recovery does not establish lock-removal proof.",
+    "sourceIds": [
+      "S03",
+      "S02"
+    ],
+    "context": {
+      "provider": "visible",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "usmobile-A",
+    "provider": "usmobile",
+    "variant": "A",
+    "question": "US Mobile\u2019s lost-passkey advice mentions a password, while general sign-in retains 2FA. Can you infer a password-only bypass?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "No. Abbreviated advice does not establish that 2FA is waived."
+      },
+      {
+        "id": "guarantee",
+        "label": "The abbreviated password instruction conclusively waives 2FA."
+      },
+      {
+        "id": "impossible",
+        "label": "Change-confirmation proof is interchangeable with login proof."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "No. Abbreviated advice does not establish that 2FA is waived.",
+    "sourceIds": [
+      "S08"
+    ],
+    "context": {
+      "provider": "usmobile",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "no",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "no"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  },
+  {
+    "id": "usmobile-B",
+    "provider": "usmobile",
+    "variant": "B",
+    "question": "An account Owner already has a session and the named confirmation proof. What is established?",
+    "choices": [
+      {
+        "id": "supported",
+        "label": "A documented Enhanced Security management step; not completed SIM provisioning."
+      },
+      {
+        "id": "guarantee",
+        "label": "The settings change means a replacement SIM is already provisioned."
+      },
+      {
+        "id": "impossible",
+        "label": "An Owner never faces account sign-in requirements."
+      }
+    ],
+    "correctAnswer": "supported",
+    "explanation": "A documented Enhanced Security management step; not completed SIM provisioning.",
+    "sourceIds": [
+      "S08"
+    ],
+    "context": {
+      "provider": "usmobile",
+      "plan": "consumer",
+      "role": "owner",
+      "goal": "restore",
+      "resources": {
+        "session": "yes",
+        "password": "yes",
+        "email": "yes",
+        "authenticator": "no",
+        "sms": "no",
+        "activeDevice": "yes"
+      },
+      "protections": {
+        "sim": "yes",
+        "port": "yes"
+      }
+    }
+  }
+]

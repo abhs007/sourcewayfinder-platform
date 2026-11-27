@@ -2,6 +2,8 @@
 
 The MIT license covers project-authored software and documentation. It does not relicense third-party materials, source-provider instructions, trademarks or dependency packages.
 
+- The imported `legacy/phone-loss-recovery/` snapshot retains its original licenses and attribution. Its software and build/test documentation use MIT; original educational text, guidance summaries, task rubrics and research observations retain CC BY 4.0 under that subtree's `CONTENT_LICENSE.md`. The root MIT license does not override those content terms. The imported historical collection and assistance/review provenance remain identified in that subtree's `THIRD_PARTY_NOTICES.md`.
+
 - The AppArmor/seccomp profile work under `infra/paperclip/` derives from Moby's Apache-2.0 profiles. The upstream license is preserved in `infra/paperclip/UPSTREAM_LICENSE.txt`; source references, hashes and modifications are recorded in `security-profile-provenance.json` and the adjacent patches. Those upstream-derived materials retain their Apache-2.0 terms.
 - Paperclip, Cloudflare tools, React and other installed dependencies retain their respective licenses. Dependencies and container images are obtained from their upstream distributions; this repository does not relicense them.
 - Official guidance quoted or referenced in domain proposals belongs to its respective source provider where applicable. Verizon, Google, Social Security Administration and other names identify the sources; they do not imply endorsement or affiliation.

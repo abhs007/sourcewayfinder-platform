@@ -14,6 +14,10 @@ This source tree contains no operator credentials or private survey responses. F
 
 See [the account-recovery and website update](docs/PRODUCT_ENHANCEMENTS_2026-11-26.md), [publication review](docs/OPEN_SOURCE_PUBLICATION_2026-11-26.md) and [security guidance](SECURITY.md).
 
+## Repository consolidation
+
+This is the active repository for both the newer platform and the preserved original website. The original research navigator and standalone website/survey source are retained under [`legacy/`](legacy/README.md), with exact source hashes and their existing licenses. See [the consolidation record](docs/REPOSITORY_CONSOLIDATION_2026-11-26.md). `npm run check:legacy` verifies and builds those applications without changing the live website or survey database.
+
 ## Start locally
 
 Use Node 26.13.1 and the committed lockfile:

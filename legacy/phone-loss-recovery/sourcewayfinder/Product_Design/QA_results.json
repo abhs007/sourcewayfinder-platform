@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-21",
+  "passed": [
+    "Skip link is first keyboard target",
+    "Verizon supported route",
+    "Unknown access remains unresolved",
+    "Edit and back preserve answers",
+    "SSA positive path remains qualified",
+    "Summary download",
+    "SSA out-of-scope and unknown route",
+    "Issue draft downloads without sending",
+    "Reflow 320px",
+    "Reflow 390px",
+    "Reflow 768px",
+    "Reflow 1024px",
+    "Reflow 1440px",
+    "Reduced motion",
+    "Refresh clears answers",
+    "No browser runtime errors"
+  ],
+  "errors": []
+}
