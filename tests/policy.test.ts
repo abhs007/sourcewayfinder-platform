@@ -436,6 +436,90 @@ describe('policy gates against actual local D1', () => {
       code: 'EVIDENCE_INCOMPLETE',
     });
   });
+  it('admits larger evidence only for a human-registered exact Google help profile', async () => {
+    await s.registerSource(human, {
+      id: 'google_fixture',
+      flowId: 'fictional',
+      title: 'Synthetic acquisition profile test',
+      url: 'https://support.google.com/accounts/answer/185834?hl=en',
+      approvedOrigin: 'https://support.google.com',
+      approvedPath: '/accounts/answer/185834',
+    });
+    await expect(
+      s.reserveEvidence(collector, {
+        id: 'large_google',
+        sourceId: 'google_fixture',
+        rawSha256: h,
+        bytes: 1048577,
+        chunks: 9,
+      }),
+    ).resolves.toEqual({ id: 'large_google', complete: false });
+    await expect(
+      s.reserveEvidence(collector, {
+        id: 'large_default',
+        sourceId: 'official_test',
+        rawSha256: h,
+        bytes: 1048577,
+        chunks: 9,
+      }),
+    ).rejects.toMatchObject({ code: 'EVIDENCE_SIZE' });
+    await expect(
+      s.reserveEvidence(collector, {
+        id: 'large_unknown',
+        sourceId: 'not_registered',
+        rawSha256: h,
+        bytes: 1048577,
+        chunks: 9,
+      }),
+    ).rejects.toMatchObject({ code: 'EVIDENCE_SIZE' });
+    await expect(
+      s.reserveEvidence(collector, {
+        id: 'above_google',
+        sourceId: 'google_fixture',
+        rawSha256: h,
+        bytes: 2097153,
+        chunks: 17,
+      }),
+    ).rejects.toMatchObject({ code: 'EVIDENCE_SIZE' });
+  });
+  it('cannot reuse an extended source reservation to bypass an ordinary source limit', async () => {
+    await s.registerSource(human, {
+      id: 'google_reuse_fixture',
+      flowId: 'fictional',
+      title: 'Synthetic profile boundary',
+      url: 'https://support.google.com/accounts/answer/185834?hl=en',
+      approvedOrigin: 'https://support.google.com',
+      approvedPath: '/accounts/answer/185834',
+    });
+    const raw = new Uint8Array(1048577).fill(65),
+      rawHash = await sha256(raw);
+    await s.reserveEvidence(collector, {
+      id: 'oversized_reuse',
+      sourceId: 'google_reuse_fixture',
+      rawSha256: rawHash,
+      bytes: raw.length,
+      chunks: 9,
+    });
+    for (let ordinal = 0; ordinal < 9; ordinal++)
+      await s.evidenceChunk(collector, 'oversized_reuse', ordinal, {
+        base64: Buffer.from(raw.subarray(ordinal * 131072, (ordinal + 1) * 131072)).toString(
+          'base64',
+        ),
+      });
+    await s.completeEvidence(collector, 'oversized_reuse');
+    const normalizedText = 'Invented source for an isolated evidence-limit test only.';
+    await expect(
+      s.sourceCheck(collector, {
+        sourceId: 'official_test',
+        sourceVersionId: 'oversized_version',
+        snapshotSha256: rawHash,
+        normalizedSha256: await sha256(normalizedText),
+        normalizedText,
+        extractorVersion: 'fictional-v1',
+        evidenceId: 'oversized_reuse',
+      }),
+    ).rejects.toMatchObject({ code: 'EVIDENCE_MISSING' });
+  });
   it('rejects fixtures in production and fails closed after 72 hours', async () => {
     s.env.ENVIRONMENT = 'production';
     await expect(candidate()).rejects.toMatchObject({ code: 'FIXTURE_REJECTED' });

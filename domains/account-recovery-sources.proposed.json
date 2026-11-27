@@ -1,0 +1,50 @@
+[
+  {
+    "id": "google-lost-factor",
+    "flowId": "google-lost-second-factor",
+    "title": "Google: Fix common issues with 2-Step Verification",
+    "url": "https://support.google.com/accounts/answer/185834?hl=en",
+    "approvedOrigin": "https://support.google.com",
+    "approvedPath": "/accounts/answer/185834",
+    "requiredPhrases": [
+      "Another phone signed in to your Google Account."
+    ],
+    "acquisition": "https"
+  },
+  {
+    "id": "google-lost-recovery",
+    "flowId": "google-lost-second-factor",
+    "title": "Google: Recover your Google Account or Gmail",
+    "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+    "approvedOrigin": "https://support.google.com",
+    "approvedPath": "/accounts/answer/7682439",
+    "requiredPhrases": [
+      "Do not give out your passwords or verification codes."
+    ],
+    "acquisition": "https"
+  },
+  {
+    "id": "google-compromised",
+    "flowId": "google-compromised-account",
+    "title": "Google: Secure a hacked or compromised account",
+    "url": "https://support.google.com/accounts/answer/6294825?hl=en",
+    "approvedOrigin": "https://support.google.com",
+    "approvedPath": "/accounts/answer/6294825",
+    "requiredPhrases": [
+      "Someone changed your account info, like your password or recovery phone number."
+    ],
+    "acquisition": "https"
+  },
+  {
+    "id": "google-compromised-recovery",
+    "flowId": "google-compromised-account",
+    "title": "Google: Recover your Google Account or Gmail",
+    "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+    "approvedOrigin": "https://support.google.com",
+    "approvedPath": "/accounts/answer/7682439",
+    "requiredPhrases": [
+      "Do not give out your passwords or verification codes."
+    ],
+    "acquisition": "https"
+  }
+]

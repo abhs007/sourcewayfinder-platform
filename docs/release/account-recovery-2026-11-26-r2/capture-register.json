@@ -1,0 +1,62 @@
+[
+  {
+    "sourceId": "google-lost-factor",
+    "sourceVersionId": "v_ce01c9fa48b8d697869679cdd2524d1dd018610ea39e6bce92dcf2f6fd3c",
+    "evidenceId": "e_ec7696170608a18564520d9519cbce8336f01d82ead556e5361c28c522d5",
+    "snapshotSha256": "ec7696170608a18564520d9519cbce8336f01d82ead556e5361c28c522d51f83",
+    "normalizedSha256": "f214f02860387b06956f6b492bde0e7e06fb73bf9f1b2eb923dc28f8f0a15dab",
+    "extractorVersion": "parse5-content-v4:main:https",
+    "bytes": 1630396,
+    "url": "https://support.google.com/accounts/answer/185834?hl=en",
+    "checkedAt": "2026-11-27T07:13:10.015Z",
+    "normalizedTextBytes": 9571,
+    "registeredInPolicy": false,
+    "rawFile": "domains/research/account-recovery-2026-11-26-r2/ec7696170608a18564520d9519cbce8336f01d82ead556e5361c28c522d51f83.html",
+    "textFile": "domains/research/account-recovery-2026-11-26-r2/f214f02860387b06956f6b492bde0e7e06fb73bf9f1b2eb923dc28f8f0a15dab.txt"
+  },
+  {
+    "sourceId": "google-lost-recovery",
+    "sourceVersionId": "v_029e276d4961751dd85e6d45739163efd7915f4350065dcb7655acafc3cc",
+    "evidenceId": "e_b005f044a35efaea4ab42bd7a2abf46260e2cc9d33aa65390fcc1343d43a",
+    "snapshotSha256": "b005f044a35efaea4ab42bd7a2abf46260e2cc9d33aa65390fcc1343d43a71fd",
+    "normalizedSha256": "7c1b9cbd8e7b20cd72adb42e1ce109356e1ff3546ea6af21f52cc3a777a7bc5e",
+    "extractorVersion": "parse5-content-v4:main:https",
+    "bytes": 1618049,
+    "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+    "checkedAt": "2026-11-27T07:13:10.976Z",
+    "normalizedTextBytes": 4816,
+    "registeredInPolicy": false,
+    "rawFile": "domains/research/account-recovery-2026-11-26-r2/b005f044a35efaea4ab42bd7a2abf46260e2cc9d33aa65390fcc1343d43a71fd.html",
+    "textFile": "domains/research/account-recovery-2026-11-26-r2/7c1b9cbd8e7b20cd72adb42e1ce109356e1ff3546ea6af21f52cc3a777a7bc5e.txt"
+  },
+  {
+    "sourceId": "google-compromised",
+    "sourceVersionId": "v_659647709afabd7fe1458ff3ab062985ac6fb69c8b5f7201f046b76f9576",
+    "evidenceId": "e_de04ab5d8eff5793c51c6f1e3829b56524da93b0a51a2ee315c0505b78d8",
+    "snapshotSha256": "de04ab5d8eff5793c51c6f1e3829b56524da93b0a51a2ee315c0505b78d837aa",
+    "normalizedSha256": "2c2dbaaa6daed0f68ea8defe6113c0d87658d342ca8872abcb9fd00d937b0ac0",
+    "extractorVersion": "parse5-content-v4:main:https",
+    "bytes": 1641395,
+    "url": "https://support.google.com/accounts/answer/6294825?hl=en",
+    "checkedAt": "2026-11-27T07:13:11.644Z",
+    "normalizedTextBytes": 17670,
+    "registeredInPolicy": false,
+    "rawFile": "domains/research/account-recovery-2026-11-26-r2/de04ab5d8eff5793c51c6f1e3829b56524da93b0a51a2ee315c0505b78d837aa.html",
+    "textFile": "domains/research/account-recovery-2026-11-26-r2/2c2dbaaa6daed0f68ea8defe6113c0d87658d342ca8872abcb9fd00d937b0ac0.txt"
+  },
+  {
+    "sourceId": "google-compromised-recovery",
+    "sourceVersionId": "v_982e81df54497e395b0c6126bed8af7a6151ce3542a41b36ce58a5e7eb0d",
+    "evidenceId": "e_67055d81780b578c0470ae8e9f94eb39b211057d29d377e98fa688e0ed72",
+    "snapshotSha256": "67055d81780b578c0470ae8e9f94eb39b211057d29d377e98fa688e0ed722572",
+    "normalizedSha256": "7c1b9cbd8e7b20cd72adb42e1ce109356e1ff3546ea6af21f52cc3a777a7bc5e",
+    "extractorVersion": "parse5-content-v4:main:https",
+    "bytes": 1618455,
+    "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+    "checkedAt": "2026-11-27T07:13:12.431Z",
+    "normalizedTextBytes": 4816,
+    "registeredInPolicy": false,
+    "rawFile": "domains/research/account-recovery-2026-11-26-r2/67055d81780b578c0470ae8e9f94eb39b211057d29d377e98fa688e0ed722572.html",
+    "textFile": "domains/research/account-recovery-2026-11-26-r2/7c1b9cbd8e7b20cd72adb42e1ce109356e1ff3546ea6af21f52cc3a777a7bc5e.txt"
+  }
+]

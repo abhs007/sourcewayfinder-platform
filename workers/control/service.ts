@@ -1,5 +1,10 @@
 import { digest, sha256, validateBundle, type Bundle } from '../../packages/core/index.js';
 import { HttpError, requireHuman, requireScope, type Actor } from './auth.js';
+import {
+  DEFAULT_SOURCE_BYTES,
+  GOOGLE_HELP_SOURCE_BYTES,
+  sourceDocumentLimit,
+} from '../../packages/core/source-policy.js';
 
 export interface ControlEnv {
   CONTROL_DB: D1Database;
@@ -328,10 +333,27 @@ export class ControlService {
       h = hash(b.rawSha256),
       bytes = Number(b.bytes),
       chunks = Number(b.chunks);
+    let limit = DEFAULT_SOURCE_BYTES;
+    if (
+      bytes > DEFAULT_SOURCE_BYTES &&
+      bytes <= GOOGLE_HELP_SOURCE_BYTES &&
+      typeof b.sourceId === 'string'
+    ) {
+      const source = await this.one(
+        'SELECT * FROM source_registry WHERE id=? AND enabled=1',
+        id(b.sourceId),
+      );
+      if (source)
+        limit = sourceDocumentLimit({
+          url: source.url,
+          approvedOrigin: source.approved_origin,
+          approvedPath: source.approved_path,
+        });
+    }
     if (
       !Number.isInteger(bytes) ||
       bytes < 1 ||
-      bytes > 1048576 ||
+      bytes > limit ||
       !Number.isInteger(chunks) ||
       chunks < 1 ||
       chunks > 16 ||
@@ -340,7 +362,7 @@ export class ControlService {
       throw new HttpError(
         400,
         'EVIDENCE_SIZE',
-        'Evidence must be 1 byte to 1 MiB in 128 KiB chunks.',
+        'Evidence must fit its registered source profile and use 128 KiB chunks.',
       );
     const db = this.env.EVIDENCE_DB;
     const existing = await db.prepare('SELECT * FROM evidence WHERE id=?').bind(eid).first<Row>();
@@ -479,7 +501,16 @@ export class ControlService {
     )
       .bind(evidenceId)
       .first<Row>();
-    if (!evidence || evidence.raw_sha256 !== rawHash)
+    if (
+      !evidence ||
+      evidence.raw_sha256 !== rawHash ||
+      evidence.bytes >
+        sourceDocumentLimit({
+          url: source.url,
+          approvedOrigin: source.approved_origin,
+          approvedPath: source.approved_path,
+        })
+    )
       throw new HttpError(
         409,
         'EVIDENCE_MISSING',

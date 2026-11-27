@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { sourceDocumentLimit } from '../../../packages/core/source-policy';
 import {
   registrationPlan,
   type RegistrationPacket,
@@ -126,6 +127,11 @@ export function Registration({
                   <dt>Allowed path</dt>
                   <dd>
                     <code>{source.approvedPath}</code>
+                  </dd>
+                  <dt>Raw document limit</dt>
+                  <dd>
+                    {sourceDocumentLimit(source) / (1024 * 1024)} MiB; collection uses the exact
+                    registered URL.
                   </dd>
                 </dl>
               </li>

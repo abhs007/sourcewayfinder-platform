@@ -1,0 +1,12 @@
+{
+  "flowId": "google-lost-second-factor",
+  "sourceVersionIds": [
+    "v_ce01c9fa48b8d697869679cdd2524d1dd018610ea39e6bce92dcf2f6fd3c",
+    "v_029e276d4961751dd85e6d45739163efd7915f4350065dcb7655acafc3cc"
+  ],
+  "interpretation": "Bounded routing for an adult using their own personal Google account when a phone or second factor is unavailable. Previously configured verification options are suggestions within Google sign-in, never a guarantee. Managed accounts, uncertain scope and Advanced Protection are handed to official instructions. A missing or unknown password uses the official recovery route.",
+  "uncertainties": [
+    "Google decides which verification options it offers and whether ownership is established.",
+    "The adult-only scope and conservative unknown/out-of-scope handoffs are project scope decisions, not universal Google eligibility findings."
+  ]
+}

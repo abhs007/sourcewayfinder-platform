@@ -1,5 +1,67 @@
 import { test, expect } from '@playwright/test';
 import packet from '../../domains/verizon-sim-protection/registration.proposed.json' with { type: 'json' };
+import lostFactor from '../../domains/google-lost-second-factor/registration.proposed.json' with { type: 'json' };
+import compromised from '../../domains/google-compromised-account/registration.proposed.json' with { type: 'json' };
+
+for (const [label, proposed] of [
+  ['Google lost second factor', lostFactor],
+  ['Google compromised account', compromised],
+] as const) {
+  test(`${label} registration requires an owner action and saves distinct source boundaries`, async ({
+    page,
+  }) => {
+    const flows: any[] = [],
+      sources: any[] = [],
+      writes: any[] = [];
+    await page.route('**/admin/v1/**', async (route) => {
+      const request = route.request(),
+        path = new URL(request.url()).pathname;
+      if (request.method() === 'GET')
+        return route.fulfill({
+          json: {
+            csrfToken: 'fictional-registration-only',
+            flows,
+            sources,
+            proposals: [],
+            releases: [],
+            audit: [],
+          },
+        });
+      const body = request.postDataJSON();
+      writes.push({ path, body });
+      if (path === '/admin/v1/flows') flows.push({ ...body, status: 'under_review' });
+      else if (path === '/admin/v1/sources')
+        sources.push({
+          id: body.id,
+          flow_id: body.flowId,
+          title: body.title,
+          url: body.url,
+          approved_origin: body.approvedOrigin,
+          approved_path: body.approvedPath,
+          enabled: 1,
+        });
+      else throw Error('Unexpected mutation');
+      return route.fulfill({ json: { id: body.id } });
+    });
+    await page.goto('http://127.0.0.1:5174');
+    await page.getByRole('button', { name: `Review ${label} setup`, exact: true }).click();
+    const submit = page.getByRole('button', { name: 'Register flow and sources', exact: true });
+    await expect(submit).toBeDisabled();
+    expect(writes).toEqual([]);
+    await expect(page.getByRole('region', { name: 'Proposed registration' })).toContainText(
+      proposed.flow.scope,
+    );
+    await expect(
+      page.getByText('2 MiB; collection uses the exact registered URL.', { exact: true }),
+    ).toHaveCount(2);
+    await page.getByRole('checkbox').check();
+    await submit.click();
+    await expect(page.getByRole('status')).toContainText('Registration verified');
+    expect(writes.map((write) => write.body)).toEqual([proposed.flow, ...proposed.sources]);
+    expect(flows[0].status).toBe('under_review');
+    expect(sources.map((source) => source.flow_id)).toEqual([proposed.flow.id, proposed.flow.id]);
+  });
+}
 
 // UI wiring only: intercepted registration requests, no source fetch or semantic acceptance.
 test('owner registration survives a lost response and records only missing boundaries', async ({

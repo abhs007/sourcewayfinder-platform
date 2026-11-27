@@ -1,0 +1,10 @@
+{
+  "sourceId": "google-lost-recovery",
+  "sourceVersionId": "v_029e276d4961751dd85e6d45739163efd7915f4350065dcb7655acafc3cc",
+  "evidenceId": "e_b005f044a35efaea4ab42bd7a2abf46260e2cc9d33aa65390fcc1343d43a",
+  "snapshotSha256": "b005f044a35efaea4ab42bd7a2abf46260e2cc9d33aa65390fcc1343d43a71fd",
+  "normalizedSha256": "7c1b9cbd8e7b20cd72adb42e1ce109356e1ff3546ea6af21f52cc3a777a7bc5e",
+  "extractorVersion": "parse5-content-v4:main:https",
+  "bytes": 1618049,
+  "url": "https://support.google.com/accounts/answer/7682439?hl=en"
+}

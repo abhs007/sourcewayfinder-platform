@@ -1,0 +1,257 @@
+{
+  "schemaVersion": "1.0",
+  "usage": "production_candidate",
+  "flowId": "google-compromised-account",
+  "scope": "English guidance for an adult securing their own personal Google account or Gmail after suspected unauthorized activity. It selects an official recovery or review route; it does not diagnose compromise, assess financial loss or guarantee account security.",
+  "entryQuestionId": "account-scope",
+  "questions": [
+    {
+      "id": "account-scope",
+      "prompt": "Is this your own personal Google account, as an adult?",
+      "choices": [
+        {
+          "id": "personal",
+          "label": "Yes, my personal account"
+        },
+        {
+          "id": "managed",
+          "label": "It is a work, school or managed account"
+        },
+        {
+          "id": "other",
+          "label": "It is for a child or someone else"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ],
+      "help": "This guide never asks for an email address, password, recovery code or identity document."
+    },
+    {
+      "id": "can-sign-in",
+      "prompt": "Can you sign in to the Google account now?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes"
+        },
+        {
+          "id": "no",
+          "label": "No"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "concern",
+      "prompt": "What makes you think someone else may have accessed it?",
+      "choices": [
+        {
+          "id": "activity",
+          "label": "An unfamiliar security event"
+        },
+        {
+          "id": "device",
+          "label": "A device I do not recognize"
+        },
+        {
+          "id": "other",
+          "label": "Something else or I am not sure"
+        },
+        {
+          "id": "unknown",
+          "label": "I do not know"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "questionId": "account-scope",
+      "choiceId": "managed",
+      "targetType": "outcome",
+      "targetId": "managed-account"
+    },
+    {
+      "questionId": "account-scope",
+      "choiceId": "other",
+      "targetType": "outcome",
+      "targetId": "outside-scope"
+    },
+    {
+      "questionId": "account-scope",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "confirm-scope"
+    },
+    {
+      "questionId": "account-scope",
+      "choiceId": "personal",
+      "targetType": "question",
+      "targetId": "can-sign-in"
+    },
+    {
+      "questionId": "can-sign-in",
+      "choiceId": "yes",
+      "targetType": "question",
+      "targetId": "concern"
+    },
+    {
+      "questionId": "can-sign-in",
+      "choiceId": "no",
+      "targetType": "outcome",
+      "targetId": "recover-access"
+    },
+    {
+      "questionId": "can-sign-in",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "check-access"
+    },
+    {
+      "questionId": "concern",
+      "choiceId": "activity",
+      "targetType": "outcome",
+      "targetId": "review-events"
+    },
+    {
+      "questionId": "concern",
+      "choiceId": "device",
+      "targetType": "outcome",
+      "targetId": "review-devices"
+    },
+    {
+      "questionId": "concern",
+      "choiceId": "other",
+      "targetType": "outcome",
+      "targetId": "review-security"
+    },
+    {
+      "questionId": "concern",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "review-security"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "managed-account",
+      "title": "Check with your account administrator",
+      "nextStep": "Google notes that personal-account recovery steps may not work for work, school or other managed accounts. Check the official guidance and contact your administrator.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-compromised-recovery"
+      ]
+    },
+    {
+      "id": "outside-scope",
+      "title": "Use the official route for that account",
+      "nextStep": "This draft is limited to an adult recovering their own personal Google account. Open Google’s account help for the appropriate route.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-compromised-recovery"
+      ]
+    },
+    {
+      "id": "confirm-scope",
+      "title": "Confirm which account needs help",
+      "nextStep": "Check whether the account is personal or managed before choosing a recovery process. Use Google’s official account help if you are unsure.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-compromised-recovery"
+      ]
+    },
+    {
+      "id": "recover-access",
+      "title": "Start with Google’s account recovery route",
+      "nextStep": "If you cannot sign in, use the account recovery link in Google’s compromised-account guide. Recovery options and ownership checks are controlled by Google.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-compromised",
+        "google-compromised-recovery"
+      ]
+    },
+    {
+      "id": "check-access",
+      "title": "Check access through Google’s official help",
+      "nextStep": "Start with Google’s compromised-account guide and confirm whether you can sign in. Do not assume that a current session proves nobody else has access.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-compromised"
+      ]
+    },
+    {
+      "id": "review-events",
+      "title": "Review unfamiliar security activity",
+      "nextStep": "Follow Google’s compromised-account instructions to review recent security events and respond to activity you do not recognize. Follow the guide’s password and additional security steps.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-compromised"
+      ]
+    },
+    {
+      "id": "review-devices",
+      "title": "Review devices using your account",
+      "nextStep": "Use Google’s compromised-account guide to review connected devices and follow its steps for devices you do not recognize. Continue with its password and additional security checks.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-compromised"
+      ]
+    },
+    {
+      "id": "review-security",
+      "title": "Use Google’s full compromised-account checklist",
+      "nextStep": "Review the warning signs and security checklist on Google’s official compromised-account page. This flow does not diagnose whether an account was hacked or establish that it is secure.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-compromised"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "google-compromised",
+      "sourceVersionId": "v_659647709afabd7fe1458ff3ab062985ac6fb69c8b5f7201f046b76f9576",
+      "snapshotSha256": "de04ab5d8eff5793c51c6f1e3829b56524da93b0a51a2ee315c0505b78d837aa",
+      "url": "https://support.google.com/accounts/answer/6294825?hl=en",
+      "title": "Google: Secure a hacked or compromised account",
+      "passage": "Someone changed your account info, like your password or recovery phone number."
+    },
+    {
+      "id": "google-compromised-recovery",
+      "sourceVersionId": "v_982e81df54497e395b0c6126bed8af7a6151ce3542a41b36ce58a5e7eb0d",
+      "snapshotSha256": "67055d81780b578c0470ae8e9f94eb39b211057d29d377e98fa688e0ed722572",
+      "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+      "title": "Google: Recover your Google Account or Gmail",
+      "passage": "Do not give out your passwords or verification codes."
+    }
+  ]
+}

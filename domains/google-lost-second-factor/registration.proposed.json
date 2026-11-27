@@ -1,0 +1,26 @@
+{
+  "flow": {
+    "id": "google-lost-second-factor",
+    "title": "Google sign-in after losing a phone or second factor",
+    "scope": "English guidance for an adult with their own personal Google account whose primary phone or usual second step is unavailable. Excludes managed accounts, child/representative recovery and detailed Advanced Protection recovery.",
+    "officialUrl": "https://support.google.com/accounts/answer/185834?hl=en"
+  },
+  "sources": [
+    {
+      "id": "google-lost-factor",
+      "flowId": "google-lost-second-factor",
+      "title": "Google: Fix common issues with 2-Step Verification",
+      "url": "https://support.google.com/accounts/answer/185834?hl=en",
+      "approvedOrigin": "https://support.google.com",
+      "approvedPath": "/accounts/answer/185834"
+    },
+    {
+      "id": "google-lost-recovery",
+      "flowId": "google-lost-second-factor",
+      "title": "Google: Recover your Google Account or Gmail",
+      "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+      "approvedOrigin": "https://support.google.com",
+      "approvedPath": "/accounts/answer/7682439"
+    }
+  ]
+}

@@ -6,8 +6,13 @@ import { mkdir, readFile, writeFile, rename, open, unlink, lstat } from 'node:fs
 import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse } from 'parse5';
+import {
+  DEFAULT_SOURCE_BYTES,
+  sourceDocumentLimit,
+  sourceQueryAllowed,
+} from '../packages/core/source-policy.js';
 
-export const MAX_BYTES = 1024 * 1024,
+export const MAX_BYTES = DEFAULT_SOURCE_BYTES,
   MAX_TEXT_BYTES = 100 * 1024,
   EXTRACTOR_VERSION = 'parse5-content-v4';
 export type SourceConfig = {
@@ -97,7 +102,8 @@ export function assertSourceUrl(raw: string, source: SourceConfig): URL {
     url.username ||
     url.password ||
     url.port ||
-    url.search ||
+    !sourceQueryAllowed(url) ||
+    url.search !== new URL(source.url).search ||
     url.hash ||
     url.origin !== source.approvedOrigin ||
     url.pathname !== source.approvedPath
@@ -119,15 +125,22 @@ export async function resolvePublic(hostname: string): Promise<{ address: string
   const selected = addresses.find((a) => a.family === 4) ?? addresses[0]!;
   return { address: selected.address, family: selected.family as 4 | 6 };
 }
-export function assertResponseLength(contentLength: string | undefined, total: number) {
+export function assertResponseLength(
+  contentLength: string | undefined,
+  total: number,
+  limit = MAX_BYTES,
+) {
   if (
-    total > MAX_BYTES ||
-    (contentLength !== undefined &&
-      (!/^\d+$/.test(contentLength) || Number(contentLength) > MAX_BYTES))
+    total > limit ||
+    (contentLength !== undefined && (!/^\d+$/.test(contentLength) || Number(contentLength) > limit))
   )
     throw Error('SOURCE_TOO_LARGE');
 }
-async function requestPinned(url: URL, headers: Record<string, string>): Promise<RawResponse> {
+async function requestPinned(
+  url: URL,
+  headers: Record<string, string>,
+  limit = MAX_BYTES,
+): Promise<RawResponse> {
   const address = await resolvePublic(url.hostname);
   return new Promise((accept, reject) => {
     const req = request(
@@ -159,7 +172,7 @@ async function requestPinned(url: URL, headers: Record<string, string>): Promise
           if (typeof value === 'string') out[key] = value;
         }
         try {
-          assertResponseLength(out['content-length'], 0);
+          assertResponseLength(out['content-length'], 0, limit);
         } catch (e) {
           res.destroy();
           reject(e);
@@ -170,7 +183,7 @@ async function requestPinned(url: URL, headers: Record<string, string>): Promise
         res.on('data', (chunk: Buffer) => {
           size += chunk.length;
           try {
-            assertResponseLength(undefined, size);
+            assertResponseLength(undefined, size, limit);
             chunks.push(chunk);
           } catch (e) {
             res.destroy();
@@ -205,8 +218,9 @@ export async function fetchSource(
   transport = requestPinned,
 ): Promise<RawResponse> {
   let url = assertSourceUrl(source.url, source);
+  const limit = sourceDocumentLimit(source);
   for (let redirects = 0; redirects <= 3; redirects++) {
-    const response = await transport(url, conditional);
+    const response = await transport(url, conditional, limit);
     if ([301, 302, 303, 307, 308].includes(response.status)) {
       if (!response.headers.location) throw Error('REDIRECT_WITHOUT_LOCATION');
       url = assertSourceUrl(new URL(response.headers.location, url).href, source);
@@ -221,7 +235,7 @@ export async function fetchSource(
           response.headers['content-encoding'] !== 'identity'))
     )
       throw Error('UNSUPPORTED_CONTENT');
-    assertResponseLength(response.headers['content-length'], response.body.length);
+    assertResponseLength(response.headers['content-length'], response.body.length, limit);
     return response;
   }
   throw Error('TOO_MANY_REDIRECTS');
@@ -239,6 +253,7 @@ export async function fetchSourceBrowser(source: SourceConfig): Promise<RawRespo
   // Explicitly configured acquisition only; never a challenge-solving or authenticated browser.
   if (source.acquisition !== 'browser') throw Error('BROWSER_SOURCE_NOT_CONFIGURED');
   const url = assertSourceUrl(source.url, source),
+    limit = sourceDocumentLimit(source),
     address = await resolvePublic(url.hostname);
   const { chromium } = await import('@playwright/test');
   const pinned = address.family === 6 ? `[${address.address}]` : address.address;
@@ -282,12 +297,12 @@ export async function fetchSourceBrowser(source: SourceConfig): Promise<RawRespo
     });
     const cdp = await context.newCDPSession(page);
     await cdp.send('Network.enable', {
-      maxTotalBufferSize: MAX_BYTES,
-      maxResourceBufferSize: MAX_BYTES,
+      maxTotalBufferSize: limit,
+      maxResourceBufferSize: limit,
     });
     cdp.on('Network.dataReceived', (event) => {
       totalBytes += Math.max(event.dataLength, event.encodedDataLength);
-      if (totalBytes > MAX_BYTES) fail(Error('SOURCE_TOO_LARGE'));
+      if (totalBytes > limit) fail(Error('SOURCE_TOO_LARGE'));
     });
     cdp.on('Network.responseReceived', (event) => {
       if (event.type !== 'Document') return;
@@ -296,7 +311,7 @@ export async function fetchSourceBrowser(source: SourceConfig): Promise<RawRespo
         const headers = Object.fromEntries(
           Object.entries(event.response.headers).map(([k, v]) => [k.toLowerCase(), String(v)]),
         );
-        assertResponseLength(headers['content-length'], 0);
+        assertResponseLength(headers['content-length'], 0, limit);
         if (!/^text\/html(?:;|$)/i.test(headers['content-type'] ?? ''))
           throw Error('UNSUPPORTED_CONTENT');
       } catch (e) {
@@ -309,7 +324,7 @@ export async function fetchSourceBrowser(source: SourceConfig): Promise<RawRespo
       throw Error(`SOURCE_HTTP_${response?.status() ?? 0}`);
     const body = await response.body();
     if (failure) throw failure;
-    assertResponseLength(undefined, body.length);
+    assertResponseLength(undefined, body.length, limit);
     const headers = await response.allHeaders();
     // Playwright returns decoded document bytes, as retained in the acquisition provenance.
     delete headers['content-encoding'];
@@ -450,10 +465,13 @@ export async function retain(
   directory: string,
   previous?: Snapshot,
 ): Promise<Snapshot> {
+  assertSourceUrl(response.url, source);
+  assertResponseLength(undefined, response.body.length, sourceDocumentLimit(source));
   const extractorVersion = `${EXTRACTOR_VERSION}:${source.contentId ?? 'main'}:${source.acquisition ?? 'https'}`;
   if (response.status === 304) {
     if (!previous) throw Error('UNEXPECTED_NOT_MODIFIED');
     const raw = await readFile(join(directory, `${previous.snapshotSha256}.html`));
+    assertResponseLength(undefined, raw.length, sourceDocumentLimit(source));
     if (digest(raw) !== previous.snapshotSha256) throw Error('EVIDENCE_INTEGRITY');
     const text = await readFile(join(directory, `${previous.normalizedSha256}.txt`), 'utf8');
     if (digest(text) !== previous.normalizedSha256 || text !== previous.normalizedText)
@@ -569,6 +587,7 @@ export async function upload(
   const chunks = Math.ceil(body.length / 131072);
   const reservation = await api('/internal/v1/evidence', 'POST', {
     id: snapshot.evidenceId,
+    sourceId: snapshot.sourceId,
     rawSha256: snapshot.snapshotSha256,
     bytes: body.length,
     chunks,
@@ -689,7 +708,7 @@ export async function main() {
         );
       } catch (e) {
         const error = e instanceof Error ? e.message : 'COLLECTION_FAILED';
-        if (response?.status === 200 && response.body.length <= MAX_BYTES)
+        if (response?.status === 200 && response.body.length <= sourceDocumentLimit(source))
           await immutableWrite(
             join(directory, `quarantine-${digest(response.body)}.html`),
             response.body,

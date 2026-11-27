@@ -3,6 +3,11 @@ import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
+  DEFAULT_SOURCE_BYTES,
+  GOOGLE_HELP_SOURCE_BYTES,
+  sourceDocumentLimit,
+} from '../packages/core/source-policy.js';
+import {
   isPublicAddress,
   assertBrowserRequest,
   assertSourceUrl,
@@ -88,6 +93,59 @@ describe('source collector boundaries', () => {
       }),
     ).rejects.toThrow('SOURCE_SCOPE');
     expect(calls).toBe(1);
+  });
+  it('allows only the exact English Google help URL and preserves query scope across redirects', async () => {
+    const google = {
+      ...source,
+      url: 'https://support.google.com/accounts/answer/185834?hl=en',
+      approvedOrigin: 'https://support.google.com',
+      approvedPath: '/accounts/answer/185834',
+    };
+    expect(assertSourceUrl(google.url, google).href).toBe(google.url);
+    for (const suffix of ['', '?hl=fr', '?hl=en&redirect=1', '?hl=en&hl=en', '?hl=en#part'])
+      expect(() =>
+        assertSourceUrl('https://support.google.com/accounts/answer/185834' + suffix, google),
+      ).toThrow('SOURCE_SCOPE');
+    expect(sourceDocumentLimit(google)).toBe(GOOGLE_HELP_SOURCE_BYTES);
+    expect(sourceDocumentLimit({ ...google, approvedPath: '/accounts/answer/' })).toBe(
+      DEFAULT_SOURCE_BYTES,
+    );
+    let calls = 0;
+    await expect(
+      fetchSource(google, {}, async () => {
+        calls++;
+        return {
+          status: 302,
+          headers: { location: '/accounts/answer/185834?hl=fr' },
+          body: Buffer.alloc(0),
+          url: google.url,
+        };
+      }),
+    ).rejects.toThrow('SOURCE_SCOPE');
+    expect(calls).toBe(1);
+  });
+  it('bounds the reviewed larger profile while retaining the ordinary one MiB cap', async () => {
+    const google = {
+      ...source,
+      url: 'https://support.google.com/accounts/answer/185834?hl=en',
+      approvedOrigin: 'https://support.google.com',
+      approvedPath: '/accounts/answer/185834',
+    };
+    const raw = Buffer.alloc(DEFAULT_SOURCE_BYTES + 1);
+    const transport = async () => ({
+      status: 200,
+      headers: { 'content-type': 'text/html' },
+      body: raw,
+      url: google.url,
+    });
+    expect((await fetchSource(google, {}, transport)).body.length).toBe(raw.length);
+    await expect(fetchSource(source, {}, transport)).rejects.toThrow('SOURCE_TOO_LARGE');
+    await expect(
+      fetchSource(google, {}, async () => ({
+        ...(await transport()),
+        body: Buffer.alloc(GOOGLE_HELP_SOURCE_BYTES + 1),
+      })),
+    ).rejects.toThrow('SOURCE_TOO_LARGE');
   });
   it('permits only the configured main document in browser mode', () => {
     expect(assertBrowserRequest(source.url, source, true, 'GET').href).toBe(source.url);

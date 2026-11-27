@@ -1,0 +1,375 @@
+{
+  "schemaVersion": "1.0",
+  "usage": "production_candidate",
+  "flowId": "google-lost-second-factor",
+  "scope": "English guidance for an adult with their own personal Google account whose primary phone or usual second step is unavailable. Excludes managed accounts, child/representative recovery and detailed Advanced Protection recovery.",
+  "entryQuestionId": "account-scope",
+  "questions": [
+    {
+      "id": "account-scope",
+      "prompt": "Is this your own personal Google account, as an adult?",
+      "choices": [
+        {
+          "id": "personal",
+          "label": "Yes, my personal account"
+        },
+        {
+          "id": "managed",
+          "label": "It is a work, school or managed account"
+        },
+        {
+          "id": "other",
+          "label": "It is for a child or someone else"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ],
+      "help": "This guide never asks for an email address, password, recovery code or identity document."
+    },
+    {
+      "id": "password",
+      "prompt": "Do you remember your Google password?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes"
+        },
+        {
+          "id": "no",
+          "label": "No"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "advanced",
+      "prompt": "Is the account enrolled in Google Advanced Protection?",
+      "choices": [
+        {
+          "id": "yes",
+          "label": "Yes"
+        },
+        {
+          "id": "no",
+          "label": "No"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ]
+    },
+    {
+      "id": "backup-method",
+      "prompt": "Which previously set-up sign-in option can you still access?",
+      "choices": [
+        {
+          "id": "device",
+          "label": "Another phone already signed in"
+        },
+        {
+          "id": "code",
+          "label": "A backup code I previously saved"
+        },
+        {
+          "id": "key",
+          "label": "A registered hardware security key"
+        },
+        {
+          "id": "passkey",
+          "label": "A passkey on another device"
+        },
+        {
+          "id": "number",
+          "label": "Another registered verification phone number"
+        },
+        {
+          "id": "none",
+          "label": "None of these"
+        },
+        {
+          "id": "unknown",
+          "label": "I am not sure"
+        }
+      ],
+      "help": "Select only an option you already have. Enter codes only on Google’s own sign-in pages."
+    }
+  ],
+  "transitions": [
+    {
+      "questionId": "account-scope",
+      "choiceId": "managed",
+      "targetType": "outcome",
+      "targetId": "managed-account"
+    },
+    {
+      "questionId": "account-scope",
+      "choiceId": "other",
+      "targetType": "outcome",
+      "targetId": "outside-scope"
+    },
+    {
+      "questionId": "account-scope",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "confirm-scope"
+    },
+    {
+      "questionId": "account-scope",
+      "choiceId": "personal",
+      "targetType": "question",
+      "targetId": "password"
+    },
+    {
+      "questionId": "password",
+      "choiceId": "yes",
+      "targetType": "question",
+      "targetId": "advanced"
+    },
+    {
+      "questionId": "password",
+      "choiceId": "no",
+      "targetType": "outcome",
+      "targetId": "recovery"
+    },
+    {
+      "questionId": "password",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "recovery"
+    },
+    {
+      "questionId": "advanced",
+      "choiceId": "yes",
+      "targetType": "outcome",
+      "targetId": "check-advanced"
+    },
+    {
+      "questionId": "advanced",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "check-advanced"
+    },
+    {
+      "questionId": "advanced",
+      "choiceId": "no",
+      "targetType": "question",
+      "targetId": "backup-method"
+    },
+    {
+      "questionId": "backup-method",
+      "choiceId": "device",
+      "targetType": "outcome",
+      "targetId": "use-device"
+    },
+    {
+      "questionId": "backup-method",
+      "choiceId": "code",
+      "targetType": "outcome",
+      "targetId": "use-code"
+    },
+    {
+      "questionId": "backup-method",
+      "choiceId": "key",
+      "targetType": "outcome",
+      "targetId": "use-key"
+    },
+    {
+      "questionId": "backup-method",
+      "choiceId": "passkey",
+      "targetType": "outcome",
+      "targetId": "use-passkey"
+    },
+    {
+      "questionId": "backup-method",
+      "choiceId": "number",
+      "targetType": "outcome",
+      "targetId": "use-number"
+    },
+    {
+      "questionId": "backup-method",
+      "choiceId": "none",
+      "targetType": "outcome",
+      "targetId": "recovery"
+    },
+    {
+      "questionId": "backup-method",
+      "choiceId": "unknown",
+      "targetType": "outcome",
+      "targetId": "check-method"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "managed-account",
+      "title": "Check with your account administrator",
+      "nextStep": "Google notes that personal-account recovery steps may not work for work, school or other managed accounts. Check the official guidance and contact your administrator.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-recovery"
+      ]
+    },
+    {
+      "id": "outside-scope",
+      "title": "Use the official route for that account",
+      "nextStep": "This draft is limited to an adult recovering their own personal Google account. Open Google’s account help for the appropriate route.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-recovery"
+      ]
+    },
+    {
+      "id": "confirm-scope",
+      "title": "Confirm which account needs help",
+      "nextStep": "Check whether the account is personal or managed before choosing a recovery process. Use Google’s official account help if you are unsure.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-recovery"
+      ]
+    },
+    {
+      "id": "recovery",
+      "title": "Use Google’s account recovery process",
+      "nextStep": "Follow Google’s recovery process and answer its ownership questions. Do not share passwords or verification codes with this site or a third-party recovery service.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-recovery"
+      ]
+    },
+    {
+      "id": "check-advanced",
+      "title": "Check Google’s Advanced Protection instructions",
+      "nextStep": "Use Google’s official second-step help for Advanced Protection before choosing a recovery method. This draft does not apply the ordinary backup-options branch to that account.",
+      "prerequisites": [],
+      "unresolved": [
+        "Advanced Protection may require a different recovery route."
+      ],
+      "sourceRefs": [
+        "google-lost-factor"
+      ]
+    },
+    {
+      "id": "check-method",
+      "title": "Review which verification options you have",
+      "nextStep": "Open Google’s official second-step help to identify an option you previously set up. If none is available, follow its account recovery route.",
+      "prerequisites": [],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-factor",
+        "google-lost-recovery"
+      ]
+    },
+    {
+      "id": "use-device",
+      "title": "Try your available Google verification option",
+      "nextStep": "Google lists another phone already signed in as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+      "prerequisites": [
+        "You remember the password and can access another phone already signed in.",
+        "This branch excludes Advanced Protection."
+      ],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-factor"
+      ]
+    },
+    {
+      "id": "use-code",
+      "title": "Try your available Google verification option",
+      "nextStep": "Google lists a previously saved backup code as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+      "prerequisites": [
+        "You remember the password and can access a previously saved backup code.",
+        "This branch excludes Advanced Protection."
+      ],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-factor"
+      ]
+    },
+    {
+      "id": "use-key",
+      "title": "Try your available Google verification option",
+      "nextStep": "Google lists a registered hardware security key as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+      "prerequisites": [
+        "You remember the password and can access a registered hardware security key.",
+        "This branch excludes Advanced Protection."
+      ],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-factor"
+      ]
+    },
+    {
+      "id": "use-passkey",
+      "title": "Try your available Google verification option",
+      "nextStep": "Google lists a passkey on another device as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+      "prerequisites": [
+        "You remember the password and can access a passkey on another device.",
+        "This branch excludes Advanced Protection."
+      ],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-factor"
+      ]
+    },
+    {
+      "id": "use-number",
+      "title": "Try your available Google verification option",
+      "nextStep": "Google lists another verification phone number previously added to the account as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+      "prerequisites": [
+        "You remember the password and can access another verification phone number previously added to the account.",
+        "This branch excludes Advanced Protection."
+      ],
+      "unresolved": [
+        "Google determines which verification and recovery options are available."
+      ],
+      "sourceRefs": [
+        "google-lost-factor"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "google-lost-factor",
+      "sourceVersionId": "v_ce01c9fa48b8d697869679cdd2524d1dd018610ea39e6bce92dcf2f6fd3c",
+      "snapshotSha256": "ec7696170608a18564520d9519cbce8336f01d82ead556e5361c28c522d51f83",
+      "url": "https://support.google.com/accounts/answer/185834?hl=en",
+      "title": "Google: Fix common issues with 2-Step Verification",
+      "passage": "Another phone signed in to your Google Account."
+    },
+    {
+      "id": "google-lost-recovery",
+      "sourceVersionId": "v_029e276d4961751dd85e6d45739163efd7915f4350065dcb7655acafc3cc",
+      "snapshotSha256": "b005f044a35efaea4ab42bd7a2abf46260e2cc9d33aa65390fcc1343d43a71fd",
+      "url": "https://support.google.com/accounts/answer/7682439?hl=en",
+      "title": "Google: Recover your Google Account or Gmail",
+      "passage": "Do not give out your passwords or verification codes."
+    }
+  ]
+}

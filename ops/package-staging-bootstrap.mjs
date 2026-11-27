@@ -22,6 +22,7 @@ const paths = [
   'ops/authorized-tests.mjs',
   'ops/submit-staging-candidate.command',
   'ops/collector.mts',
+  'packages/core/source-policy.ts',
   'ops/upload-staging-evidence.command',
   'domains/sources.json',
   'domains/verizon-sim-protection/source-register.json',

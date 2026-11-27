@@ -20,3 +20,5 @@ domains/research/**/*.html
 domains/research/**/*.txt
 domains/research/**/*.md
 !domains/research/**/README.md
+# Partial first account-recovery preparation retained locally after a draft-shape error.
+domains/research/account-recovery-release-2026-11-26/

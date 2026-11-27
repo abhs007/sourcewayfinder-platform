@@ -3,6 +3,15 @@ import { createRoot } from 'react-dom/client';
 import '../../web/src/styles.css';
 import { Registration } from './Registration';
 import verizonRegistration from '../../../domains/verizon-sim-protection/registration.proposed.json';
+import lostFactorRegistration from '../../../domains/google-lost-second-factor/registration.proposed.json';
+import compromisedRegistration from '../../../domains/google-compromised-account/registration.proposed.json';
+import type { RegistrationPacket } from './registration-plan';
+
+const registrationPackets = [
+  { label: 'Verizon', packet: verizonRegistration },
+  { label: 'Google lost second factor', packet: lostFactorRegistration },
+  { label: 'Google compromised account', packet: compromisedRegistration },
+];
 
 type RecordData = Record<string, unknown> & { id: string };
 type Dashboard = {
@@ -21,11 +30,11 @@ const gateNames: Record<string, string> = {
   interpretation_review: 'Source interpretation',
   expected_answer_review: 'Expected answers and acceptance tests',
   merge_review: 'Merge candidate',
-  deployment_review: 'Production deployment',
+  deployment_review: 'Release deployment',
   interpretation: 'Source interpretation',
   expectations: 'Expected answers and acceptance tests',
   merge: 'Merge candidate',
-  deploy: 'Production deployment',
+  deploy: 'Release deployment',
 };
 const formatDate = (v: unknown) =>
   typeof v === 'string' && Number.isFinite(Date.parse(v)) ? new Date(v).toLocaleString() : text(v);
@@ -40,7 +49,7 @@ function ItemTitle({ item }: { item: RecordData }) {
 
 export function AdminApp() {
   const [data, setData] = useState<Dashboard | null>(null);
-  const [registering, setRegistering] = useState(false);
+  const [registering, setRegistering] = useState<RegistrationPacket | null>(null);
   const [tab, setTab] = useState<'proposals' | 'releases' | 'sources' | 'flows' | 'audit'>(
     'proposals',
   );
@@ -290,7 +299,7 @@ export function AdminApp() {
           </div>
           <button
             className="button secondary"
-            disabled={busy || registering}
+            disabled={busy || !!registering}
             onClick={() => {
               // Queue refresh does not reload a selected detail record. Close it so
               // decisions made in another browser cannot leave stale review controls.
@@ -321,11 +330,12 @@ export function AdminApp() {
         )}
         {registering && data ? (
           <Registration
-            packet={verizonRegistration}
+            key={registering.flow.id}
+            packet={registering}
             busy={busy}
             setBusy={setBusy}
             onClose={() => {
-              setRegistering(false);
+              setRegistering(null);
               void refresh();
             }}
           />
@@ -499,27 +509,34 @@ export function AdminApp() {
         ) : (
           <>
             {data &&
-              (!data.flows.some((flow) => flow.id === verizonRegistration.flow.id) ||
-                verizonRegistration.sources.some(
-                  (source) => !data.sources.some((existing) => existing.id === source.id),
-                )) && (
-                <div className="registration-start">
-                  <div>
-                    <h2>Register your first guidance flow</h2>
-                    <p>Review the Verizon scope and three official source boundaries.</p>
+              registrationPackets
+                .filter(
+                  ({ packet }) =>
+                    !data.flows.some((flow) => flow.id === packet.flow.id) ||
+                    packet.sources.some(
+                      (source) => !data.sources.some((existing) => existing.id === source.id),
+                    ),
+                )
+                .map(({ label, packet }) => (
+                  <div className="registration-start" key={packet.flow.id}>
+                    <div>
+                      <h2>Register {label} guidance</h2>
+                      <p>
+                        Review the scope and {packet.sources.length} official source boundaries.
+                      </p>
+                    </div>
+                    <button
+                      className="button secondary"
+                      disabled={busy}
+                      onClick={() => {
+                        setMessage('');
+                        setRegistering(packet);
+                      }}
+                    >
+                      Review {label} setup
+                    </button>
                   </div>
-                  <button
-                    className="button secondary"
-                    disabled={busy}
-                    onClick={() => {
-                      setMessage('');
-                      setRegistering(true);
-                    }}
-                  >
-                    Review Verizon setup
-                  </button>
-                </div>
-              )}
+                ))}
             <nav className="admin-tabs" aria-label="Review categories">
               {(['proposals', 'releases', 'sources', 'flows', 'audit'] as const).map((t) => (
                 <button

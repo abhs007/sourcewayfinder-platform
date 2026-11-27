@@ -1,0 +1,422 @@
+{
+  "cases": [
+    {
+      "id": "case-01",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "managed"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "managed-account",
+        "title": "Check with your account administrator",
+        "nextStep": "Google notes that personal-account recovery steps may not work for work, school or other managed accounts. Check the official guidance and contact your administrator.",
+        "prerequisites": [],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-recovery"
+        ]
+      }
+    },
+    {
+      "id": "case-02",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "other"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "outside-scope",
+        "title": "Use the official route for that account",
+        "nextStep": "This draft is limited to an adult recovering their own personal Google account. Open Google’s account help for the appropriate route.",
+        "prerequisites": [],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-recovery"
+        ]
+      }
+    },
+    {
+      "id": "case-03",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "unknown"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "confirm-scope",
+        "title": "Confirm which account needs help",
+        "nextStep": "Check whether the account is personal or managed before choosing a recovery process. Use Google’s official account help if you are unsure.",
+        "prerequisites": [],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-recovery"
+        ]
+      }
+    },
+    {
+      "id": "case-04",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "yes"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "check-advanced",
+        "title": "Check Google’s Advanced Protection instructions",
+        "nextStep": "Use Google’s official second-step help for Advanced Protection before choosing a recovery method. This draft does not apply the ordinary backup-options branch to that account.",
+        "prerequisites": [],
+        "unresolved": [
+          "Advanced Protection may require a different recovery route."
+        ],
+        "sourceRefs": [
+          "google-lost-factor"
+        ]
+      }
+    },
+    {
+      "id": "case-05",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "unknown"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "check-advanced",
+        "title": "Check Google’s Advanced Protection instructions",
+        "nextStep": "Use Google’s official second-step help for Advanced Protection before choosing a recovery method. This draft does not apply the ordinary backup-options branch to that account.",
+        "prerequisites": [],
+        "unresolved": [
+          "Advanced Protection may require a different recovery route."
+        ],
+        "sourceRefs": [
+          "google-lost-factor"
+        ]
+      }
+    },
+    {
+      "id": "case-06",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "no"
+        },
+        {
+          "questionId": "backup-method",
+          "choiceId": "device"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "use-device",
+        "title": "Try your available Google verification option",
+        "nextStep": "Google lists another phone already signed in as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+        "prerequisites": [
+          "You remember the password and can access another phone already signed in.",
+          "This branch excludes Advanced Protection."
+        ],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-factor"
+        ]
+      }
+    },
+    {
+      "id": "case-07",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "no"
+        },
+        {
+          "questionId": "backup-method",
+          "choiceId": "code"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "use-code",
+        "title": "Try your available Google verification option",
+        "nextStep": "Google lists a previously saved backup code as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+        "prerequisites": [
+          "You remember the password and can access a previously saved backup code.",
+          "This branch excludes Advanced Protection."
+        ],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-factor"
+        ]
+      }
+    },
+    {
+      "id": "case-08",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "no"
+        },
+        {
+          "questionId": "backup-method",
+          "choiceId": "key"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "use-key",
+        "title": "Try your available Google verification option",
+        "nextStep": "Google lists a registered hardware security key as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+        "prerequisites": [
+          "You remember the password and can access a registered hardware security key.",
+          "This branch excludes Advanced Protection."
+        ],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-factor"
+        ]
+      }
+    },
+    {
+      "id": "case-09",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "no"
+        },
+        {
+          "questionId": "backup-method",
+          "choiceId": "passkey"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "use-passkey",
+        "title": "Try your available Google verification option",
+        "nextStep": "Google lists a passkey on another device as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+        "prerequisites": [
+          "You remember the password and can access a passkey on another device.",
+          "This branch excludes Advanced Protection."
+        ],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-factor"
+        ]
+      }
+    },
+    {
+      "id": "case-10",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "no"
+        },
+        {
+          "questionId": "backup-method",
+          "choiceId": "number"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "use-number",
+        "title": "Try your available Google verification option",
+        "nextStep": "Google lists another verification phone number previously added to the account as a possible second-step option. Use Google’s sign-in process to try it. Once you regain access, follow its lost-phone security instructions.",
+        "prerequisites": [
+          "You remember the password and can access another verification phone number previously added to the account.",
+          "This branch excludes Advanced Protection."
+        ],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-factor"
+        ]
+      }
+    },
+    {
+      "id": "case-11",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "no"
+        },
+        {
+          "questionId": "backup-method",
+          "choiceId": "none"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "recovery",
+        "title": "Use Google’s account recovery process",
+        "nextStep": "Follow Google’s recovery process and answer its ownership questions. Do not share passwords or verification codes with this site or a third-party recovery service.",
+        "prerequisites": [],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-recovery"
+        ]
+      }
+    },
+    {
+      "id": "case-12",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "yes"
+        },
+        {
+          "questionId": "advanced",
+          "choiceId": "no"
+        },
+        {
+          "questionId": "backup-method",
+          "choiceId": "unknown"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "check-method",
+        "title": "Review which verification options you have",
+        "nextStep": "Open Google’s official second-step help to identify an option you previously set up. If none is available, follow its account recovery route.",
+        "prerequisites": [],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-factor",
+          "google-lost-recovery"
+        ]
+      }
+    },
+    {
+      "id": "case-13",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "no"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "recovery",
+        "title": "Use Google’s account recovery process",
+        "nextStep": "Follow Google’s recovery process and answer its ownership questions. Do not share passwords or verification codes with this site or a third-party recovery service.",
+        "prerequisites": [],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-recovery"
+        ]
+      }
+    },
+    {
+      "id": "case-14",
+      "answers": [
+        {
+          "questionId": "account-scope",
+          "choiceId": "personal"
+        },
+        {
+          "questionId": "password",
+          "choiceId": "unknown"
+        }
+      ],
+      "expectedOutcome": {
+        "id": "recovery",
+        "title": "Use Google’s account recovery process",
+        "nextStep": "Follow Google’s recovery process and answer its ownership questions. Do not share passwords or verification codes with this site or a third-party recovery service.",
+        "prerequisites": [],
+        "unresolved": [
+          "Google determines which verification and recovery options are available."
+        ],
+        "sourceRefs": [
+          "google-lost-recovery"
+        ]
+      }
+    }
+  ]
+}

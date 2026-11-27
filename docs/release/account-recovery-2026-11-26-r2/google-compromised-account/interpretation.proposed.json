@@ -1,0 +1,12 @@
+{
+  "flowId": "google-compromised-account",
+  "sourceVersionIds": [
+    "v_659647709afabd7fe1458ff3ab062985ac6fb69c8b5f7201f046b76f9576",
+    "v_982e81df54497e395b0c6126bed8af7a6151ce3542a41b36ce58a5e7eb0d"
+  ],
+  "interpretation": "Bounded routing for an adult using their own personal Google account after suspected unauthorized activity. Sign-in availability determines recovery versus the official activity/device checklist. The flow does not diagnose compromise, guarantee safety, or replace the rest of Google security guidance.",
+  "uncertainties": [
+    "Google decides which verification options it offers and whether ownership is established.",
+    "The adult-only scope and conservative unknown/out-of-scope handoffs are project scope decisions, not universal Google eligibility findings."
+  ]
+}
